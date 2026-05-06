@@ -1,3 +1,12 @@
+- version: "0.1.1"
+  changes:
+    - description: >
+        Fix Elastic Agent 9.x compatibility: replace logfile input with filestream.
+        Filebeat 9.x removed the log input type; switch policy template and events
+        data stream to filestream with a proper agent stream template.
+      type: bugfix
+      link: https://github.com/MathewRJ/GamePulse-Integration/issues/1
+
 - version: "0.1.0"
   changes:
     - description: >
