@@ -1,0 +1,71 @@
+name: Publish EPR to GitHub Pages
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Package version (e.g. 0.1.1 — without leading v)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Build package + publish EPR
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Derive version
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ inputs.version }}" >> "$GITHUB_OUTPUT"
+          else
+            TAG="${GITHUB_REF_NAME}"
+            echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install elastic-package
+        run: |
+          EP_VERSION=$(curl -s https://api.github.com/repos/elastic/elastic-package/releases/latest | jq -r .tag_name)
+          curl -sSfL "https://github.com/elastic/elastic-package/releases/download/${EP_VERSION}/elastic-package_linux_amd64.tar.gz" \
+            | tar -xz -C /usr/local/bin elastic-package
+
+      - name: Build package
+        run: elastic-package build
+
+      - name: Install PyYAML
+        run: pip install pyyaml --quiet
+
+      - name: Generate EPR index
+        run: |
+          python scripts/generate-epr-index.py \
+            "${{ steps.ver.outputs.version }}" \
+            "https://MathewRJ.github.io/GamePulse-Integration"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+      - name: Deploy to GitHub Pages
+        id: pages
+        uses: actions/deploy-pages@v4

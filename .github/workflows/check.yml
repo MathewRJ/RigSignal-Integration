@@ -1,0 +1,23 @@
+name: Package check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    name: elastic-package check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elastic-package
+        run: |
+          VERSION=$(curl -s https://api.github.com/repos/elastic/elastic-package/releases/latest | jq -r .tag_name)
+          curl -sSfL "https://github.com/elastic/elastic-package/releases/download/${VERSION}/elastic-package_linux_amd64.tar.gz" \
+            | tar -xz -C /usr/local/bin elastic-package
+
+      - name: Check package
+        run: elastic-package check
