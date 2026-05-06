@@ -32,11 +32,12 @@ policy_templates:
       Covers CPU, GPU, frame timing, memory, storage, network, audio, power,
       session lifecycle, discrete events, and scheduler/I/O/GPU kernel probes.
     inputs:
-      - type: logfile
-        title: Collect GamePulse metrics
+      - type: filestream
+        title: Collect GamePulse events
         description: >
-          Reads output from the GamePulse collector agent. Configure the path
-          to the GamePulse log or named pipe output below.
+          Optional: collect GamePulse event logs from disk. The gamepulse-agent
+          sends metrics directly to Elasticsearch — this input is only needed
+          if you also want file-based event capture.
         vars:
           - name: paths
             type: text
