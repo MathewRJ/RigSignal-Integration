@@ -15,9 +15,15 @@ jobs:
 
       - name: Install elastic-package
         run: |
-          VERSION=$(curl -s https://api.github.com/repos/elastic/elastic-package/releases/latest | jq -r .tag_name)
-          curl -sSfL "https://github.com/elastic/elastic-package/releases/download/${VERSION}/elastic-package_linux_amd64.tar.gz" \
-            | tar -xz -C /usr/local/bin elastic-package
+          EP_TAG=$(gh release view --repo elastic/elastic-package --json tagName -q .tagName)
+          EP_VER="${EP_TAG#v}"
+          gh release download "${EP_TAG}" \
+            --repo elastic/elastic-package \
+            --pattern "elastic-package_${EP_VER}_linux_amd64.tar.gz" \
+            --output /tmp/ep.tar.gz
+          tar -xz -C /usr/local/bin -f /tmp/ep.tar.gz elastic-package
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Check package
         run: elastic-package check
