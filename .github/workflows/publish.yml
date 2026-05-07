@@ -64,6 +64,9 @@ jobs:
             "${{ steps.ver.outputs.version }}" \
             "https://MathewRJ.github.io/GamePulse-Integration"
 
+      - name: Copy install script to dist
+        run: cp install.sh dist/install.sh
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
