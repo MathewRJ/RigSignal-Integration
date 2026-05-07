@@ -38,12 +38,3 @@ policy_templates:
           Optional: collect GamePulse event logs from disk. The gamepulse-agent
           sends metrics directly to Elasticsearch — this input is only needed
           if you also want file-based event capture.
-        vars:
-          - name: paths
-            type: text
-            title: Paths
-            multi: true
-            required: false
-            show_user: true
-            default:
-              - /var/log/gamepulse/*.log
