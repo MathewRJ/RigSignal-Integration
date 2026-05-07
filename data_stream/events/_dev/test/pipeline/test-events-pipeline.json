@@ -12,7 +12,7 @@
       },
       "event": {
         "kind": "event",
-        "category": "process",
+        "category": ["process"],
         "severity": 2
       },
       "message": "Shader compilation completed in 284ms (cache miss)",

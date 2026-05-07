@@ -8,7 +8,7 @@
                 "type": "logs"
             },
             "event": {
-                "category": "process",
+                "category": ["process"],
                 "kind": "event",
                 "severity": 2,
                 "type": [
