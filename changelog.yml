@@ -1,3 +1,14 @@
+- version: "0.1.3"
+  changes:
+    - description: >
+        Fix agent startup 403 on Elasticsearch ping. The agent was calling GET /
+        (requires cluster:monitor/main) but ingest-only API keys don't have that
+        privilege. Ping now uses /_cluster/health, matching the setup test.
+        4xx responses are treated as non-fatal so the agent continues to ship
+        data even if the health endpoint is restricted.
+      type: bugfix
+      link: https://github.com/MathewRJ/GamePulse/issues/1
+
 - version: "0.1.2"
   changes:
     - description: >
