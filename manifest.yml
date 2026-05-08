@@ -1,7 +1,7 @@
 format_version: "3.0.0"
 name: gamepulse
 title: "GamePulse"
-version: 0.1.4
+version: 0.1.5
 description: >
   Gaming telemetry for Elastic: FPS, GPU/CPU metrics, frame timing percentiles,
   and kernel-level scheduler, I/O, and GPU fence tracing via eBPF.
