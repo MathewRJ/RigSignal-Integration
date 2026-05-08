@@ -61,6 +61,22 @@ Five dashboards are included:
 - **Hardware Environment** — thermal and power headroom
 - **Software Environment** — driver versions, OS context, audio health
 
+## Steam Deck
+
+GamePulse supports the Steam Deck. Install in Desktop Mode:
+
+```bash
+curl -sSfL https://mathewrj.github.io/GamePulse-Integration/install.sh | sh
+gamepulse setup
+```
+
+Installs to `~/.local/bin/` — **survives SteamOS updates** with no reinstall needed.
+
+**eBPF caveat:** the eBPF daemon requires root/`CAP_BPF` and installs to `/usr/`, which
+SteamOS resets on OS updates. Reinstall via `yay -S gamepulse-git` after a system update
+to restore eBPF streams. All other data streams (CPU, GPU, frame timing, memory, etc.)
+are unaffected and continue working without eBPF.
+
 ## Licence
 
 Apache 2.0 — see [LICENSE](LICENSE).
