@@ -1,3 +1,17 @@
+- version: "0.1.2"
+  changes:
+    - description: >
+        Replace system-level installer with user-mode install script.
+        Installs gamepulse-agent to ~/.local/bin/ — no root required, survives
+        SteamOS and other immutable-OS updates without reinstall.
+      type: enhancement
+      link: https://github.com/MathewRJ/GamePulse-Integration/issues/1
+    - description: >
+        Add Steam Deck documentation to README covering user-mode install,
+        eBPF caveat, and post-update reinstall steps.
+      type: enhancement
+      link: https://github.com/MathewRJ/GamePulse-Integration/issues/1
+
 - version: "0.1.1"
   changes:
     - description: >
