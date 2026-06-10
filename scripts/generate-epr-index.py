@@ -5,12 +5,12 @@ GitHub Pages hosting.
 
 Usage: python scripts/generate-epr-index.py <version> <base_url>
   version:  package version, e.g. 0.1.1
-  base_url: GitHub Pages base URL, e.g. https://MathewRJ.github.io/GamePulse-Integration
+  base_url: GitHub Pages base URL, e.g. https://MathewRJ.github.io/RigSignal-Integration
 
 Output layout (written to dist/):
   dist/search                              <- EPR search endpoint (static JSON)
-  dist/package/gamepulse/{v}/             <- package metadata
-  dist/epr/gamepulse/gamepulse-{v}.zip   <- package zip (copied from build/)
+  dist/package/rigsignal/{v}/             <- package metadata
+  dist/epr/rigsignal/rigsignal-{v}.zip   <- package zip (copied from build/)
 """
 
 import json

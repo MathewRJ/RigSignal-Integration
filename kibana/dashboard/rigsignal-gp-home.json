@@ -16,7 +16,7 @@
     "panelsJSON": [
       {
         "embeddableConfig": {
-          "content": "**GamePulse** &nbsp;\u00b7&nbsp; [Player Overview](/app/dashboards#/view/gamepulse-gp-home) &nbsp;|&nbsp; [Game Performance](/app/dashboards#/view/gamepulse-gp-game-perf) &nbsp;|&nbsp; [Game Engine](/app/dashboards#/view/gamepulse-gp-engine) &nbsp;|&nbsp; [Hardware](/app/dashboards#/view/gamepulse-gp-hardware) &nbsp;|&nbsp; [Software Env](/app/dashboards#/view/gamepulse-gp-software)",
+          "content": "**RigSignal** &nbsp;\u00b7&nbsp; [Player Overview](/app/dashboards#/view/rigsignal-gp-home) &nbsp;|&nbsp; [Game Performance](/app/dashboards#/view/rigsignal-gp-game-perf) &nbsp;|&nbsp; [Game Engine](/app/dashboards#/view/rigsignal-gp-engine) &nbsp;|&nbsp; [Hardware](/app/dashboards#/view/rigsignal-gp-hardware) &nbsp;|&nbsp; [Software Env](/app/dashboards#/view/rigsignal-gp-software)",
           "settings": {
             "open_links_in_new_tab": true
           }
@@ -36,7 +36,7 @@
           "dataViewRefName": "optionsListDataView",
           "exclude": false,
           "exists_selected": false,
-          "field_name": "gamepulse.game.name",
+          "field_name": "rigsignal.game.name",
           "ignore_validations": false,
           "run_past_timeout": false,
           "search_technique": "wildcard",
@@ -64,7 +64,7 @@
           "dataViewRefName": "optionsListDataView",
           "exclude": false,
           "exists_selected": false,
-          "field_name": "gamepulse.hardware.gpu.driver_version",
+          "field_name": "rigsignal.hardware.gpu.driver_version",
           "ignore_validations": false,
           "run_past_timeout": false,
           "search_technique": "wildcard",
@@ -121,16 +121,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352": {
+                "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -149,9 +149,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
+                      "index": "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true | STATS `Sessions` = COUNT(*)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Sessions` = COUNT(*)"
                       }
                     }
                   }
@@ -160,13 +160,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
+                  "id": "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true | STATS `Sessions` = COUNT(*)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Sessions` = COUNT(*)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -201,16 +201,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-47a41c3882e1307e6ea2af72476945c677847d9ca0e14fa8b8ca97ba06b98f27": {
+                "metrics-rigsignal.session-default-47a41c3882e1307e6ea2af72476945c677847d9ca0e14fa8b8ca97ba06b98f27": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-47a41c3882e1307e6ea2af72476945c677847d9ca0e14fa8b8ca97ba06b98f27",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-47a41c3882e1307e6ea2af72476945c677847d9ca0e14fa8b8ca97ba06b98f27",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -229,9 +229,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-47a41c3882e1307e6ea2af72476945c677847d9ca0e14fa8b8ca97ba06b98f27",
+                      "index": "metrics-rigsignal.session-default-47a41c3882e1307e6ea2af72476945c677847d9ca0e14fa8b8ca97ba06b98f27",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true AND gamepulse.game.name IS NOT NULL | STATS `Games` = COUNT_DISTINCT(gamepulse.game.name)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.game.name IS NOT NULL | STATS `Games` = COUNT_DISTINCT(rigsignal.game.name)"
                       }
                     }
                   }
@@ -240,13 +240,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-47a41c3882e1307e6ea2af72476945c677847d9ca0e14fa8b8ca97ba06b98f27",
+                  "id": "metrics-rigsignal.session-default-47a41c3882e1307e6ea2af72476945c677847d9ca0e14fa8b8ca97ba06b98f27",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true AND gamepulse.game.name IS NOT NULL | STATS `Games` = COUNT_DISTINCT(gamepulse.game.name)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.game.name IS NOT NULL | STATS `Games` = COUNT_DISTINCT(rigsignal.game.name)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -281,16 +281,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98": {
+                "metrics-rigsignal.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -309,9 +309,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98",
+                      "index": "metrics-rigsignal.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true | STATS `Hours` = ROUND(SUM(gamepulse.summary.duration_s) / 3600.0, 1)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Hours` = ROUND(SUM(rigsignal.summary.duration_s) / 3600.0, 1)"
                       }
                     }
                   }
@@ -320,13 +320,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98",
+                  "id": "metrics-rigsignal.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true | STATS `Hours` = ROUND(SUM(gamepulse.summary.duration_s) / 3600.0, 1)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Hours` = ROUND(SUM(rigsignal.summary.duration_s) / 3600.0, 1)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -361,16 +361,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b": {
+                "metrics-rigsignal.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -389,9 +389,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b",
+                      "index": "metrics-rigsignal.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true AND gamepulse.summary.avg_fps IS NOT NULL | STATS `Avg FPS` = ROUND(AVG(gamepulse.summary.avg_fps), 0)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.summary.avg_fps IS NOT NULL | STATS `Avg FPS` = ROUND(AVG(rigsignal.summary.avg_fps), 0)"
                       }
                     }
                   }
@@ -400,13 +400,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b",
+                  "id": "metrics-rigsignal.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true AND gamepulse.summary.avg_fps IS NOT NULL | STATS `Avg FPS` = ROUND(AVG(gamepulse.summary.avg_fps), 0)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.summary.avg_fps IS NOT NULL | STATS `Avg FPS` = ROUND(AVG(rigsignal.summary.avg_fps), 0)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -497,7 +497,7 @@
                           "isBucketed": false,
                           "label": "Avg FPS (1 s)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.fps.avg_1s"
+                          "sourceField": "rigsignal.fps.avg_1s"
                         },
                         "line_y_1": {
                           "customLabel": true,
@@ -505,7 +505,7 @@
                           "isBucketed": false,
                           "label": "1% Low FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.fps.low_1pct"
+                          "sourceField": "rigsignal.fps.low_1pct"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -655,7 +655,7 @@
                           "params": {
                             "emptyAsNull": false
                           },
-                          "sourceField": "gamepulse.summary.duration_s"
+                          "sourceField": "rigsignal.summary.duration_s"
                         },
                         "datatable_accessor_metric_1": {
                           "customLabel": true,
@@ -674,7 +674,7 @@
                           "isBucketed": false,
                           "label": "Avg FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.avg_fps"
+                          "sourceField": "rigsignal.summary.avg_fps"
                         },
                         "datatable_accessor_metric_3": {
                           "customLabel": true,
@@ -682,7 +682,7 @@
                           "isBucketed": false,
                           "label": "1% Low FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.low_1pct_fps"
+                          "sourceField": "rigsignal.summary.low_1pct_fps"
                         },
                         "datatable_accessor_row_0": {
                           "customLabel": false,
@@ -701,7 +701,7 @@
                             },
                             "size": 20
                           },
-                          "sourceField": "gamepulse.game.name"
+                          "sourceField": "rigsignal.game.name"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -797,7 +797,7 @@
                           "isBucketed": false,
                           "label": "Avg FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.avg_fps"
+                          "sourceField": "rigsignal.summary.avg_fps"
                         },
                         "datatable_accessor_metric_1": {
                           "customLabel": true,
@@ -805,7 +805,7 @@
                           "isBucketed": false,
                           "label": "1% Low FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.low_1pct_fps"
+                          "sourceField": "rigsignal.summary.low_1pct_fps"
                         },
                         "datatable_accessor_metric_2": {
                           "customLabel": true,
@@ -816,7 +816,7 @@
                           "params": {
                             "emptyAsNull": false
                           },
-                          "sourceField": "gamepulse.summary.stutter_count"
+                          "sourceField": "rigsignal.summary.stutter_count"
                         },
                         "datatable_accessor_metric_3": {
                           "customLabel": true,
@@ -846,7 +846,7 @@
                             },
                             "size": 20
                           },
-                          "sourceField": "gamepulse.game.name"
+                          "sourceField": "rigsignal.game.name"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -953,7 +953,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.game.name"
+                          "sourceField": "rigsignal.game.name"
                         },
                         "datatable_accessor_metric_1": {
                           "customLabel": true,
@@ -965,7 +965,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.summary.duration_s"
+                          "sourceField": "rigsignal.summary.duration_s"
                         },
                         "datatable_accessor_metric_10": {
                           "customLabel": true,
@@ -977,7 +977,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.compatibility.proton_version"
+                          "sourceField": "rigsignal.compatibility.proton_version"
                         },
                         "datatable_accessor_metric_2": {
                           "customLabel": true,
@@ -989,7 +989,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.summary.avg_fps"
+                          "sourceField": "rigsignal.summary.avg_fps"
                         },
                         "datatable_accessor_metric_3": {
                           "customLabel": true,
@@ -1001,7 +1001,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.summary.low_1pct_fps"
+                          "sourceField": "rigsignal.summary.low_1pct_fps"
                         },
                         "datatable_accessor_metric_4": {
                           "customLabel": true,
@@ -1013,7 +1013,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.summary.p99_frametime_ms"
+                          "sourceField": "rigsignal.summary.p99_frametime_ms"
                         },
                         "datatable_accessor_metric_5": {
                           "customLabel": true,
@@ -1025,7 +1025,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.summary.stutter_count"
+                          "sourceField": "rigsignal.summary.stutter_count"
                         },
                         "datatable_accessor_metric_6": {
                           "customLabel": true,
@@ -1037,7 +1037,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.summary.bottleneck_dominant"
+                          "sourceField": "rigsignal.summary.bottleneck_dominant"
                         },
                         "datatable_accessor_metric_7": {
                           "customLabel": true,
@@ -1049,7 +1049,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.summary.peak_gpu_temp_c"
+                          "sourceField": "rigsignal.summary.peak_gpu_temp_c"
                         },
                         "datatable_accessor_metric_8": {
                           "customLabel": true,
@@ -1061,7 +1061,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.gpu.driver_version"
+                          "sourceField": "rigsignal.hardware.gpu.driver_version"
                         },
                         "datatable_accessor_metric_9": {
                           "customLabel": true,
@@ -1091,7 +1091,7 @@
                             },
                             "size": 100
                           },
-                          "sourceField": "gamepulse.session.id"
+                          "sourceField": "rigsignal.session.id"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -1231,7 +1231,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.gpu.driver_version"
+                          "sourceField": "rigsignal.hardware.gpu.driver_version"
                         },
                         "datatable_accessor_metric_1": {
                           "customLabel": true,
@@ -1243,7 +1243,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.gpu.vram_mb"
+                          "sourceField": "rigsignal.hardware.gpu.vram_mb"
                         },
                         "datatable_accessor_metric_2": {
                           "customLabel": true,
@@ -1255,7 +1255,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.gpu.vendor"
+                          "sourceField": "rigsignal.hardware.gpu.vendor"
                         },
                         "datatable_accessor_metric_3": {
                           "customLabel": true,
@@ -1267,7 +1267,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.cpu.model"
+                          "sourceField": "rigsignal.hardware.cpu.model"
                         },
                         "datatable_accessor_metric_4": {
                           "customLabel": true,
@@ -1279,7 +1279,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.cpu.cores"
+                          "sourceField": "rigsignal.hardware.cpu.cores"
                         },
                         "datatable_accessor_metric_5": {
                           "customLabel": true,
@@ -1291,7 +1291,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.ram.total_mb"
+                          "sourceField": "rigsignal.hardware.ram.total_mb"
                         },
                         "datatable_accessor_metric_6": {
                           "customLabel": true,
@@ -1303,7 +1303,7 @@
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.ram.type"
+                          "sourceField": "rigsignal.hardware.ram.type"
                         },
                         "datatable_accessor_metric_7": {
                           "customLabel": true,
@@ -1345,7 +1345,7 @@
                             },
                             "size": 5
                           },
-                          "sourceField": "gamepulse.hardware.gpu.model"
+                          "sourceField": "rigsignal.hardware.gpu.model"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -1440,9 +1440,9 @@
     "timeFrom": "now-90d",
     "timeRestore": true,
     "timeTo": "now",
-    "title": "GamePulse \u2014 Player Overview"
+    "title": "RigSignal \u2014 Player Overview"
   },
-  "id": "gamepulse-gp-home",
+  "id": "rigsignal-gp-home",
   "references": [
     {
       "id": "gp-dv-session",

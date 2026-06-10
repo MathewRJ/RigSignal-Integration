@@ -3,11 +3,11 @@
         {
             "@timestamp": "2026-04-11T12:00:00.000Z",
             "data_stream": {
-                "dataset": "gamepulse.ebpf",
+                "dataset": "rigsignal.ebpf",
                 "namespace": "default",
                 "type": "metrics"
             },
-            "gamepulse": {
+            "rigsignal": {
                 "ebpf": {
                     "migration": {
                         "ccx_cross_count": 0,

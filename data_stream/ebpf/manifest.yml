@@ -1,4 +1,4 @@
-title: "GamePulse eBPF Metrics"
+title: "RigSignal eBPF Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"

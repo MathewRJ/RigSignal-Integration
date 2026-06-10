@@ -1,6 +1,6 @@
 ---
 description: >
-  Ingest pipeline for GamePulse memory metrics.
+  Ingest pipeline for RigSignal memory metrics.
   Sets @timestamp and validates memory values are non-negative.
 processors:
   - set:
@@ -9,16 +9,16 @@ processors:
       if: "ctx['@timestamp'] == null"
 
   - trim:
-      field: gamepulse.game.name
+      field: rigsignal.game.name
       ignore_missing: true
 
   - script:
       description: "Validate memory values are non-negative"
       lang: painless
       source: |
-        def rss = ctx.gamepulse?.memory?.game_rss_mb;
+        def rss = ctx.rigsignal?.memory?.game_rss_mb;
         if (rss != null && rss < 0) {
-          throw new Exception('gamepulse.memory.game_rss_mb must be >= 0');
+          throw new Exception('rigsignal.memory.game_rss_mb must be >= 0');
         }
 
 on_failure:
@@ -27,4 +27,4 @@ on_failure:
       value: "{{_ingest.on_failure_message}}"
   - set:
       field: _ingest.failed_pipeline
-      value: "gamepulse-memory"
+      value: "rigsignal-memory"

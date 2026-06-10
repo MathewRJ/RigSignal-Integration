@@ -3,11 +3,11 @@
         {
             "@timestamp": "2026-04-25T12:00:00.000Z",
             "data_stream": {
-                "dataset": "gamepulse.session",
+                "dataset": "rigsignal.session",
                 "namespace": "default",
                 "type": "metrics"
             },
-            "gamepulse": {
+            "rigsignal": {
                 "game": {
                     "graphics_api": "vulkan",
                     "launcher": "Lutris",

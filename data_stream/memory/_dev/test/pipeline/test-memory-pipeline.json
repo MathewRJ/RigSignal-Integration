@@ -4,13 +4,13 @@
       "@timestamp": "2026-04-11T12:00:00.000Z",
       "data_stream": {
         "type": "metrics",
-        "dataset": "gamepulse.memory",
+        "dataset": "rigsignal.memory",
         "namespace": "default"
       },
       "host": {
         "name": "gaming-pc"
       },
-      "gamepulse": {
+      "rigsignal": {
         "session": {
           "id": "test-session-001",
           "agent_version": "0.1.0"

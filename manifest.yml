@@ -1,7 +1,7 @@
+version: 0.1.0
 format_version: "3.0.0"
-name: gamepulse
-title: "GamePulse"
-version: 0.1.6
+name: rigsignal
+title: "RigSignal"
 description: >
   Gaming telemetry for Elastic: FPS, GPU/CPU metrics, frame timing percentiles,
   and kernel-level scheduler, I/O, and GPU fence tracing via eBPF.
@@ -21,20 +21,20 @@ owner:
   type: community
 icons:
   - src: img/icon.svg
-    title: GamePulse
+    title: RigSignal
     type: image/svg+xml
 
 policy_templates:
-  - name: gamepulse
-    title: GamePulse Gaming Telemetry
+  - name: rigsignal
+    title: RigSignal Gaming Telemetry
     description: >
       Collect gaming performance metrics and kernel telemetry via eBPF.
       Covers CPU, GPU, frame timing, memory, storage, network, audio, power,
       session lifecycle, discrete events, and scheduler/I/O/GPU kernel probes.
     inputs:
       - type: filestream
-        title: Collect GamePulse events
+        title: Collect RigSignal events
         description: >
-          Optional: collect GamePulse event logs from disk. The gamepulse-agent
+          Optional: collect RigSignal event logs from disk. The rigsignal-agent
           sends metrics directly to Elasticsearch — this input is only needed
           if you also want file-based event capture.

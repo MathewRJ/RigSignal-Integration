@@ -3,11 +3,11 @@
         {
             "@timestamp": "2026-04-11T12:00:00.000Z",
             "data_stream": {
-                "dataset": "gamepulse.cpu",
+                "dataset": "rigsignal.cpu",
                 "namespace": "default",
                 "type": "metrics"
             },
-            "gamepulse": {
+            "rigsignal": {
                 "cpu": {
                     "boost_state": true,
                     "clock_mhz_avg": 4850,

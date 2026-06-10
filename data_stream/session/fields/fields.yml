@@ -14,7 +14,7 @@
   external: ecs
 
 # Session document — captured once per gaming session
-- name: gamepulse
+- name: rigsignal
   type: group
   fields:
     - name: session
@@ -26,7 +26,7 @@
           description: "Unique session identifier (UUID)"
         - name: agent_version
           type: keyword
-          description: "Version of the GamePulse collector agent"
+          description: "Version of the RigSignal collector agent"
         - name: opt_in_public
           type: boolean
           description: "True if the user has opted in to sharing this session's data publicly"

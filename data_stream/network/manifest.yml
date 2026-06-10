@@ -1,4 +1,4 @@
-title: "GamePulse Network Metrics"
+title: "RigSignal Network Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"

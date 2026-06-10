@@ -62,7 +62,7 @@ jobs:
         run: |
           python scripts/generate-epr-index.py \
             "${{ steps.ver.outputs.version }}" \
-            "https://MathewRJ.github.io/GamePulse-Integration"
+            "https://MathewRJ.github.io/RigSignal-Integration"
 
       - name: Copy install script to dist
         run: cp install.sh dist/install.sh
@@ -82,9 +82,9 @@ jobs:
       - name: Create GitHub Release with zip
         if: github.event_name == 'push'
         run: |
-          ZIP="build/packages/gamepulse-${{ steps.ver.outputs.version }}.zip"
+          ZIP="build/packages/rigsignal-${{ steps.ver.outputs.version }}.zip"
           gh release create "v${{ steps.ver.outputs.version }}" "${ZIP}" \
-            --title "GamePulse Integration v${{ steps.ver.outputs.version }}" \
+            --title "RigSignal Integration v${{ steps.ver.outputs.version }}" \
             --notes "Integration package for Elastic Fleet. Upload \`$(basename ${ZIP})\` via **Fleet → Integrations → Upload a package** on Elastic Cloud Serverless."
         env:
           GH_TOKEN: ${{ github.token }}

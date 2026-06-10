@@ -4,7 +4,7 @@
       "@timestamp": "2026-04-11T12:00:00.000Z",
       "data_stream": {
         "type": "logs",
-        "dataset": "gamepulse.events",
+        "dataset": "rigsignal.events",
         "namespace": "default"
       },
       "host": {
@@ -16,7 +16,7 @@
         "severity": 2
       },
       "message": "Shader compilation completed in 284ms (cache miss)",
-      "gamepulse": {
+      "rigsignal": {
         "session": {
           "id": "test-session-001",
           "agent_version": "0.1.0"

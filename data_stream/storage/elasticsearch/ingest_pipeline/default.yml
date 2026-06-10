@@ -1,6 +1,6 @@
 ---
 description: >
-  Ingest pipeline for GamePulse storage metrics.
+  Ingest pipeline for RigSignal storage metrics.
   Sets @timestamp and validates throughput/IOPS values are non-negative.
 processors:
   - set:
@@ -9,16 +9,16 @@ processors:
       if: "ctx['@timestamp'] == null"
 
   - trim:
-      field: gamepulse.game.name
+      field: rigsignal.game.name
       ignore_missing: true
 
   - script:
       description: "Validate storage metrics are non-negative"
       lang: painless
       source: |
-        def readMbps = ctx.gamepulse?.storage?.read_mbps;
+        def readMbps = ctx.rigsignal?.storage?.read_mbps;
         if (readMbps != null && readMbps < 0) {
-          throw new Exception('gamepulse.storage.read_mbps must be >= 0');
+          throw new Exception('rigsignal.storage.read_mbps must be >= 0');
         }
 
 on_failure:
@@ -27,4 +27,4 @@ on_failure:
       value: "{{_ingest.on_failure_message}}"
   - set:
       field: _ingest.failed_pipeline
-      value: "gamepulse-storage"
+      value: "rigsignal-storage"

@@ -7,7 +7,7 @@
   external: ecs
 
 # Per-thread eBPF scheduler metrics
-- name: gamepulse
+- name: rigsignal
   type: group
   fields:
     - name: session

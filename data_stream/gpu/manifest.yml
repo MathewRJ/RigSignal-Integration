@@ -1,4 +1,4 @@
-title: "GamePulse GPU Metrics"
+title: "RigSignal GPU Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"

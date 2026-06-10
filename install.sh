@@ -1,23 +1,23 @@
 #!/bin/sh
-# GamePulse user-mode installer
+# RigSignal user-mode installer
 #
 # Installs to ~/.local/bin/ — no root required, survives SteamOS / immutable-OS updates.
 #
 # Usage:
-#   curl -sSfL https://mathewrj.github.io/GamePulse-Integration/install.sh | sh
-#   curl -sSfL https://mathewrj.github.io/GamePulse-Integration/install.sh | sh -s -- --version 0.2.0
+#   curl -sSfL https://mathewrj.github.io/RigSignal-Integration/install.sh | sh
+#   curl -sSfL https://mathewrj.github.io/RigSignal-Integration/install.sh | sh -s -- --version 0.2.0
 #
 # Arch Linux / CachyOS / Manjaro:
-#   For eBPF scheduler probes, install from AUR instead: yay -S gamepulse-git
+#   For eBPF scheduler probes, install from AUR instead: yay -S rigsignal-git
 #   This script installs the agent-only binary (no eBPF) on any distro.
 #
 # After install:
-#   gamepulse setup    # configure Elasticsearch endpoint + API key
-#   gamepulse start    # start the agent
+#   rigsignal setup    # configure Elasticsearch endpoint + API key
+#   rigsignal start    # start the agent
 
 set -e
 
-REPO="MathewRJ/GamePulse"
+REPO="MathewRJ/RigSignal"
 INSTALL_BIN="${HOME}/.local/bin"
 INSTALL_SERVICE="${HOME}/.config/systemd/user"
 GITHUB_API="https://api.github.com/repos/${REPO}"
@@ -79,7 +79,7 @@ if [ -z "$VERSION" ]; then
     [ -n "$VERSION" ] || err "Could not determine latest release. Check https://github.com/${REPO}/releases"
 fi
 
-info "Installing GamePulse v${VERSION} (${ARCH})"
+info "Installing RigSignal v${VERSION} (${ARCH})"
 
 # ── SteamOS detection ─────────────────────────────────────────────────────────
 
@@ -93,7 +93,7 @@ fi
 
 # ── Download ──────────────────────────────────────────────────────────────────
 
-TARBALL="gamepulse-${VERSION}-linux-${ARCH}.tar.gz"
+TARBALL="rigsignal-${VERSION}-linux-${ARCH}.tar.gz"
 DOWNLOAD_URL="${GITHUB_RELEASES}/v${VERSION}/${TARBALL}"
 
 TMP=$(mktemp -d)
@@ -106,17 +106,17 @@ tar -xzf "$TMP/$TARBALL" -C "$TMP" --strip-components=1
 # ── Install binaries ──────────────────────────────────────────────────────────
 
 mkdir -p "$INSTALL_BIN"
-install -m 755 "$TMP/gamepulse-agent"  "$INSTALL_BIN/gamepulse-agent"
-install -m 755 "$TMP/gamepulse"        "$INSTALL_BIN/gamepulse"
+install -m 755 "$TMP/rigsignal-agent"  "$INSTALL_BIN/rigsignal-agent"
+install -m 755 "$TMP/rigsignal"        "$INSTALL_BIN/rigsignal"
 ok "Binaries installed to $INSTALL_BIN"
 
 # ── Install user systemd service ──────────────────────────────────────────────
 
 if command -v systemctl >/dev/null 2>&1; then
     mkdir -p "$INSTALL_SERVICE"
-    install -m 644 "$TMP/gamepulse-agent.service" "$INSTALL_SERVICE/gamepulse-agent.service"
+    install -m 644 "$TMP/rigsignal-agent.service" "$INSTALL_SERVICE/rigsignal-agent.service"
     systemctl --user daemon-reload 2>/dev/null || true
-    ok "Systemd user service installed ($INSTALL_SERVICE/gamepulse-agent.service)"
+    ok "Systemd user service installed ($INSTALL_SERVICE/rigsignal-agent.service)"
 else
     info "systemctl not found — skipping service install (non-systemd system)"
 fi
@@ -150,17 +150,17 @@ esac
 # ── Summary ───────────────────────────────────────────────────────────────────
 
 printf '\n'
-printf '  GamePulse v%s installed.\n' "$VERSION"
+printf '  RigSignal v%s installed.\n' "$VERSION"
 printf '\n'
 printf '  Next steps:\n'
 if [ "$IS_STEAMOS" = "1" ]; then
-    printf '    1. If gamepulse is not found, open a new terminal or run:\n'
+    printf '    1. If rigsignal is not found, open a new terminal or run:\n'
     printf '         export PATH="%s:$PATH"\n' "$INSTALL_BIN"
     printf '    2. Run setup:\n'
 else
     printf '    1. Run setup:\n'
 fi
-printf '         gamepulse setup\n'
+printf '         rigsignal setup\n'
 printf '    2. Add to Steam launch options:\n'
-printf '         gamepulse run %%command%%\n'
+printf '         rigsignal run %%command%%\n'
 printf '\n'

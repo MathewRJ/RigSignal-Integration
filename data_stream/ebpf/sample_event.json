@@ -2,7 +2,7 @@
   "@timestamp": "2026-04-08T20:00:01.000Z",
   "data_stream": {
     "type": "metrics",
-    "dataset": "gamepulse.ebpf",
+    "dataset": "rigsignal.ebpf",
     "namespace": "default"
   },
   "host": {
@@ -11,7 +11,7 @@
       "kernel": "6.1.82-valve22-1-neptune"
     }
   },
-  "gamepulse": {
+  "rigsignal": {
     "session": {
       "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
     },

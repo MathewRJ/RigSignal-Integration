@@ -1,8 +1,8 @@
 {
   "type": "dashboard",
-  "id": "gamepulse-gp-regression-lab",
+  "id": "rigsignal-gp-regression-lab",
   "attributes": {
-    "title": "GamePulse - Regression Lab",
+    "title": "RigSignal - Regression Lab",
     "description": "Curated 90-day regression dashboard for driver, Proton, kernel, hardware, and low-level causality checks.",
     "timeFrom": "now-90d",
     "timeTo": "now",
@@ -31,7 +31,7 @@
           "i": "nav-bar"
         },
         "embeddableConfig": {
-          "content": "**GamePulse** &nbsp;.&nbsp; [Command Center](/app/dashboards#/view/gamepulse-gp-command-center) &nbsp;|&nbsp; [Regression Lab](/app/dashboards#/view/gamepulse-gp-regression-lab) &nbsp;|&nbsp; [Player Overview](/app/dashboards#/view/gamepulse-gp-home) &nbsp;|&nbsp; [Game Performance](/app/dashboards#/view/gamepulse-gp-game-perf) &nbsp;|&nbsp; [Engine](/app/dashboards#/view/gamepulse-gp-engine) &nbsp;|&nbsp; [Hardware](/app/dashboards#/view/gamepulse-gp-hardware) &nbsp;|&nbsp; [Software](/app/dashboards#/view/gamepulse-gp-software) &nbsp;|&nbsp; [Compare](/app/dashboards#/view/828db140-b330-4d26-8045-40a7895bfc41)",
+          "content": "**RigSignal** &nbsp;.&nbsp; [Command Center](/app/dashboards#/view/rigsignal-gp-command-center) &nbsp;|&nbsp; [Regression Lab](/app/dashboards#/view/rigsignal-gp-regression-lab) &nbsp;|&nbsp; [Player Overview](/app/dashboards#/view/rigsignal-gp-home) &nbsp;|&nbsp; [Game Performance](/app/dashboards#/view/rigsignal-gp-game-perf) &nbsp;|&nbsp; [Engine](/app/dashboards#/view/rigsignal-gp-engine) &nbsp;|&nbsp; [Hardware](/app/dashboards#/view/rigsignal-gp-hardware) &nbsp;|&nbsp; [Software](/app/dashboards#/view/rigsignal-gp-software) &nbsp;|&nbsp; [Compare](/app/dashboards#/view/828db140-b330-4d26-8045-40a7895bfc41)",
           "settings": {
             "open_links_in_new_tab": true
           }
@@ -42,7 +42,7 @@
           "dataViewRefName": "optionsListDataView",
           "exclude": false,
           "exists_selected": false,
-          "field_name": "gamepulse.game.name",
+          "field_name": "rigsignal.game.name",
           "ignore_validations": false,
           "run_past_timeout": false,
           "search_technique": "wildcard",
@@ -70,7 +70,7 @@
           "dataViewRefName": "optionsListDataView",
           "exclude": false,
           "exists_selected": false,
-          "field_name": "gamepulse.hardware.gpu.driver_version",
+          "field_name": "rigsignal.hardware.gpu.driver_version",
           "ignore_validations": false,
           "run_past_timeout": false,
           "search_technique": "wildcard",
@@ -98,7 +98,7 @@
           "dataViewRefName": "optionsListDataView",
           "exclude": false,
           "exists_selected": false,
-          "field_name": "gamepulse.compatibility.proton_version",
+          "field_name": "rigsignal.compatibility.proton_version",
           "ignore_validations": false,
           "run_past_timeout": false,
           "search_technique": "wildcard",
@@ -155,16 +155,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-dd7385d11db16b3460125de5a71af003c322e3993f4be67c779e68178a47bca1": {
+                "metrics-rigsignal.session-default-dd7385d11db16b3460125de5a71af003c322e3993f4be67c779e68178a47bca1": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-dd7385d11db16b3460125de5a71af003c322e3993f4be67c779e68178a47bca1",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-dd7385d11db16b3460125de5a71af003c322e3993f4be67c779e68178a47bca1",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -183,9 +183,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-dd7385d11db16b3460125de5a71af003c322e3993f4be67c779e68178a47bca1",
+                      "index": "metrics-rigsignal.session-default-dd7385d11db16b3460125de5a71af003c322e3993f4be67c779e68178a47bca1",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.gpu.driver_version IS NOT NULL | STATS `Drivers` = COUNT_DISTINCT(gamepulse.hardware.gpu.driver_version)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.hardware.gpu.driver_version IS NOT NULL | STATS `Drivers` = COUNT_DISTINCT(rigsignal.hardware.gpu.driver_version)"
                       }
                     }
                   }
@@ -194,13 +194,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-dd7385d11db16b3460125de5a71af003c322e3993f4be67c779e68178a47bca1",
+                  "id": "metrics-rigsignal.session-default-dd7385d11db16b3460125de5a71af003c322e3993f4be67c779e68178a47bca1",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.gpu.driver_version IS NOT NULL | STATS `Drivers` = COUNT_DISTINCT(gamepulse.hardware.gpu.driver_version)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.hardware.gpu.driver_version IS NOT NULL | STATS `Drivers` = COUNT_DISTINCT(rigsignal.hardware.gpu.driver_version)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -235,16 +235,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-15be1e492cddd0dc5a01ccdb86b885e40d9d2a0876c2dfca566fa6d9fdbca834": {
+                "metrics-rigsignal.session-default-15be1e492cddd0dc5a01ccdb86b885e40d9d2a0876c2dfca566fa6d9fdbca834": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-15be1e492cddd0dc5a01ccdb86b885e40d9d2a0876c2dfca566fa6d9fdbca834",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-15be1e492cddd0dc5a01ccdb86b885e40d9d2a0876c2dfca566fa6d9fdbca834",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -263,9 +263,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-15be1e492cddd0dc5a01ccdb86b885e40d9d2a0876c2dfca566fa6d9fdbca834",
+                      "index": "metrics-rigsignal.session-default-15be1e492cddd0dc5a01ccdb86b885e40d9d2a0876c2dfca566fa6d9fdbca834",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.compatibility.proton_version IS NOT NULL | STATS `Proton Versions` = COUNT_DISTINCT(gamepulse.compatibility.proton_version)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.compatibility.proton_version IS NOT NULL | STATS `Proton Versions` = COUNT_DISTINCT(rigsignal.compatibility.proton_version)"
                       }
                     }
                   }
@@ -274,13 +274,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-15be1e492cddd0dc5a01ccdb86b885e40d9d2a0876c2dfca566fa6d9fdbca834",
+                  "id": "metrics-rigsignal.session-default-15be1e492cddd0dc5a01ccdb86b885e40d9d2a0876c2dfca566fa6d9fdbca834",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.compatibility.proton_version IS NOT NULL | STATS `Proton Versions` = COUNT_DISTINCT(gamepulse.compatibility.proton_version)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.compatibility.proton_version IS NOT NULL | STATS `Proton Versions` = COUNT_DISTINCT(rigsignal.compatibility.proton_version)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -315,16 +315,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-765ab1f6a035749215233c5fa63a40378b34b025541cee2513ee0a9e67dbbdcb": {
+                "metrics-rigsignal.session-default-765ab1f6a035749215233c5fa63a40378b34b025541cee2513ee0a9e67dbbdcb": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-765ab1f6a035749215233c5fa63a40378b34b025541cee2513ee0a9e67dbbdcb",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-765ab1f6a035749215233c5fa63a40378b34b025541cee2513ee0a9e67dbbdcb",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -343,9 +343,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-765ab1f6a035749215233c5fa63a40378b34b025541cee2513ee0a9e67dbbdcb",
+                      "index": "metrics-rigsignal.session-default-765ab1f6a035749215233c5fa63a40378b34b025541cee2513ee0a9e67dbbdcb",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE host.os.kernel IS NOT NULL | STATS `Kernels` = COUNT_DISTINCT(host.os.kernel)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE host.os.kernel IS NOT NULL | STATS `Kernels` = COUNT_DISTINCT(host.os.kernel)"
                       }
                     }
                   }
@@ -354,13 +354,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-765ab1f6a035749215233c5fa63a40378b34b025541cee2513ee0a9e67dbbdcb",
+                  "id": "metrics-rigsignal.session-default-765ab1f6a035749215233c5fa63a40378b34b025541cee2513ee0a9e67dbbdcb",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE host.os.kernel IS NOT NULL | STATS `Kernels` = COUNT_DISTINCT(host.os.kernel)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE host.os.kernel IS NOT NULL | STATS `Kernels` = COUNT_DISTINCT(host.os.kernel)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -395,16 +395,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-1de0e3305c304428edfcde8b18d94a03dee86ec7a0b7b20234e31c710aadd0e7": {
+                "metrics-rigsignal.session-default-1de0e3305c304428edfcde8b18d94a03dee86ec7a0b7b20234e31c710aadd0e7": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-1de0e3305c304428edfcde8b18d94a03dee86ec7a0b7b20234e31c710aadd0e7",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-1de0e3305c304428edfcde8b18d94a03dee86ec7a0b7b20234e31c710aadd0e7",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -423,9 +423,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-1de0e3305c304428edfcde8b18d94a03dee86ec7a0b7b20234e31c710aadd0e7",
+                      "index": "metrics-rigsignal.session-default-1de0e3305c304428edfcde8b18d94a03dee86ec7a0b7b20234e31c710aadd0e7",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.avg_fps IS NOT NULL | STATS `Peak FPS` = ROUND(MAX(gamepulse.summary.avg_fps), 0)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.avg_fps IS NOT NULL | STATS `Peak FPS` = ROUND(MAX(rigsignal.summary.avg_fps), 0)"
                       }
                     }
                   }
@@ -434,13 +434,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-1de0e3305c304428edfcde8b18d94a03dee86ec7a0b7b20234e31c710aadd0e7",
+                  "id": "metrics-rigsignal.session-default-1de0e3305c304428edfcde8b18d94a03dee86ec7a0b7b20234e31c710aadd0e7",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.avg_fps IS NOT NULL | STATS `Peak FPS` = ROUND(MAX(gamepulse.summary.avg_fps), 0)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.avg_fps IS NOT NULL | STATS `Peak FPS` = ROUND(MAX(rigsignal.summary.avg_fps), 0)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -475,16 +475,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352": {
+                "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -503,9 +503,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
+                      "index": "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true | STATS `Sessions` = COUNT(*)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Sessions` = COUNT(*)"
                       }
                     }
                   }
@@ -514,13 +514,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
+                  "id": "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.summary.ended == true | STATS `Sessions` = COUNT(*)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Sessions` = COUNT(*)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -555,16 +555,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.audio-default-a713573d408e97e440f40be55edfa87919d2ecde621e213dd05ce1eaac4fa9ed": {
+                "metrics-rigsignal.audio-default-a713573d408e97e440f40be55edfa87919d2ecde621e213dd05ce1eaac4fa9ed": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.audio-default-a713573d408e97e440f40be55edfa87919d2ecde621e213dd05ce1eaac4fa9ed",
-                  "name": "metrics-gamepulse.audio-default",
+                  "id": "metrics-rigsignal.audio-default-a713573d408e97e440f40be55edfa87919d2ecde621e213dd05ce1eaac4fa9ed",
+                  "name": "metrics-rigsignal.audio-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.audio-default",
+                  "title": "metrics-rigsignal.audio-default",
                   "type": "esql"
                 }
               },
@@ -583,9 +583,9 @@
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.audio-default-a713573d408e97e440f40be55edfa87919d2ecde621e213dd05ce1eaac4fa9ed",
+                      "index": "metrics-rigsignal.audio-default-a713573d408e97e440f40be55edfa87919d2ecde621e213dd05ce1eaac4fa9ed",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.audio-default | WHERE gamepulse.audio.backend IS NOT NULL | STATS `Audio Backends` = COUNT_DISTINCT(gamepulse.audio.backend)"
+                        "esql": "FROM metrics-rigsignal.audio-default | WHERE rigsignal.audio.backend IS NOT NULL | STATS `Audio Backends` = COUNT_DISTINCT(rigsignal.audio.backend)"
                       }
                     }
                   }
@@ -594,13 +594,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.audio-default-a713573d408e97e440f40be55edfa87919d2ecde621e213dd05ce1eaac4fa9ed",
+                  "id": "metrics-rigsignal.audio-default-a713573d408e97e440f40be55edfa87919d2ecde621e213dd05ce1eaac4fa9ed",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.audio-default | WHERE gamepulse.audio.backend IS NOT NULL | STATS `Audio Backends` = COUNT_DISTINCT(gamepulse.audio.backend)"
+                "esql": "FROM metrics-rigsignal.audio-default | WHERE rigsignal.audio.backend IS NOT NULL | STATS `Audio Backends` = COUNT_DISTINCT(rigsignal.audio.backend)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -690,7 +690,7 @@
                           "isBucketed": false,
                           "label": "Avg FPS (1 s)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.fps.avg_1s"
+                          "sourceField": "rigsignal.fps.avg_1s"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -832,7 +832,7 @@
                           "isBucketed": false,
                           "label": "Avg FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.avg_fps"
+                          "sourceField": "rigsignal.summary.avg_fps"
                         },
                         "datatable_accessor_metric_1": {
                           "customLabel": true,
@@ -840,7 +840,7 @@
                           "isBucketed": false,
                           "label": "1% Low FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.low_1pct_fps"
+                          "sourceField": "rigsignal.summary.low_1pct_fps"
                         },
                         "datatable_accessor_metric_2": {
                           "customLabel": true,
@@ -851,7 +851,7 @@
                           "params": {
                             "emptyAsNull": false
                           },
-                          "sourceField": "gamepulse.summary.stutter_count"
+                          "sourceField": "rigsignal.summary.stutter_count"
                         },
                         "datatable_accessor_metric_3": {
                           "customLabel": true,
@@ -881,7 +881,7 @@
                             },
                             "size": 20
                           },
-                          "sourceField": "gamepulse.hardware.gpu.driver_version"
+                          "sourceField": "rigsignal.hardware.gpu.driver_version"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -977,7 +977,7 @@
                           "isBucketed": false,
                           "label": "Avg FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.avg_fps"
+                          "sourceField": "rigsignal.summary.avg_fps"
                         },
                         "datatable_accessor_metric_1": {
                           "customLabel": true,
@@ -985,7 +985,7 @@
                           "isBucketed": false,
                           "label": "1% Low FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.low_1pct_fps"
+                          "sourceField": "rigsignal.summary.low_1pct_fps"
                         },
                         "datatable_accessor_metric_2": {
                           "customLabel": true,
@@ -996,7 +996,7 @@
                           "params": {
                             "emptyAsNull": false
                           },
-                          "sourceField": "gamepulse.summary.stutter_count"
+                          "sourceField": "rigsignal.summary.stutter_count"
                         },
                         "datatable_accessor_metric_3": {
                           "customLabel": true,
@@ -1026,7 +1026,7 @@
                             },
                             "size": 20
                           },
-                          "sourceField": "gamepulse.compatibility.proton_version"
+                          "sourceField": "rigsignal.compatibility.proton_version"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -1122,7 +1122,7 @@
                           "isBucketed": false,
                           "label": "Avg FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.avg_fps"
+                          "sourceField": "rigsignal.summary.avg_fps"
                         },
                         "datatable_accessor_metric_1": {
                           "customLabel": true,
@@ -1130,7 +1130,7 @@
                           "isBucketed": false,
                           "label": "1% Low FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.low_1pct_fps"
+                          "sourceField": "rigsignal.summary.low_1pct_fps"
                         },
                         "datatable_accessor_metric_2": {
                           "customLabel": true,
@@ -1141,7 +1141,7 @@
                           "params": {
                             "emptyAsNull": false
                           },
-                          "sourceField": "gamepulse.summary.stutter_count"
+                          "sourceField": "rigsignal.summary.stutter_count"
                         },
                         "datatable_accessor_metric_3": {
                           "customLabel": true,
@@ -1267,7 +1267,7 @@
                           "isBucketed": false,
                           "label": "Avg FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.avg_fps"
+                          "sourceField": "rigsignal.summary.avg_fps"
                         },
                         "datatable_accessor_metric_1": {
                           "customLabel": true,
@@ -1275,7 +1275,7 @@
                           "isBucketed": false,
                           "label": "1% Low FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.summary.low_1pct_fps"
+                          "sourceField": "rigsignal.summary.low_1pct_fps"
                         },
                         "datatable_accessor_metric_2": {
                           "customLabel": true,
@@ -1286,7 +1286,7 @@
                           "params": {
                             "emptyAsNull": false
                           },
-                          "sourceField": "gamepulse.summary.stutter_count"
+                          "sourceField": "rigsignal.summary.stutter_count"
                         },
                         "datatable_accessor_metric_3": {
                           "customLabel": true,
@@ -1315,12 +1315,12 @@
                               "id": "terms"
                             },
                             "secondaryFields": [
-                              "gamepulse.compatibility.proton_version",
-                              "gamepulse.hardware.gpu.driver_version"
+                              "rigsignal.compatibility.proton_version",
+                              "rigsignal.hardware.gpu.driver_version"
                             ],
                             "size": 50
                           },
-                          "sourceField": "gamepulse.game.name"
+                          "sourceField": "rigsignal.game.name"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -1448,7 +1448,7 @@
                           "isBucketed": false,
                           "label": "GPU Temp (\u00b0C)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.gpu.temperature_c"
+                          "sourceField": "rigsignal.gpu.temperature_c"
                         },
                         "line_y_1": {
                           "customLabel": true,
@@ -1456,7 +1456,7 @@
                           "isBucketed": false,
                           "label": "Hotspot (\u00b0C)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.gpu.hotspot_c"
+                          "sourceField": "rigsignal.gpu.hotspot_c"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -1634,7 +1634,7 @@
                           "isBucketed": false,
                           "label": "GPU Power (W)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.gpu.power_w"
+                          "sourceField": "rigsignal.gpu.power_w"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -1807,7 +1807,7 @@
                           "isBucketed": false,
                           "label": "Total CPU %",
                           "operationType": "average",
-                          "sourceField": "gamepulse.cpu.total_utilisation_pct"
+                          "sourceField": "rigsignal.cpu.total_utilisation_pct"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -1981,7 +1981,7 @@
                           "isBucketed": false,
                           "label": "System Used (MB)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.memory.system_used_mb"
+                          "sourceField": "rigsignal.memory.system_used_mb"
                         },
                         "area_y_1": {
                           "customLabel": true,
@@ -1989,7 +1989,7 @@
                           "isBucketed": false,
                           "label": "Game RSS (MB)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.memory.game_rss_mb"
+                          "sourceField": "rigsignal.memory.game_rss_mb"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -2168,7 +2168,7 @@
                           "isBucketed": false,
                           "label": "GPU Fence (\u00b5s)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.ebpf.gpu_fence.latency_avg_us"
+                          "sourceField": "rigsignal.ebpf.gpu_fence.latency_avg_us"
                         },
                         "line_y_1": {
                           "customLabel": true,
@@ -2176,7 +2176,7 @@
                           "isBucketed": false,
                           "label": "GPU Sched (\u00b5s)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.ebpf.gpu_sched.latency_avg_us"
+                          "sourceField": "rigsignal.ebpf.gpu_sched.latency_avg_us"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -2354,7 +2354,7 @@
                           "isBucketed": false,
                           "label": "Stutter Severity",
                           "operationType": "average",
-                          "sourceField": "gamepulse.ebpf.stutter.severity_score"
+                          "sourceField": "rigsignal.ebpf.stutter.severity_score"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -2527,7 +2527,7 @@
                           "isBucketed": false,
                           "label": "Runqueue Latency (\u00b5s)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.ebpf.runqueue.latency_avg_us"
+                          "sourceField": "rigsignal.ebpf.runqueue.latency_avg_us"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -2700,7 +2700,7 @@
                           "isBucketed": false,
                           "label": "BIO Latency (\u00b5s)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.ebpf.bio.latency_avg_us"
+                          "sourceField": "rigsignal.ebpf.bio.latency_avg_us"
                         }
                       },
                       "ignoreGlobalFilters": false,

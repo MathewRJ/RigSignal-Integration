@@ -1,9 +1,9 @@
-title: "GamePulse Events"
+title: "RigSignal Events"
 type: logs
 streams:
   - input: filestream
-    title: GamePulse Events
-    description: GamePulse game lifecycle events (game start/end, settings changes)
+    title: RigSignal Events
+    description: RigSignal game lifecycle events (game start/end, settings changes)
     vars:
       - name: paths
         type: text
@@ -12,4 +12,4 @@ streams:
         required: false
         show_user: true
         default:
-          - /var/log/gamepulse/*.log
+          - /var/log/rigsignal/*.log

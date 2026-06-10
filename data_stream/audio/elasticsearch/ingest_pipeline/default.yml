@@ -1,6 +1,6 @@
 ---
 description: >
-  Ingest pipeline for GamePulse audio metrics.
+  Ingest pipeline for RigSignal audio metrics.
   Sets @timestamp and normalises audio backend name.
 processors:
   - set:
@@ -9,7 +9,7 @@ processors:
       if: "ctx['@timestamp'] == null"
 
   - lowercase:
-      field: gamepulse.audio.backend
+      field: rigsignal.audio.backend
       ignore_missing: true
       description: "Normalise audio backend (PipeWire -> pipewire, PulseAudio -> pulseaudio)"
 
@@ -19,4 +19,4 @@ on_failure:
       value: "{{_ingest.on_failure_message}}"
   - set:
       field: _ingest.failed_pipeline
-      value: "gamepulse-audio"
+      value: "rigsignal-audio"

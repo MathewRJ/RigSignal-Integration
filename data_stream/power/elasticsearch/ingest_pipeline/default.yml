@@ -1,6 +1,6 @@
 ---
 description: >
-  Ingest pipeline for GamePulse power metrics.
+  Ingest pipeline for RigSignal power metrics.
   Sets @timestamp and validates battery percentage is in valid range.
 processors:
   - set:
@@ -12,9 +12,9 @@ processors:
       description: "Validate battery percentage is 0–100"
       lang: painless
       source: |
-        def pct = ctx.gamepulse?.power?.battery_pct;
+        def pct = ctx.rigsignal?.power?.battery_pct;
         if (pct != null && (pct < 0 || pct > 100)) {
-          throw new Exception('gamepulse.power.battery_pct must be 0-100, got: ' + pct);
+          throw new Exception('rigsignal.power.battery_pct must be 0-100, got: ' + pct);
         }
 
 on_failure:
@@ -23,4 +23,4 @@ on_failure:
       value: "{{_ingest.on_failure_message}}"
   - set:
       field: _ingest.failed_pipeline
-      value: "gamepulse-power"
+      value: "rigsignal-power"

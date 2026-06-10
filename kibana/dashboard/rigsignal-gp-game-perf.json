@@ -1,6 +1,6 @@
 {
   "attributes": {
-    "description": "Full hardware telemetry during gaming sessions: GPU temperature, power, clocks, CPU utilisation and thermals, memory pressure, storage throughput, and power profile. Essential for hardware reviewers, OEM engineers, and thermal analysis.",
+    "description": "Deep-dive into performance for any game: FPS trends across sessions, frametime distribution, stutter analysis, and bottleneck identification. Use the filters above to compare specific driver or Proton versions.",
     "kibanaSavedObjectMeta": {
       "searchSourceJSON": {}
     },
@@ -16,7 +16,7 @@
     "panelsJSON": [
       {
         "embeddableConfig": {
-          "content": "**GamePulse** &nbsp;\u00b7&nbsp; [Player Overview](/app/dashboards#/view/gamepulse-gp-home) &nbsp;|&nbsp; [Game Performance](/app/dashboards#/view/gamepulse-gp-game-perf) &nbsp;|&nbsp; [Game Engine](/app/dashboards#/view/gamepulse-gp-engine) &nbsp;|&nbsp; [Hardware](/app/dashboards#/view/gamepulse-gp-hardware) &nbsp;|&nbsp; [Software Env](/app/dashboards#/view/gamepulse-gp-software)",
+          "content": "**RigSignal** &nbsp;\u00b7&nbsp; [Player Overview](/app/dashboards#/view/rigsignal-gp-home) &nbsp;|&nbsp; [Game Performance](/app/dashboards#/view/rigsignal-gp-game-perf) &nbsp;|&nbsp; [Game Engine](/app/dashboards#/view/rigsignal-gp-engine) &nbsp;|&nbsp; [Hardware](/app/dashboards#/view/rigsignal-gp-hardware) &nbsp;|&nbsp; [Software Env](/app/dashboards#/view/rigsignal-gp-software)",
           "settings": {
             "open_links_in_new_tab": true
           }
@@ -36,7 +36,7 @@
           "dataViewRefName": "optionsListDataView",
           "exclude": false,
           "exists_selected": false,
-          "field_name": "gamepulse.game.name",
+          "field_name": "rigsignal.game.name",
           "ignore_validations": false,
           "run_past_timeout": false,
           "search_technique": "wildcard",
@@ -52,7 +52,7 @@
         "gridData": {
           "h": 4,
           "i": "ctrl-game",
-          "w": 16,
+          "w": 12,
           "x": 0,
           "y": 3
         },
@@ -64,7 +64,7 @@
           "dataViewRefName": "optionsListDataView",
           "exclude": false,
           "exists_selected": false,
-          "field_name": "gamepulse.hardware.gpu.driver_version",
+          "field_name": "rigsignal.hardware.gpu.driver_version",
           "ignore_validations": false,
           "run_past_timeout": false,
           "search_technique": "wildcard",
@@ -80,11 +80,39 @@
         "gridData": {
           "h": 4,
           "i": "ctrl-driver",
-          "w": 16,
-          "x": 16,
+          "w": 12,
+          "x": 12,
           "y": 3
         },
         "panelIndex": "ctrl-driver",
+        "type": "options_list_control"
+      },
+      {
+        "embeddableConfig": {
+          "dataViewRefName": "optionsListDataView",
+          "exclude": false,
+          "exists_selected": false,
+          "field_name": "rigsignal.compatibility.proton_version",
+          "ignore_validations": false,
+          "run_past_timeout": false,
+          "search_technique": "wildcard",
+          "selected_options": [],
+          "single_select": false,
+          "sort": {
+            "by": "_count",
+            "direction": "desc"
+          },
+          "title": "Proton Ver",
+          "use_global_filters": true
+        },
+        "gridData": {
+          "h": 4,
+          "i": "ctrl-proton",
+          "w": 12,
+          "x": 24,
+          "y": 3
+        },
+        "panelIndex": "ctrl-proton",
         "type": "options_list_control"
       },
       {
@@ -108,8 +136,8 @@
         "gridData": {
           "h": 4,
           "i": "ctrl-kernel",
-          "w": 16,
-          "x": 32,
+          "w": 12,
+          "x": 36,
           "y": 3
         },
         "panelIndex": "ctrl-kernel",
@@ -121,16 +149,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-1527a921407922f5fdfe706bf40cfdbbb9b5f2daaeb6b32bf968afa1c04d140e": {
+                "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-1527a921407922f5fdfe706bf40cfdbbb9b5f2daaeb6b32bf968afa1c04d140e",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -142,16 +170,16 @@
                         {
                           "columnId": "metric_accessor_metric",
                           "customLabel": true,
-                          "fieldName": "GPU",
-                          "label": "GPU Model",
+                          "fieldName": "Sessions",
+                          "label": "Sessions",
                           "meta": {
                             "type": "number"
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-1527a921407922f5fdfe706bf40cfdbbb9b5f2daaeb6b32bf968afa1c04d140e",
+                      "index": "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.gpu.model IS NOT NULL | STATS `GPU` = MAX(gamepulse.hardware.gpu.model)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Sessions` = COUNT(*)"
                       }
                     }
                   }
@@ -160,13 +188,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-1527a921407922f5fdfe706bf40cfdbbb9b5f2daaeb6b32bf968afa1c04d140e",
+                  "id": "metrics-rigsignal.session-default-9e326534e7ff024899bbfebddef4f0476e65c87f723fd4fc482d1334889f6352",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.gpu.model IS NOT NULL | STATS `GPU` = MAX(gamepulse.hardware.gpu.model)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Sessions` = COUNT(*)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -183,16 +211,16 @@
             "title": "",
             "visualizationType": "lnsMetric"
           },
-          "title": "GPU Model"
+          "title": "Sessions"
         },
         "gridData": {
-          "h": 5,
-          "i": "kpi-gpu-model",
-          "w": 12,
+          "h": 6,
+          "i": "kpi-sessions",
+          "w": 8,
           "x": 0,
           "y": 7
         },
-        "panelIndex": "kpi-gpu-model",
+        "panelIndex": "kpi-sessions",
         "type": "vis"
       },
       {
@@ -201,16 +229,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-2f86fed4264ea9c6dd81c5a6b6b77707ab4f4354470b074e7e017648052ca9ae": {
+                "metrics-rigsignal.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-2f86fed4264ea9c6dd81c5a6b6b77707ab4f4354470b074e7e017648052ca9ae",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -222,16 +250,16 @@
                         {
                           "columnId": "metric_accessor_metric",
                           "customLabel": true,
-                          "fieldName": "CPU",
-                          "label": "CPU Model",
+                          "fieldName": "Avg FPS",
+                          "label": "Avg FPS",
                           "meta": {
                             "type": "number"
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-2f86fed4264ea9c6dd81c5a6b6b77707ab4f4354470b074e7e017648052ca9ae",
+                      "index": "metrics-rigsignal.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.cpu.model IS NOT NULL | STATS `CPU` = MAX(gamepulse.hardware.cpu.model)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.summary.avg_fps IS NOT NULL | STATS `Avg FPS` = ROUND(AVG(rigsignal.summary.avg_fps), 0)"
                       }
                     }
                   }
@@ -240,13 +268,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-2f86fed4264ea9c6dd81c5a6b6b77707ab4f4354470b074e7e017648052ca9ae",
+                  "id": "metrics-rigsignal.session-default-faab828ab2fe9b68adc7e70fbcedde8362188d29dfcb60500aba6e7acc37520b",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.cpu.model IS NOT NULL | STATS `CPU` = MAX(gamepulse.hardware.cpu.model)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.summary.avg_fps IS NOT NULL | STATS `Avg FPS` = ROUND(AVG(rigsignal.summary.avg_fps), 0)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -263,16 +291,16 @@
             "title": "",
             "visualizationType": "lnsMetric"
           },
-          "title": "CPU Model"
+          "title": "Avg FPS"
         },
         "gridData": {
-          "h": 5,
-          "i": "kpi-cpu-model",
-          "w": 12,
-          "x": 12,
+          "h": 6,
+          "i": "kpi-avg-fps",
+          "w": 8,
+          "x": 8,
           "y": 7
         },
-        "panelIndex": "kpi-cpu-model",
+        "panelIndex": "kpi-avg-fps",
         "type": "vis"
       },
       {
@@ -281,16 +309,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-6be3aeccc5db12b916f74a2a004b1c0342d7e96cb9664f71361c47ef18defe7c": {
+                "metrics-rigsignal.session-default-9fd7df79247cada2e15373a68980cab91e08fc5c71f25a5b39cee1333103af2b": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-6be3aeccc5db12b916f74a2a004b1c0342d7e96cb9664f71361c47ef18defe7c",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-9fd7df79247cada2e15373a68980cab91e08fc5c71f25a5b39cee1333103af2b",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -302,16 +330,16 @@
                         {
                           "columnId": "metric_accessor_metric",
                           "customLabel": true,
-                          "fieldName": "RAM GB",
-                          "label": "System RAM (GB)",
+                          "fieldName": "1pct Low",
+                          "label": "1% Low FPS",
                           "meta": {
                             "type": "number"
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-6be3aeccc5db12b916f74a2a004b1c0342d7e96cb9664f71361c47ef18defe7c",
+                      "index": "metrics-rigsignal.session-default-9fd7df79247cada2e15373a68980cab91e08fc5c71f25a5b39cee1333103af2b",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.ram.total_mb IS NOT NULL | STATS `RAM GB` = ROUND(MAX(gamepulse.hardware.ram.total_mb) / 1024.0, 0)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.summary.low_1pct_fps IS NOT NULL | STATS `1pct Low` = ROUND(AVG(rigsignal.summary.low_1pct_fps), 0)"
                       }
                     }
                   }
@@ -320,13 +348,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-6be3aeccc5db12b916f74a2a004b1c0342d7e96cb9664f71361c47ef18defe7c",
+                  "id": "metrics-rigsignal.session-default-9fd7df79247cada2e15373a68980cab91e08fc5c71f25a5b39cee1333103af2b",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.ram.total_mb IS NOT NULL | STATS `RAM GB` = ROUND(MAX(gamepulse.hardware.ram.total_mb) / 1024.0, 0)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.summary.low_1pct_fps IS NOT NULL | STATS `1pct Low` = ROUND(AVG(rigsignal.summary.low_1pct_fps), 0)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -343,16 +371,96 @@
             "title": "",
             "visualizationType": "lnsMetric"
           },
-          "title": "System RAM (GB)"
+          "title": "1% Low FPS"
         },
         "gridData": {
-          "h": 5,
-          "i": "kpi-ram-gb",
-          "w": 12,
+          "h": 6,
+          "i": "kpi-low-fps",
+          "w": 8,
+          "x": 16,
+          "y": 7
+        },
+        "panelIndex": "kpi-low-fps",
+        "type": "vis"
+      },
+      {
+        "embeddableConfig": {
+          "attributes": {
+            "references": [],
+            "state": {
+              "adHocDataViews": {
+                "metrics-rigsignal.session-default-fe4254194b589c4fcfd5c9ccadcd85df39cf48069327199958bb4c96534a3de4": {
+                  "allowHidden": false,
+                  "allowNoIndex": false,
+                  "fieldAttrs": {},
+                  "fieldFormats": {},
+                  "id": "metrics-rigsignal.session-default-fe4254194b589c4fcfd5c9ccadcd85df39cf48069327199958bb4c96534a3de4",
+                  "name": "metrics-rigsignal.session-default",
+                  "runtimeFieldMap": {},
+                  "sourceFilters": [],
+                  "title": "metrics-rigsignal.session-default",
+                  "type": "esql"
+                }
+              },
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "customLabel": true,
+                          "fieldName": "p99 ms",
+                          "label": "p99 Frametime",
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "index": "metrics-rigsignal.session-default-fe4254194b589c4fcfd5c9ccadcd85df39cf48069327199958bb4c96534a3de4",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.summary.p99_frametime_ms IS NOT NULL | STATS `p99 ms` = ROUND(AVG(rigsignal.summary.p99_frametime_ms), 1)"
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": [],
+              "internalReferences": [
+                {
+                  "id": "metrics-rigsignal.session-default-fe4254194b589c4fcfd5c9ccadcd85df39cf48069327199958bb4c96534a3de4",
+                  "name": "indexpattern-datasource-layer-layer_0",
+                  "type": "index-pattern"
+                }
+              ],
+              "query": {
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true AND rigsignal.summary.p99_frametime_ms IS NOT NULL | STATS `p99 ms` = ROUND(AVG(rigsignal.summary.p99_frametime_ms), 1)"
+              },
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "primaryAlign": "center",
+                "primaryPosition": "bottom",
+                "showBar": false,
+                "subtitle": "",
+                "titlesTextAlign": "center",
+                "valueFontMode": "default"
+              }
+            },
+            "title": "",
+            "visualizationType": "lnsMetric"
+          },
+          "title": "p99 Frametime"
+        },
+        "gridData": {
+          "h": 6,
+          "i": "kpi-p99-ft",
+          "w": 8,
           "x": 24,
           "y": 7
         },
-        "panelIndex": "kpi-ram-gb",
+        "panelIndex": "kpi-p99-ft",
         "type": "vis"
       },
       {
@@ -361,16 +469,16 @@
             "references": [],
             "state": {
               "adHocDataViews": {
-                "metrics-gamepulse.session-default-80bfee4cb5aac89c526434c48d151b8ebefe70113c5e76c33ea098761d8513ef": {
+                "metrics-rigsignal.session-default-ff2c1f06b89bc8c780bff54f4928a0ee4f57cf51721191a6e6f99d8d190ccb5c": {
                   "allowHidden": false,
                   "allowNoIndex": false,
                   "fieldAttrs": {},
                   "fieldFormats": {},
-                  "id": "metrics-gamepulse.session-default-80bfee4cb5aac89c526434c48d151b8ebefe70113c5e76c33ea098761d8513ef",
-                  "name": "metrics-gamepulse.session-default",
+                  "id": "metrics-rigsignal.session-default-ff2c1f06b89bc8c780bff54f4928a0ee4f57cf51721191a6e6f99d8d190ccb5c",
+                  "name": "metrics-rigsignal.session-default",
                   "runtimeFieldMap": {},
                   "sourceFilters": [],
-                  "title": "metrics-gamepulse.session-default",
+                  "title": "metrics-rigsignal.session-default",
                   "type": "esql"
                 }
               },
@@ -382,16 +490,16 @@
                         {
                           "columnId": "metric_accessor_metric",
                           "customLabel": true,
-                          "fieldName": "VRAM GB",
-                          "label": "GPU VRAM (GB)",
+                          "fieldName": "Stutters",
+                          "label": "Stutter Events (total)",
                           "meta": {
                             "type": "number"
                           }
                         }
                       ],
-                      "index": "metrics-gamepulse.session-default-80bfee4cb5aac89c526434c48d151b8ebefe70113c5e76c33ea098761d8513ef",
+                      "index": "metrics-rigsignal.session-default-ff2c1f06b89bc8c780bff54f4928a0ee4f57cf51721191a6e6f99d8d190ccb5c",
                       "query": {
-                        "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.gpu.vram_mb IS NOT NULL | STATS `VRAM GB` = ROUND(MAX(gamepulse.hardware.gpu.vram_mb) / 1024.0, 1)"
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Stutters` = SUM(rigsignal.summary.stutter_count)"
                       }
                     }
                   }
@@ -400,13 +508,13 @@
               "filters": [],
               "internalReferences": [
                 {
-                  "id": "metrics-gamepulse.session-default-80bfee4cb5aac89c526434c48d151b8ebefe70113c5e76c33ea098761d8513ef",
+                  "id": "metrics-rigsignal.session-default-ff2c1f06b89bc8c780bff54f4928a0ee4f57cf51721191a6e6f99d8d190ccb5c",
                   "name": "indexpattern-datasource-layer-layer_0",
                   "type": "index-pattern"
                 }
               ],
               "query": {
-                "esql": "FROM metrics-gamepulse.session-default | WHERE gamepulse.hardware.gpu.vram_mb IS NOT NULL | STATS `VRAM GB` = ROUND(MAX(gamepulse.hardware.gpu.vram_mb) / 1024.0, 1)"
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Stutters` = SUM(rigsignal.summary.stutter_count)"
               },
               "visualization": {
                 "layerId": "layer_0",
@@ -423,16 +531,96 @@
             "title": "",
             "visualizationType": "lnsMetric"
           },
-          "title": "GPU VRAM (GB)"
+          "title": "Stutter Events (total)"
         },
         "gridData": {
-          "h": 5,
-          "i": "kpi-vram-gb",
-          "w": 12,
-          "x": 36,
+          "h": 6,
+          "i": "kpi-stutter",
+          "w": 8,
+          "x": 32,
           "y": 7
         },
-        "panelIndex": "kpi-vram-gb",
+        "panelIndex": "kpi-stutter",
+        "type": "vis"
+      },
+      {
+        "embeddableConfig": {
+          "attributes": {
+            "references": [],
+            "state": {
+              "adHocDataViews": {
+                "metrics-rigsignal.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98": {
+                  "allowHidden": false,
+                  "allowNoIndex": false,
+                  "fieldAttrs": {},
+                  "fieldFormats": {},
+                  "id": "metrics-rigsignal.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98",
+                  "name": "metrics-rigsignal.session-default",
+                  "runtimeFieldMap": {},
+                  "sourceFilters": [],
+                  "title": "metrics-rigsignal.session-default",
+                  "type": "esql"
+                }
+              },
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "customLabel": true,
+                          "fieldName": "Hours",
+                          "label": "Total Hours",
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "index": "metrics-rigsignal.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Hours` = ROUND(SUM(rigsignal.summary.duration_s) / 3600.0, 1)"
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": [],
+              "internalReferences": [
+                {
+                  "id": "metrics-rigsignal.session-default-cc6af882c8e13cb1762ed6d2855c1de6a59f522847ce1c3f8d9ec470adae1a98",
+                  "name": "indexpattern-datasource-layer-layer_0",
+                  "type": "index-pattern"
+                }
+              ],
+              "query": {
+                "esql": "FROM metrics-rigsignal.session-default | WHERE rigsignal.summary.ended == true | STATS `Hours` = ROUND(SUM(rigsignal.summary.duration_s) / 3600.0, 1)"
+              },
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "primaryAlign": "center",
+                "primaryPosition": "bottom",
+                "showBar": false,
+                "subtitle": "",
+                "titlesTextAlign": "center",
+                "valueFontMode": "default"
+              }
+            },
+            "title": "",
+            "visualizationType": "lnsMetric"
+          },
+          "title": "Total Hours"
+        },
+        "gridData": {
+          "h": 6,
+          "i": "kpi-hours",
+          "w": 8,
+          "x": 40,
+          "y": 7
+        },
+        "panelIndex": "kpi-hours",
         "type": "vis"
       },
       {
@@ -440,7 +628,7 @@
           "attributes": {
             "references": [
               {
-                "id": "gp-dv-gpu",
+                "id": "gp-dv-frame",
                 "name": "indexpattern-datasource-layer-line_0",
                 "type": "index-pattern"
               }
@@ -473,7 +661,7 @@
                             "parentFormat": {
                               "id": "terms"
                             },
-                            "size": 20
+                            "size": 40
                           },
                           "sourceField": "session_label"
                         },
@@ -495,17 +683,17 @@
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "GPU Temp (\u00b0C)",
+                          "label": "Avg FPS (1 s)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.gpu.temperature_c"
+                          "sourceField": "rigsignal.fps.avg_1s"
                         },
                         "line_y_1": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "Hotspot (\u00b0C)",
+                          "label": "1% Low FPS",
                           "operationType": "average",
-                          "sourceField": "gamepulse.gpu.hotspot_c"
+                          "sourceField": "rigsignal.fps.low_1pct"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -604,22 +792,22 @@
                   "niceValues": true
                 },
                 "yLeftScale": "linear",
-                "yTitle": "Temperature (\u00b0C)"
+                "yTitle": "Frames Per Second"
               }
             },
             "title": "",
             "visualizationType": "lnsXY"
           },
-          "title": "GPU Temperature Over Time \u2014 Most AMD/NVIDIA GPUs throttle above 100\u00b0C junction / 110\u00b0C hotspot. Watch for gradual temperature rise indicating throttling across a long session."
+          "title": "FPS Over Time \u2014 Each colour = one gaming session. Natural time gaps between sessions preserve chronological context. Compare sessions across driver/Proton versions using the filters above."
         },
         "gridData": {
-          "h": 12,
-          "i": "chart-gpu-temp",
-          "w": 24,
+          "h": 18,
+          "i": "chart-fps-sessions",
+          "w": 48,
           "x": 0,
-          "y": 12
+          "y": 13
         },
-        "panelIndex": "chart-gpu-temp",
+        "panelIndex": "chart-fps-sessions",
         "type": "vis"
       },
       {
@@ -627,7 +815,7 @@
           "attributes": {
             "references": [
               {
-                "id": "gp-dv-gpu",
+                "id": "gp-dv-frame",
                 "name": "indexpattern-datasource-layer-line_0",
                 "type": "index-pattern"
               }
@@ -641,7 +829,8 @@
                       "columnOrder": [
                         "line_x",
                         "line_breakdown",
-                        "line_y_0"
+                        "line_y_0",
+                        "line_y_1"
                       ],
                       "columns": {
                         "line_breakdown": {
@@ -681,9 +870,17 @@
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "GPU Power (W)",
+                          "label": "Avg Frametime (ms)",
                           "operationType": "average",
-                          "sourceField": "gamepulse.gpu.power_w"
+                          "sourceField": "rigsignal.fps.frametime_ms"
+                        },
+                        "line_y_1": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "0.1% Low FPS",
+                          "operationType": "average",
+                          "sourceField": "rigsignal.fps.low_01pct"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -718,7 +915,8 @@
                 "layers": [
                   {
                     "accessors": [
-                      "line_y_0"
+                      "line_y_0",
+                      "line_y_1"
                     ],
                     "colorMapping": {
                       "assignments": [],
@@ -751,6 +949,10 @@
                       {
                         "axisMode": "left",
                         "forAccessor": "line_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_1"
                       }
                     ]
                   }
@@ -777,22 +979,22 @@
                   "niceValues": true
                 },
                 "yLeftScale": "linear",
-                "yTitle": "Power (W)"
+                "yTitle": "Frame Time (ms) / 0.1% Low FPS"
               }
             },
             "title": "",
             "visualizationType": "lnsXY"
           },
-          "title": "GPU Power Draw Over Time \u2014 Sustained high draw near card TDP = power-limited; watch for throttling. Power spikes on Vulkan/DX12 async compute reflect burst workloads."
+          "title": "Frame Time Over Time \u2014 spikes reveal stutter events. Target: avg frametime \u2264 33 ms for 30 FPS cap, \u2264 16.7 ms for 60 FPS. 0.1% lows (worst frames) amplify hitches invisible in the average."
         },
         "gridData": {
           "h": 12,
-          "i": "chart-gpu-power",
-          "w": 24,
-          "x": 24,
-          "y": 12
+          "i": "chart-frametime",
+          "w": 32,
+          "x": 0,
+          "y": 31
         },
-        "panelIndex": "chart-gpu-power",
+        "panelIndex": "chart-frametime",
         "type": "vis"
       },
       {
@@ -800,7 +1002,7 @@
           "attributes": {
             "references": [
               {
-                "id": "gp-dv-gpu",
+                "id": "gp-dv-frame",
                 "name": "indexpattern-datasource-layer-line_0",
                 "type": "index-pattern"
               }
@@ -832,7 +1034,7 @@
                             "parentFormat": {
                               "id": "terms"
                             },
-                            "size": 20
+                            "size": 15
                           },
                           "sourceField": "session_label"
                         },
@@ -854,9 +1056,12 @@
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "GPU Core Util %",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.gpu.utilisation_pct"
+                          "label": "Stutter Count",
+                          "operationType": "sum",
+                          "params": {
+                            "emptyAsNull": false
+                          },
+                          "sourceField": "rigsignal.fps.stutter_count"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -950,195 +1155,422 @@
                   "niceValues": true
                 },
                 "yLeftScale": "linear",
-                "yTitle": "Utilisation (%)"
+                "yTitle": "Stutter Events / interval"
               }
             },
             "title": "",
             "visualizationType": "lnsXY"
           },
-          "title": "GPU Core Utilisation Over Time \u2014 100% = GPU fully saturated. Sub-100% during gameplay indicates CPU bottleneck or driver overhead. Low + low FPS = likely CPU-bound."
+          "title": "Stutter Events Per Interval \u2014 sudden spikes indicate shader compilation hitches, CPU-GPU sync issues, or memory pressure. stutter_detected fires when frametime exceeds 2\u00d7 the rolling average."
+        },
+        "gridData": {
+          "h": 12,
+          "i": "chart-stutter",
+          "w": 16,
+          "x": 32,
+          "y": 31
+        },
+        "panelIndex": "chart-stutter",
+        "type": "vis"
+      },
+      {
+        "embeddableConfig": {
+          "attributes": {
+            "references": [
+              {
+                "id": "gp-dv-session",
+                "name": "indexpattern-datasource-layer-layer_0",
+                "type": "index-pattern"
+              }
+            ],
+            "state": {
+              "adHocDataViews": {},
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "layer_0": {
+                      "columnOrder": [
+                        "datatable_accessor_row_0",
+                        "datatable_accessor_metric_0",
+                        "datatable_accessor_metric_1",
+                        "datatable_accessor_metric_2",
+                        "datatable_accessor_metric_3",
+                        "datatable_accessor_metric_4",
+                        "datatable_accessor_metric_5",
+                        "datatable_accessor_metric_6",
+                        "datatable_accessor_metric_7"
+                      ],
+                      "columns": {
+                        "datatable_accessor_metric_0": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Game",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.game.name"
+                        },
+                        "datatable_accessor_metric_1": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Bottleneck",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.summary.bottleneck_dominant"
+                        },
+                        "datatable_accessor_metric_2": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Avg FPS",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.summary.avg_fps"
+                        },
+                        "datatable_accessor_metric_3": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "1% Low",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.summary.low_1pct_fps"
+                        },
+                        "datatable_accessor_metric_4": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Stutters",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.summary.stutter_count"
+                        },
+                        "datatable_accessor_metric_5": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "GPU Driver",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.hardware.gpu.driver_version"
+                        },
+                        "datatable_accessor_metric_6": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Proton",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.compatibility.proton_version"
+                        },
+                        "datatable_accessor_metric_7": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Kernel",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "host.os.kernel"
+                        },
+                        "datatable_accessor_row_0": {
+                          "customLabel": false,
+                          "dataType": "string",
+                          "isBucketed": true,
+                          "label": "",
+                          "operationType": "terms",
+                          "params": {
+                            "orderBy": {
+                              "columnId": "datatable_accessor_metric_0",
+                              "type": "column"
+                            },
+                            "orderDirection": "desc",
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "size": 50
+                          },
+                          "sourceField": "rigsignal.session.id"
+                        }
+                      },
+                      "ignoreGlobalFilters": false,
+                      "sampling": 1
+                    }
+                  }
+                }
+              },
+              "filters": [],
+              "internalReferences": [],
+              "query": {
+                "language": "kuery",
+                "query": ""
+              },
+              "visualization": {
+                "columns": [
+                  {
+                    "columnId": "datatable_accessor_row_0",
+                    "isMetric": false,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_0",
+                    "isMetric": true,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_1",
+                    "isMetric": true,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_2",
+                    "isMetric": true,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_3",
+                    "isMetric": true,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_4",
+                    "isMetric": true,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_5",
+                    "isMetric": true,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_6",
+                    "isMetric": true,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_7",
+                    "isMetric": true,
+                    "isTransposed": false
+                  }
+                ],
+                "headerRowHeight": "custom",
+                "headerRowHeightLines": 1,
+                "layerId": "layer_0",
+                "layerType": "data",
+                "rowHeight": "custom",
+                "rowHeightLines": 1
+              }
+            },
+            "title": "",
+            "visualizationType": "lnsDatatable"
+          },
+          "title": "Dominant Bottleneck by Session \u2014 where was the system limited? GPU-bound means GPU is the constraint; CPU-bound means CPU-side overhead."
+        },
+        "gridData": {
+          "h": 12,
+          "i": "table-bottleneck",
+          "w": 48,
+          "x": 0,
+          "y": 43
+        },
+        "panelIndex": "table-bottleneck",
+        "type": "vis"
+      },
+      {
+        "embeddableConfig": {
+          "attributes": {
+            "references": [
+              {
+                "id": "gp-dv-gpu",
+                "name": "indexpattern-datasource-layer-line_0",
+                "type": "index-pattern"
+              }
+            ],
+            "state": {
+              "adHocDataViews": {},
+              "datasourceStates": {
+                "formBased": {
+                  "layers": {
+                    "line_0": {
+                      "columnOrder": [
+                        "line_x",
+                        "line_breakdown",
+                        "line_y_0"
+                      ],
+                      "columns": {
+                        "line_breakdown": {
+                          "customLabel": false,
+                          "dataType": "string",
+                          "isBucketed": true,
+                          "label": "",
+                          "operationType": "terms",
+                          "params": {
+                            "orderBy": {
+                              "columnId": "line_y_0",
+                              "type": "column"
+                            },
+                            "orderDirection": "desc",
+                            "parentFormat": {
+                              "id": "terms"
+                            },
+                            "size": 20
+                          },
+                          "sourceField": "session_label"
+                        },
+                        "line_x": {
+                          "customLabel": false,
+                          "dataType": "date",
+                          "isBucketed": true,
+                          "label": "",
+                          "operationType": "date_histogram",
+                          "params": {
+                            "dropPartials": false,
+                            "ignoreTimeRange": false,
+                            "includeEmptyRows": false,
+                            "interval": "auto"
+                          },
+                          "sourceField": "@timestamp"
+                        },
+                        "line_y_0": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "GPU Utilisation %",
+                          "operationType": "average",
+                          "sourceField": "rigsignal.gpu.utilisation_pct"
+                        }
+                      },
+                      "ignoreGlobalFilters": false,
+                      "sampling": 1
+                    }
+                  }
+                }
+              },
+              "filters": [],
+              "query": {
+                "language": "kuery",
+                "query": ""
+              },
+              "visualization": {
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "curveType": "LINEAR",
+                "gridlinesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "hideEndzones": true,
+                "labelsOrientation": {
+                  "x": 0,
+                  "yLeft": 0,
+                  "yRight": 0
+                },
+                "layers": [
+                  {
+                    "accessors": [
+                      "line_y_0"
+                    ],
+                    "colorMapping": {
+                      "assignments": [],
+                      "colorMode": {
+                        "type": "categorical"
+                      },
+                      "paletteId": "elastic_line_optimized",
+                      "specialAssignments": [
+                        {
+                          "color": {
+                            "type": "loop"
+                          },
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "touched": false
+                        }
+                      ]
+                    },
+                    "layerId": "line_0",
+                    "layerType": "data",
+                    "seriesType": "line",
+                    "splitAccessors": [
+                      "line_breakdown"
+                    ],
+                    "xAccessor": "line_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_0"
+                      }
+                    ]
+                  }
+                ],
+                "legend": {
+                  "isVisible": true,
+                  "maxLines": 2,
+                  "position": "right"
+                },
+                "pointVisibility": "auto",
+                "preferredSeriesType": "line",
+                "showCurrentTimeMarker": false,
+                "tickLabelsVisibilitySettings": {
+                  "x": true,
+                  "yLeft": true,
+                  "yRight": true
+                },
+                "xExtent": {
+                  "mode": "dataBounds",
+                  "niceValues": false
+                },
+                "yLeftExtent": {
+                  "mode": "full",
+                  "niceValues": true
+                },
+                "yLeftScale": "linear",
+                "yTitle": "GPU Utilisation (%)"
+              }
+            },
+            "title": "",
+            "visualizationType": "lnsXY"
+          },
+          "title": "GPU Utilisation % Over Time \u2014 values consistently below 95% suggest CPU bottleneck or thermal throttling; values at 99\u2013100% indicate GPU-bound."
         },
         "gridData": {
           "h": 10,
           "i": "chart-gpu-util",
           "w": 24,
           "x": 0,
-          "y": 24
+          "y": 55
         },
         "panelIndex": "chart-gpu-util",
-        "type": "vis"
-      },
-      {
-        "embeddableConfig": {
-          "attributes": {
-            "references": [
-              {
-                "id": "gp-dv-gpu",
-                "name": "indexpattern-datasource-layer-line_0",
-                "type": "index-pattern"
-              }
-            ],
-            "state": {
-              "adHocDataViews": {},
-              "datasourceStates": {
-                "formBased": {
-                  "layers": {
-                    "line_0": {
-                      "columnOrder": [
-                        "line_x",
-                        "line_breakdown",
-                        "line_y_0"
-                      ],
-                      "columns": {
-                        "line_breakdown": {
-                          "customLabel": false,
-                          "dataType": "string",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "terms",
-                          "params": {
-                            "orderBy": {
-                              "columnId": "line_y_0",
-                              "type": "column"
-                            },
-                            "orderDirection": "desc",
-                            "parentFormat": {
-                              "id": "terms"
-                            },
-                            "size": 20
-                          },
-                          "sourceField": "session_label"
-                        },
-                        "line_x": {
-                          "customLabel": false,
-                          "dataType": "date",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "date_histogram",
-                          "params": {
-                            "dropPartials": false,
-                            "ignoreTimeRange": false,
-                            "includeEmptyRows": false,
-                            "interval": "auto"
-                          },
-                          "sourceField": "@timestamp"
-                        },
-                        "line_y_0": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "Core Clock (MHz)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.gpu.clock_mhz"
-                        }
-                      },
-                      "ignoreGlobalFilters": false,
-                      "sampling": 1
-                    }
-                  }
-                }
-              },
-              "filters": [],
-              "query": {
-                "language": "kuery",
-                "query": ""
-              },
-              "visualization": {
-                "axisTitlesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "curveType": "LINEAR",
-                "gridlinesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "hideEndzones": true,
-                "labelsOrientation": {
-                  "x": 0,
-                  "yLeft": 0,
-                  "yRight": 0
-                },
-                "layers": [
-                  {
-                    "accessors": [
-                      "line_y_0"
-                    ],
-                    "colorMapping": {
-                      "assignments": [],
-                      "colorMode": {
-                        "type": "categorical"
-                      },
-                      "paletteId": "elastic_line_optimized",
-                      "specialAssignments": [
-                        {
-                          "color": {
-                            "type": "loop"
-                          },
-                          "rules": [
-                            {
-                              "type": "other"
-                            }
-                          ],
-                          "touched": false
-                        }
-                      ]
-                    },
-                    "layerId": "line_0",
-                    "layerType": "data",
-                    "seriesType": "line",
-                    "splitAccessors": [
-                      "line_breakdown"
-                    ],
-                    "xAccessor": "line_x",
-                    "yConfig": [
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "line_y_0"
-                      }
-                    ]
-                  }
-                ],
-                "legend": {
-                  "isVisible": true,
-                  "maxLines": 2,
-                  "position": "right"
-                },
-                "pointVisibility": "auto",
-                "preferredSeriesType": "line",
-                "showCurrentTimeMarker": false,
-                "tickLabelsVisibilitySettings": {
-                  "x": true,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "xExtent": {
-                  "mode": "dataBounds",
-                  "niceValues": false
-                },
-                "yLeftExtent": {
-                  "mode": "full",
-                  "niceValues": true
-                },
-                "yLeftScale": "linear",
-                "yTitle": "Clock (MHz)"
-              }
-            },
-            "title": "",
-            "visualizationType": "lnsXY"
-          },
-          "title": "GPU Core Clock Over Time \u2014 Clock below rated boost speed indicates thermal or power throttling. Sustained clock reduction simultaneous with high temperature = thermal throttle."
-        },
-        "gridData": {
-          "h": 10,
-          "i": "chart-gpu-clock",
-          "w": 24,
-          "x": 24,
-          "y": 24
-        },
-        "panelIndex": "chart-gpu-clock",
         "type": "vis"
       },
       {
@@ -1200,9 +1632,9 @@
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "Total CPU %",
+                          "label": "CPU Util %",
                           "operationType": "average",
-                          "sourceField": "gamepulse.cpu.total_utilisation_pct"
+                          "sourceField": "rigsignal.cpu.total_utilisation_pct"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -1302,951 +1734,16 @@
             "title": "",
             "visualizationType": "lnsXY"
           },
-          "title": "CPU Utilisation Over Time \u2014 Total CPU utilisation and per-core load. High total% with low GPU util = CPU bottleneck. Uneven per-core load suggests the game is not using all available cores."
+          "title": "CPU Utilisation % Over Time \u2014 high CPU load combined with low GPU load confirms CPU-bound workload."
         },
         "gridData": {
           "h": 10,
           "i": "chart-cpu-util",
           "w": 24,
-          "x": 0,
-          "y": 34
+          "x": 24,
+          "y": 55
         },
         "panelIndex": "chart-cpu-util",
-        "type": "vis"
-      },
-      {
-        "embeddableConfig": {
-          "attributes": {
-            "references": [
-              {
-                "id": "gp-dv-cpu",
-                "name": "indexpattern-datasource-layer-line_0",
-                "type": "index-pattern"
-              }
-            ],
-            "state": {
-              "adHocDataViews": {},
-              "datasourceStates": {
-                "formBased": {
-                  "layers": {
-                    "line_0": {
-                      "columnOrder": [
-                        "line_x",
-                        "line_breakdown",
-                        "line_y_0",
-                        "line_y_1"
-                      ],
-                      "columns": {
-                        "line_breakdown": {
-                          "customLabel": false,
-                          "dataType": "string",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "terms",
-                          "params": {
-                            "orderBy": {
-                              "columnId": "line_y_0",
-                              "type": "column"
-                            },
-                            "orderDirection": "desc",
-                            "parentFormat": {
-                              "id": "terms"
-                            },
-                            "size": 20
-                          },
-                          "sourceField": "session_label"
-                        },
-                        "line_x": {
-                          "customLabel": false,
-                          "dataType": "date",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "date_histogram",
-                          "params": {
-                            "dropPartials": false,
-                            "ignoreTimeRange": false,
-                            "includeEmptyRows": false,
-                            "interval": "auto"
-                          },
-                          "sourceField": "@timestamp"
-                        },
-                        "line_y_0": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "CPU Temp (\u00b0C)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.cpu.temperature_c"
-                        },
-                        "line_y_1": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "Avg Clock (MHz)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.cpu.clock_mhz_avg"
-                        }
-                      },
-                      "ignoreGlobalFilters": false,
-                      "sampling": 1
-                    }
-                  }
-                }
-              },
-              "filters": [],
-              "query": {
-                "language": "kuery",
-                "query": ""
-              },
-              "visualization": {
-                "axisTitlesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "curveType": "LINEAR",
-                "gridlinesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "hideEndzones": true,
-                "labelsOrientation": {
-                  "x": 0,
-                  "yLeft": 0,
-                  "yRight": 0
-                },
-                "layers": [
-                  {
-                    "accessors": [
-                      "line_y_0",
-                      "line_y_1"
-                    ],
-                    "colorMapping": {
-                      "assignments": [],
-                      "colorMode": {
-                        "type": "categorical"
-                      },
-                      "paletteId": "elastic_line_optimized",
-                      "specialAssignments": [
-                        {
-                          "color": {
-                            "type": "loop"
-                          },
-                          "rules": [
-                            {
-                              "type": "other"
-                            }
-                          ],
-                          "touched": false
-                        }
-                      ]
-                    },
-                    "layerId": "line_0",
-                    "layerType": "data",
-                    "seriesType": "line",
-                    "splitAccessors": [
-                      "line_breakdown"
-                    ],
-                    "xAccessor": "line_x",
-                    "yConfig": [
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "line_y_0"
-                      },
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "line_y_1"
-                      }
-                    ]
-                  }
-                ],
-                "legend": {
-                  "isVisible": true,
-                  "maxLines": 2,
-                  "position": "right"
-                },
-                "pointVisibility": "auto",
-                "preferredSeriesType": "line",
-                "showCurrentTimeMarker": false,
-                "tickLabelsVisibilitySettings": {
-                  "x": true,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "xExtent": {
-                  "mode": "dataBounds",
-                  "niceValues": false
-                },
-                "yLeftExtent": {
-                  "mode": "full",
-                  "niceValues": true
-                },
-                "yLeftScale": "linear",
-                "yTitle": "Temp (\u00b0C) / Clock (MHz)"
-              }
-            },
-            "title": "",
-            "visualizationType": "lnsXY"
-          },
-          "title": "CPU Temperature + Clock Over Time \u2014 Watch for temperature-induced frequency throttling (PROCHOT). Clock drop simultaneous with temp rise = thermal throttle."
-        },
-        "gridData": {
-          "h": 10,
-          "i": "chart-cpu-temp",
-          "w": 24,
-          "x": 24,
-          "y": 34
-        },
-        "panelIndex": "chart-cpu-temp",
-        "type": "vis"
-      },
-      {
-        "embeddableConfig": {
-          "attributes": {
-            "references": [
-              {
-                "id": "gp-dv-memory",
-                "name": "indexpattern-datasource-layer-area_0",
-                "type": "index-pattern"
-              }
-            ],
-            "state": {
-              "adHocDataViews": {},
-              "datasourceStates": {
-                "formBased": {
-                  "layers": {
-                    "area_0": {
-                      "columnOrder": [
-                        "area_x",
-                        "area_breakdown",
-                        "area_y_0",
-                        "area_y_1"
-                      ],
-                      "columns": {
-                        "area_breakdown": {
-                          "customLabel": false,
-                          "dataType": "string",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "terms",
-                          "params": {
-                            "orderBy": {
-                              "columnId": "area_y_0",
-                              "type": "column"
-                            },
-                            "orderDirection": "desc",
-                            "parentFormat": {
-                              "id": "terms"
-                            },
-                            "size": 20
-                          },
-                          "sourceField": "session_label"
-                        },
-                        "area_x": {
-                          "customLabel": false,
-                          "dataType": "date",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "date_histogram",
-                          "params": {
-                            "dropPartials": false,
-                            "ignoreTimeRange": false,
-                            "includeEmptyRows": false,
-                            "interval": "auto"
-                          },
-                          "sourceField": "@timestamp"
-                        },
-                        "area_y_0": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "System Used (MB)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.memory.system_used_mb"
-                        },
-                        "area_y_1": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "Game RSS (MB)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.memory.game_rss_mb"
-                        }
-                      },
-                      "ignoreGlobalFilters": false,
-                      "sampling": 1
-                    }
-                  }
-                }
-              },
-              "filters": [],
-              "query": {
-                "language": "kuery",
-                "query": ""
-              },
-              "visualization": {
-                "axisTitlesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "curveType": "LINEAR",
-                "gridlinesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "hideEndzones": true,
-                "labelsOrientation": {
-                  "x": 0,
-                  "yLeft": 0,
-                  "yRight": 0
-                },
-                "layers": [
-                  {
-                    "accessors": [
-                      "area_y_0",
-                      "area_y_1"
-                    ],
-                    "colorMapping": {
-                      "assignments": [],
-                      "colorMode": {
-                        "type": "categorical"
-                      },
-                      "paletteId": "elastic_line_optimized",
-                      "specialAssignments": [
-                        {
-                          "color": {
-                            "type": "loop"
-                          },
-                          "rules": [
-                            {
-                              "type": "other"
-                            }
-                          ],
-                          "touched": false
-                        }
-                      ]
-                    },
-                    "layerId": "area_0",
-                    "layerType": "data",
-                    "seriesType": "area",
-                    "splitAccessors": [
-                      "area_breakdown"
-                    ],
-                    "xAccessor": "area_x",
-                    "yConfig": [
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "area_y_0"
-                      },
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "area_y_1"
-                      }
-                    ]
-                  }
-                ],
-                "legend": {
-                  "isVisible": true,
-                  "maxLines": 2,
-                  "position": "right"
-                },
-                "pointVisibility": "auto",
-                "preferredSeriesType": "area",
-                "showCurrentTimeMarker": false,
-                "tickLabelsVisibilitySettings": {
-                  "x": true,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "xExtent": {
-                  "mode": "dataBounds",
-                  "niceValues": false
-                },
-                "yLeftExtent": {
-                  "mode": "full",
-                  "niceValues": true
-                },
-                "yLeftScale": "linear",
-                "yTitle": "Memory (MB)"
-              }
-            },
-            "title": "",
-            "visualizationType": "lnsXY"
-          },
-          "title": "System Memory Usage Over Time \u2014 Game RSS = resident set size (physical memory used by the game process). High page cache hit rate is desirable; major page faults indicate RAM pressure."
-        },
-        "gridData": {
-          "h": 10,
-          "i": "chart-memory",
-          "w": 24,
-          "x": 0,
-          "y": 44
-        },
-        "panelIndex": "chart-memory",
-        "type": "vis"
-      },
-      {
-        "embeddableConfig": {
-          "attributes": {
-            "references": [
-              {
-                "id": "gp-dv-memory",
-                "name": "indexpattern-datasource-layer-line_0",
-                "type": "index-pattern"
-              }
-            ],
-            "state": {
-              "adHocDataViews": {},
-              "datasourceStates": {
-                "formBased": {
-                  "layers": {
-                    "line_0": {
-                      "columnOrder": [
-                        "line_x",
-                        "line_breakdown",
-                        "line_y_0",
-                        "line_y_1"
-                      ],
-                      "columns": {
-                        "line_breakdown": {
-                          "customLabel": false,
-                          "dataType": "string",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "terms",
-                          "params": {
-                            "orderBy": {
-                              "columnId": "line_y_0",
-                              "type": "column"
-                            },
-                            "orderDirection": "desc",
-                            "parentFormat": {
-                              "id": "terms"
-                            },
-                            "size": 20
-                          },
-                          "sourceField": "session_label"
-                        },
-                        "line_x": {
-                          "customLabel": false,
-                          "dataType": "date",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "date_histogram",
-                          "params": {
-                            "dropPartials": false,
-                            "ignoreTimeRange": false,
-                            "includeEmptyRows": false,
-                            "interval": "auto"
-                          },
-                          "sourceField": "@timestamp"
-                        },
-                        "line_y_0": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "Swap Used (MB)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.memory.swap_used_mb"
-                        },
-                        "line_y_1": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "Page Cache (MB)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.memory.page_cache_mb"
-                        }
-                      },
-                      "ignoreGlobalFilters": false,
-                      "sampling": 1
-                    }
-                  }
-                }
-              },
-              "filters": [],
-              "query": {
-                "language": "kuery",
-                "query": ""
-              },
-              "visualization": {
-                "axisTitlesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "curveType": "LINEAR",
-                "gridlinesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "hideEndzones": true,
-                "labelsOrientation": {
-                  "x": 0,
-                  "yLeft": 0,
-                  "yRight": 0
-                },
-                "layers": [
-                  {
-                    "accessors": [
-                      "line_y_0",
-                      "line_y_1"
-                    ],
-                    "colorMapping": {
-                      "assignments": [],
-                      "colorMode": {
-                        "type": "categorical"
-                      },
-                      "paletteId": "elastic_line_optimized",
-                      "specialAssignments": [
-                        {
-                          "color": {
-                            "type": "loop"
-                          },
-                          "rules": [
-                            {
-                              "type": "other"
-                            }
-                          ],
-                          "touched": false
-                        }
-                      ]
-                    },
-                    "layerId": "line_0",
-                    "layerType": "data",
-                    "seriesType": "line",
-                    "splitAccessors": [
-                      "line_breakdown"
-                    ],
-                    "xAccessor": "line_x",
-                    "yConfig": [
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "line_y_0"
-                      },
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "line_y_1"
-                      }
-                    ]
-                  }
-                ],
-                "legend": {
-                  "isVisible": true,
-                  "maxLines": 2,
-                  "position": "right"
-                },
-                "pointVisibility": "auto",
-                "preferredSeriesType": "line",
-                "showCurrentTimeMarker": false,
-                "tickLabelsVisibilitySettings": {
-                  "x": true,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "xExtent": {
-                  "mode": "dataBounds",
-                  "niceValues": false
-                },
-                "yLeftExtent": {
-                  "mode": "full",
-                  "niceValues": true
-                },
-                "yLeftScale": "linear",
-                "yTitle": "Memory (MB)"
-              }
-            },
-            "title": "",
-            "visualizationType": "lnsXY"
-          },
-          "title": "Swap + Page Cache Over Time \u2014 Swap usage during gaming = system is RAM-constrained. Evicting page cache under memory pressure causes asset re-load stutters."
-        },
-        "gridData": {
-          "h": 10,
-          "i": "chart-swap",
-          "w": 24,
-          "x": 24,
-          "y": 44
-        },
-        "panelIndex": "chart-swap",
-        "type": "vis"
-      },
-      {
-        "embeddableConfig": {
-          "attributes": {
-            "references": [
-              {
-                "id": "gp-dv-storage",
-                "name": "indexpattern-datasource-layer-line_0",
-                "type": "index-pattern"
-              }
-            ],
-            "state": {
-              "adHocDataViews": {},
-              "datasourceStates": {
-                "formBased": {
-                  "layers": {
-                    "line_0": {
-                      "columnOrder": [
-                        "line_x",
-                        "line_breakdown",
-                        "line_y_0",
-                        "line_y_1"
-                      ],
-                      "columns": {
-                        "line_breakdown": {
-                          "customLabel": false,
-                          "dataType": "string",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "terms",
-                          "params": {
-                            "orderBy": {
-                              "columnId": "line_y_0",
-                              "type": "column"
-                            },
-                            "orderDirection": "desc",
-                            "parentFormat": {
-                              "id": "terms"
-                            },
-                            "size": 20
-                          },
-                          "sourceField": "session_label"
-                        },
-                        "line_x": {
-                          "customLabel": false,
-                          "dataType": "date",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "date_histogram",
-                          "params": {
-                            "dropPartials": false,
-                            "ignoreTimeRange": false,
-                            "includeEmptyRows": false,
-                            "interval": "auto"
-                          },
-                          "sourceField": "@timestamp"
-                        },
-                        "line_y_0": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "Read (MB/s)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.storage.read_mbps"
-                        },
-                        "line_y_1": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "Write (MB/s)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.storage.write_mbps"
-                        }
-                      },
-                      "ignoreGlobalFilters": false,
-                      "sampling": 1
-                    }
-                  }
-                }
-              },
-              "filters": [],
-              "query": {
-                "language": "kuery",
-                "query": ""
-              },
-              "visualization": {
-                "axisTitlesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "curveType": "LINEAR",
-                "gridlinesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "hideEndzones": true,
-                "labelsOrientation": {
-                  "x": 0,
-                  "yLeft": 0,
-                  "yRight": 0
-                },
-                "layers": [
-                  {
-                    "accessors": [
-                      "line_y_0",
-                      "line_y_1"
-                    ],
-                    "colorMapping": {
-                      "assignments": [],
-                      "colorMode": {
-                        "type": "categorical"
-                      },
-                      "paletteId": "elastic_line_optimized",
-                      "specialAssignments": [
-                        {
-                          "color": {
-                            "type": "loop"
-                          },
-                          "rules": [
-                            {
-                              "type": "other"
-                            }
-                          ],
-                          "touched": false
-                        }
-                      ]
-                    },
-                    "layerId": "line_0",
-                    "layerType": "data",
-                    "seriesType": "line",
-                    "splitAccessors": [
-                      "line_breakdown"
-                    ],
-                    "xAccessor": "line_x",
-                    "yConfig": [
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "line_y_0"
-                      },
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "line_y_1"
-                      }
-                    ]
-                  }
-                ],
-                "legend": {
-                  "isVisible": true,
-                  "maxLines": 2,
-                  "position": "right"
-                },
-                "pointVisibility": "auto",
-                "preferredSeriesType": "line",
-                "showCurrentTimeMarker": false,
-                "tickLabelsVisibilitySettings": {
-                  "x": true,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "xExtent": {
-                  "mode": "dataBounds",
-                  "niceValues": false
-                },
-                "yLeftExtent": {
-                  "mode": "full",
-                  "niceValues": true
-                },
-                "yLeftScale": "linear",
-                "yTitle": "Throughput (MB/s)"
-              }
-            },
-            "title": "",
-            "visualizationType": "lnsXY"
-          },
-          "title": "Storage Throughput Over Time \u2014 High read throughput during gameplay indicates asset streaming or shader cache loading. NVMe drives should sustain > 1 GB/s; HDD-class storage may bottleneck texture streaming."
-        },
-        "gridData": {
-          "h": 10,
-          "i": "chart-storage",
-          "w": 24,
-          "x": 0,
-          "y": 54
-        },
-        "panelIndex": "chart-storage",
-        "type": "vis"
-      },
-      {
-        "embeddableConfig": {
-          "attributes": {
-            "references": [
-              {
-                "id": "gp-dv-power",
-                "name": "indexpattern-datasource-layer-line_0",
-                "type": "index-pattern"
-              }
-            ],
-            "state": {
-              "adHocDataViews": {},
-              "datasourceStates": {
-                "formBased": {
-                  "layers": {
-                    "line_0": {
-                      "columnOrder": [
-                        "line_x",
-                        "line_breakdown",
-                        "line_y_0",
-                        "line_y_1"
-                      ],
-                      "columns": {
-                        "line_breakdown": {
-                          "customLabel": false,
-                          "dataType": "string",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "terms",
-                          "params": {
-                            "orderBy": {
-                              "columnId": "line_y_0",
-                              "type": "column"
-                            },
-                            "orderDirection": "desc",
-                            "parentFormat": {
-                              "id": "terms"
-                            },
-                            "size": 20
-                          },
-                          "sourceField": "session_label"
-                        },
-                        "line_x": {
-                          "customLabel": false,
-                          "dataType": "date",
-                          "isBucketed": true,
-                          "label": "",
-                          "operationType": "date_histogram",
-                          "params": {
-                            "dropPartials": false,
-                            "ignoreTimeRange": false,
-                            "includeEmptyRows": false,
-                            "interval": "auto"
-                          },
-                          "sourceField": "@timestamp"
-                        },
-                        "line_y_0": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "Battery Draw (W)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.power.battery_rate_w"
-                        },
-                        "line_y_1": {
-                          "customLabel": true,
-                          "dataType": "number",
-                          "isBucketed": false,
-                          "label": "Current TDP (W)",
-                          "operationType": "average",
-                          "sourceField": "gamepulse.power.tdp_current_w"
-                        }
-                      },
-                      "ignoreGlobalFilters": false,
-                      "sampling": 1
-                    }
-                  }
-                }
-              },
-              "filters": [],
-              "query": {
-                "language": "kuery",
-                "query": ""
-              },
-              "visualization": {
-                "axisTitlesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "curveType": "LINEAR",
-                "gridlinesVisibilitySettings": {
-                  "x": false,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "hideEndzones": true,
-                "labelsOrientation": {
-                  "x": 0,
-                  "yLeft": 0,
-                  "yRight": 0
-                },
-                "layers": [
-                  {
-                    "accessors": [
-                      "line_y_0",
-                      "line_y_1"
-                    ],
-                    "colorMapping": {
-                      "assignments": [],
-                      "colorMode": {
-                        "type": "categorical"
-                      },
-                      "paletteId": "elastic_line_optimized",
-                      "specialAssignments": [
-                        {
-                          "color": {
-                            "type": "loop"
-                          },
-                          "rules": [
-                            {
-                              "type": "other"
-                            }
-                          ],
-                          "touched": false
-                        }
-                      ]
-                    },
-                    "layerId": "line_0",
-                    "layerType": "data",
-                    "seriesType": "line",
-                    "splitAccessors": [
-                      "line_breakdown"
-                    ],
-                    "xAccessor": "line_x",
-                    "yConfig": [
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "line_y_0"
-                      },
-                      {
-                        "axisMode": "left",
-                        "forAccessor": "line_y_1"
-                      }
-                    ]
-                  }
-                ],
-                "legend": {
-                  "isVisible": true,
-                  "maxLines": 2,
-                  "position": "right"
-                },
-                "pointVisibility": "auto",
-                "preferredSeriesType": "line",
-                "showCurrentTimeMarker": false,
-                "tickLabelsVisibilitySettings": {
-                  "x": true,
-                  "yLeft": true,
-                  "yRight": true
-                },
-                "xExtent": {
-                  "mode": "dataBounds",
-                  "niceValues": false
-                },
-                "yLeftExtent": {
-                  "mode": "full",
-                  "niceValues": true
-                },
-                "yLeftScale": "linear",
-                "yTitle": "Power (W)"
-              }
-            },
-            "title": "",
-            "visualizationType": "lnsXY"
-          },
-          "title": "Power Profile Over Time \u2014 Battery drain rate, TDP, and power profile. Battery devices: sustained gaming drains ~10\u201325 W on handheld hardware."
-        },
-        "gridData": {
-          "h": 10,
-          "i": "chart-power",
-          "w": 24,
-          "x": 24,
-          "y": 54
-        },
-        "panelIndex": "chart-power",
         "type": "vis"
       },
       {
@@ -2277,34 +1774,49 @@
                         "datatable_accessor_metric_7",
                         "datatable_accessor_metric_8",
                         "datatable_accessor_metric_9",
-                        "datatable_accessor_metric_10"
+                        "datatable_accessor_metric_10",
+                        "datatable_accessor_metric_11",
+                        "datatable_accessor_metric_12",
+                        "datatable_accessor_metric_13"
                       ],
                       "columns": {
                         "datatable_accessor_metric_0": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "GPU Driver",
+                          "label": "Game",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.gpu.driver_version"
+                          "sourceField": "rigsignal.game.name"
                         },
                         "datatable_accessor_metric_1": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "VRAM (MB)",
+                          "label": "Duration (s)",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.gpu.vram_mb"
+                          "sourceField": "rigsignal.summary.duration_s"
                         },
                         "datatable_accessor_metric_10": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Proton",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.compatibility.proton_version"
+                        },
+                        "datatable_accessor_metric_11": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
@@ -2316,101 +1828,125 @@
                           },
                           "sourceField": "host.os.kernel"
                         },
-                        "datatable_accessor_metric_2": {
+                        "datatable_accessor_metric_12": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "GPU Vendor",
+                          "label": "Graphics API",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.gpu.vendor"
+                          "sourceField": "rigsignal.game.graphics_api"
+                        },
+                        "datatable_accessor_metric_13": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Upscaler",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.game.upscaler.type"
+                        },
+                        "datatable_accessor_metric_2": {
+                          "customLabel": true,
+                          "dataType": "number",
+                          "isBucketed": false,
+                          "label": "Avg FPS",
+                          "operationType": "last_value",
+                          "params": {
+                            "showArrayValues": false,
+                            "sortField": "@timestamp"
+                          },
+                          "sourceField": "rigsignal.summary.avg_fps"
                         },
                         "datatable_accessor_metric_3": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "Vulkan Driver",
+                          "label": "1% Low",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.gpu.vulkan_driver"
+                          "sourceField": "rigsignal.summary.low_1pct_fps"
                         },
                         "datatable_accessor_metric_4": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "CPU",
+                          "label": "p99 Frame (ms)",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.cpu.model"
+                          "sourceField": "rigsignal.summary.p99_frametime_ms"
                         },
                         "datatable_accessor_metric_5": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "Cores",
+                          "label": "Stutters",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.cpu.cores"
+                          "sourceField": "rigsignal.summary.stutter_count"
                         },
                         "datatable_accessor_metric_6": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "RAM (MB)",
+                          "label": "Bottleneck",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.ram.total_mb"
+                          "sourceField": "rigsignal.summary.bottleneck_dominant"
                         },
                         "datatable_accessor_metric_7": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "RAM Type",
+                          "label": "Peak GPU \u00b0C",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.ram.type"
+                          "sourceField": "rigsignal.summary.peak_gpu_temp_c"
                         },
                         "datatable_accessor_metric_8": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "Device Type",
+                          "label": "Peak GPU W",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "gamepulse.hardware.device.type"
+                          "sourceField": "rigsignal.summary.peak_gpu_power_w"
                         },
                         "datatable_accessor_metric_9": {
                           "customLabel": true,
                           "dataType": "number",
                           "isBucketed": false,
-                          "label": "OS",
+                          "label": "GPU Driver",
                           "operationType": "last_value",
                           "params": {
                             "showArrayValues": false,
                             "sortField": "@timestamp"
                           },
-                          "sourceField": "host.os.name"
+                          "sourceField": "rigsignal.hardware.gpu.driver_version"
                         },
                         "datatable_accessor_row_0": {
                           "customLabel": false,
@@ -2422,13 +1958,13 @@
                             "orderBy": {
                               "type": "alphabetical"
                             },
-                            "orderDirection": "asc",
+                            "orderDirection": "desc",
                             "parentFormat": {
                               "id": "terms"
                             },
-                            "size": 10
+                            "size": 100
                           },
-                          "sourceField": "gamepulse.hardware.gpu.model"
+                          "sourceField": "rigsignal.session.id"
                         }
                       },
                       "ignoreGlobalFilters": false,
@@ -2504,6 +2040,21 @@
                     "columnId": "datatable_accessor_metric_10",
                     "isMetric": true,
                     "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_11",
+                    "isMetric": true,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_12",
+                    "isMetric": true,
+                    "isTransposed": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_13",
+                    "isMetric": true,
+                    "isTransposed": false
                   }
                 ],
                 "headerRowHeight": "custom",
@@ -2517,25 +2068,25 @@
             "title": "",
             "visualizationType": "lnsDatatable"
           },
-          "title": "Hardware Configurations Seen \u2014 grouped by GPU model"
+          "title": "Per-Session Performance Summary \u2014 complete stats for every session in the selected period"
         },
         "gridData": {
-          "h": 10,
-          "i": "table-hw-profile",
+          "h": 14,
+          "i": "table-session-detail",
           "w": 48,
           "x": 0,
-          "y": 64
+          "y": 65
         },
-        "panelIndex": "table-hw-profile",
+        "panelIndex": "table-session-detail",
         "type": "vis"
       }
     ],
     "timeFrom": "now-90d",
     "timeRestore": true,
     "timeTo": "now",
-    "title": "GamePulse \u2014 Hardware Environment"
+    "title": "RigSignal \u2014 Game Performance"
   },
-  "id": "gamepulse-gp-hardware",
+  "id": "rigsignal-gp-game-perf",
   "references": [
     {
       "id": "gp-dv-session",
@@ -2549,17 +2100,32 @@
     },
     {
       "id": "gp-dv-session",
+      "name": "ctrl-proton:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "gp-dv-session",
       "name": "ctrl-kernel:optionsListDataView",
       "type": "index-pattern"
     },
     {
-      "id": "gp-dv-gpu",
-      "name": "chart-gpu-temp:indexpattern-datasource-layer-line_0",
+      "id": "gp-dv-frame",
+      "name": "chart-fps-sessions:indexpattern-datasource-layer-line_0",
       "type": "index-pattern"
     },
     {
-      "id": "gp-dv-gpu",
-      "name": "chart-gpu-power:indexpattern-datasource-layer-line_0",
+      "id": "gp-dv-frame",
+      "name": "chart-frametime:indexpattern-datasource-layer-line_0",
+      "type": "index-pattern"
+    },
+    {
+      "id": "gp-dv-frame",
+      "name": "chart-stutter:indexpattern-datasource-layer-line_0",
+      "type": "index-pattern"
+    },
+    {
+      "id": "gp-dv-session",
+      "name": "table-bottleneck:indexpattern-datasource-layer-layer_0",
       "type": "index-pattern"
     },
     {
@@ -2568,43 +2134,13 @@
       "type": "index-pattern"
     },
     {
-      "id": "gp-dv-gpu",
-      "name": "chart-gpu-clock:indexpattern-datasource-layer-line_0",
-      "type": "index-pattern"
-    },
-    {
       "id": "gp-dv-cpu",
       "name": "chart-cpu-util:indexpattern-datasource-layer-line_0",
       "type": "index-pattern"
     },
     {
-      "id": "gp-dv-cpu",
-      "name": "chart-cpu-temp:indexpattern-datasource-layer-line_0",
-      "type": "index-pattern"
-    },
-    {
-      "id": "gp-dv-memory",
-      "name": "chart-memory:indexpattern-datasource-layer-area_0",
-      "type": "index-pattern"
-    },
-    {
-      "id": "gp-dv-memory",
-      "name": "chart-swap:indexpattern-datasource-layer-line_0",
-      "type": "index-pattern"
-    },
-    {
-      "id": "gp-dv-storage",
-      "name": "chart-storage:indexpattern-datasource-layer-line_0",
-      "type": "index-pattern"
-    },
-    {
-      "id": "gp-dv-power",
-      "name": "chart-power:indexpattern-datasource-layer-line_0",
-      "type": "index-pattern"
-    },
-    {
       "id": "gp-dv-session",
-      "name": "table-hw-profile:indexpattern-datasource-layer-layer_0",
+      "name": "table-session-detail:indexpattern-datasource-layer-layer_0",
       "type": "index-pattern"
     }
   ],

@@ -1,6 +1,6 @@
 ---
 description: >
-  Ingest pipeline for GamePulse network metrics.
+  Ingest pipeline for RigSignal network metrics.
   Sets @timestamp and normalises connection type.
 processors:
   - set:
@@ -9,12 +9,12 @@ processors:
       if: "ctx['@timestamp'] == null"
 
   - lowercase:
-      field: gamepulse.network.connection_type
+      field: rigsignal.network.connection_type
       ignore_missing: true
       description: "Normalise connection type (WiFi -> wifi, Ethernet -> ethernet)"
 
   - trim:
-      field: gamepulse.game.name
+      field: rigsignal.game.name
       ignore_missing: true
 
 on_failure:
@@ -23,4 +23,4 @@ on_failure:
       value: "{{_ingest.on_failure_message}}"
   - set:
       field: _ingest.failed_pipeline
-      value: "gamepulse-network"
+      value: "rigsignal-network"

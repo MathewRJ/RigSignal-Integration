@@ -3,11 +3,11 @@
         {
             "@timestamp": "2026-04-11T12:00:00.000Z",
             "data_stream": {
-                "dataset": "gamepulse.audio",
+                "dataset": "rigsignal.audio",
                 "namespace": "default",
                 "type": "metrics"
             },
-            "gamepulse": {
+            "rigsignal": {
                 "audio": {
                     "backend": "pipewire",
                     "buffer_size": 1024,

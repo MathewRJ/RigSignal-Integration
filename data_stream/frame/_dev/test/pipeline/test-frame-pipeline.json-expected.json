@@ -3,11 +3,11 @@
         {
             "@timestamp": "2026-04-11T12:00:00.000Z",
             "data_stream": {
-                "dataset": "gamepulse.frame",
+                "dataset": "rigsignal.frame",
                 "namespace": "default",
                 "type": "metrics"
             },
-            "gamepulse": {
+            "rigsignal": {
                 "fps": {
                     "avg_1s": 85.4,
                     "current": 87,
@@ -43,11 +43,11 @@
         {
             "@timestamp": "2026-04-11T12:00:01.000Z",
             "data_stream": {
-                "dataset": "gamepulse.frame",
+                "dataset": "rigsignal.frame",
                 "namespace": "default",
                 "type": "metrics"
             },
-            "gamepulse": {
+            "rigsignal": {
                 "fps": {
                     "avg_1s": 44.0,
                     "current": 45,

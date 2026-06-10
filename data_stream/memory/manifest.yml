@@ -1,4 +1,4 @@
-title: "GamePulse Memory Metrics"
+title: "RigSignal Memory Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"

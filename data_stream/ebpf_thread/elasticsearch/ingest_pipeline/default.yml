@@ -1,6 +1,6 @@
 ---
 description: >
-  Ingest pipeline for GamePulse per-thread eBPF scheduler metrics.
+  Ingest pipeline for RigSignal per-thread eBPF scheduler metrics.
 processors:
   - set:
       field: "@timestamp"
@@ -11,9 +11,9 @@ processors:
       description: "Validate session ID is present"
       lang: painless
       source: |
-        def sid = ctx.gamepulse?.session?.id;
+        def sid = ctx.rigsignal?.session?.id;
         if (sid == null || sid.isEmpty()) {
-          throw new Exception('gamepulse.session.id is required in eBPF thread documents');
+          throw new Exception('rigsignal.session.id is required in eBPF thread documents');
         }
 
 on_failure:
@@ -22,4 +22,4 @@ on_failure:
       value: "{{_ingest.on_failure_message}}"
   - set:
       field: _ingest.failed_pipeline
-      value: "gamepulse-ebpf-thread"
+      value: "rigsignal-ebpf-thread"

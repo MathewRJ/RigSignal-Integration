@@ -4,7 +4,7 @@
   dimension: true
 
 # Session context (common across all metric data streams)
-- name: gamepulse
+- name: rigsignal
   type: group
   fields:
     - name: session
@@ -16,7 +16,7 @@
           description: "Unique session identifier (UUID) for this gaming session"
         - name: agent_version
           type: keyword
-          description: "Version of the GamePulse collector agent"
+          description: "Version of the RigSignal collector agent"
         - name: label
           type: keyword
           description: "Optional user-supplied annotation for this session (e.g. 'after-driver-update')"

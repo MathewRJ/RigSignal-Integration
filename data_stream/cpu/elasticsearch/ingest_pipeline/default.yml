@@ -1,6 +1,6 @@
 ---
 description: >
-  Ingest pipeline for GamePulse CPU metrics.
+  Ingest pipeline for RigSignal CPU metrics.
   Sets @timestamp and validates CPU utilisation ranges.
 processors:
   - set:
@@ -9,20 +9,20 @@ processors:
       if: "ctx['@timestamp'] == null"
 
   - trim:
-      field: gamepulse.game.name
+      field: rigsignal.game.name
       ignore_missing: true
 
   - script:
       description: "Validate CPU utilisation is 0–100%"
       lang: painless
       source: |
-        def total = ctx.gamepulse?.cpu?.total_utilisation_pct;
+        def total = ctx.rigsignal?.cpu?.total_utilisation_pct;
         if (total != null && (total < 0 || total > 100)) {
-          throw new Exception('gamepulse.cpu.total_utilisation_pct must be 0-100, got: ' + total);
+          throw new Exception('rigsignal.cpu.total_utilisation_pct must be 0-100, got: ' + total);
         }
-        def game = ctx.gamepulse?.cpu?.game_utilisation_pct;
+        def game = ctx.rigsignal?.cpu?.game_utilisation_pct;
         if (game != null && (game < 0 || game > 100)) {
-          throw new Exception('gamepulse.cpu.game_utilisation_pct must be 0-100, got: ' + game);
+          throw new Exception('rigsignal.cpu.game_utilisation_pct must be 0-100, got: ' + game);
         }
 
 on_failure:
@@ -31,4 +31,4 @@ on_failure:
       value: "{{_ingest.on_failure_message}}"
   - set:
       field: _ingest.failed_pipeline
-      value: "gamepulse-cpu"
+      value: "rigsignal-cpu"
