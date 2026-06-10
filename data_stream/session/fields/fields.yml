@@ -50,13 +50,14 @@
           type: keyword
           description: >
             Detection source for this target. One of: steam, lutris, heroic,
-            bottles, user_specified, auto_detected. Determines which other
-            game.* fields are populated.
+            bottles, epic_games, gog_galaxy, user_specified, auto_detected.
+            Determines which other game.* fields are populated.
         - name: launcher
           type: keyword
           description: >
             Human-readable launcher name for display (e.g. "Steam", "Lutris",
-            "Heroic — Epic"). Free-form; used by dashboards for grouping.
+            "Heroic — Epic", "Epic Games", "GOG Galaxy"). Free-form; used by
+            dashboards for grouping.
             Distinct from `source` which is machine-readable and enumerated.
         - name: steam_app_id
           type: long

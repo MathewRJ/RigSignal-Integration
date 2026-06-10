@@ -32,10 +32,10 @@
           description: "Steam application ID (present only when source == steam)"
         - name: source
           type: keyword
-          description: "Detection source: steam | lutris | heroic | bottles | user_specified | auto_detected"
+          description: "Detection source: steam | lutris | heroic | bottles | epic_games | gog_galaxy | user_specified | auto_detected"
         - name: launcher
           type: keyword
-          description: "Human-readable launcher name (e.g. Steam, Lutris, Heroic — Epic)"
+          description: "Human-readable launcher name (e.g. Steam, Lutris, Heroic — Epic, Epic Games, GOG Galaxy)"
 
     # Power-specific metrics
     - name: power
