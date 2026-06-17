@@ -1,4 +1,4 @@
-version: 0.1.0
+version: 0.2.0
 format_version: "3.0.0"
 name: rigsignal
 title: "RigSignal"
@@ -33,8 +33,19 @@ policy_templates:
       session lifecycle, discrete events, and scheduler/I/O/GPU kernel probes.
     inputs:
       - type: filestream
-        title: Collect RigSignal events
+        title: RigSignal Spool Files
         description: >
-          Optional: collect RigSignal event logs from disk. The rigsignal-agent
-          sends metrics directly to Elasticsearch — this input is only needed
-          if you also want file-based event capture.
+          Tail NDJSON spool files written by rigsignal-agent in spool-file output
+          mode. Configure the same path as [output] spool_dir in rigsignal.toml.
+          Not needed when the agent runs in direct-to-Elasticsearch mode.
+        vars:
+          - name: paths
+            type: text
+            title: Spool directory glob
+            description: >
+              Path glob matching rigsignal spool files. Must match [output] spool_dir
+              in rigsignal.toml. Default covers the system-service path.
+            multi: true
+            required: true
+            default:
+              - /var/lib/rigsignal/spool/*.ndjson

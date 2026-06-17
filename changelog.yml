@@ -1,3 +1,13 @@
+- version: "0.2.0"
+  changes:
+    - description: >
+        Phase 3: replace 7 legacy dashboards with consolidated 5-dashboard suite
+        (home, game-perf, system-health, software, engine). Add Fleet filestream
+        input support with NDJSON spool-file mode: all 12 data streams now have
+        agent/stream/filestream.yml.hbs templates with ndjson parser for tailing
+        rigsignal-agent spool files.
+      type: enhancement
+      link: https://github.com/MathewRJ/RigSignal-Integration/issues/2
 - version: "0.1.0"
   changes:
     - description: >
