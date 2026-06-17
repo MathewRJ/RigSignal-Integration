@@ -2,3 +2,7 @@ title: "RigSignal Power Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"
+streams:
+  - input: filestream
+    title: RigSignal Power Metrics
+    description: RigSignal system power metrics via spool file

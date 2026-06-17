@@ -2,3 +2,7 @@ title: "RigSignal Frame Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"
+streams:
+  - input: filestream
+    title: RigSignal Frame Metrics
+    description: RigSignal frame timing and FPS metrics via spool file

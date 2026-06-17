@@ -2,3 +2,7 @@ title: "RigSignal Session Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"
+streams:
+  - input: filestream
+    title: RigSignal Session Metrics
+    description: RigSignal game session lifecycle metrics via spool file

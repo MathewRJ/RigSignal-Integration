@@ -2,3 +2,7 @@ title: "RigSignal Audio Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"
+streams:
+  - input: filestream
+    title: RigSignal Audio Metrics
+    description: RigSignal audio device metrics via spool file

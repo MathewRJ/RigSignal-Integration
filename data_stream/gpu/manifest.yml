@@ -2,3 +2,7 @@ title: "RigSignal GPU Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"
+streams:
+  - input: filestream
+    title: RigSignal GPU Metrics
+    description: RigSignal GPU performance metrics via spool file

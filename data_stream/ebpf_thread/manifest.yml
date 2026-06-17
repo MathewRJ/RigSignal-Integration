@@ -2,3 +2,7 @@ title: "RigSignal eBPF Thread Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"
+streams:
+  - input: filestream
+    title: RigSignal eBPF Thread Metrics
+    description: RigSignal per-thread scheduler metrics via eBPF spool file

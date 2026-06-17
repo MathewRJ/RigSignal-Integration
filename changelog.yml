@@ -1,3 +1,11 @@
+- version: "0.3.1"
+  changes:
+    - description: >
+        Fix: add streams section to all 12 data stream manifests so Fleet can discover
+        the filestream template for each dataset. Without this Fleet returned
+        "Stream template not found" when enabling non-events streams in a policy.
+      type: bugfix
+      link: https://github.com/MathewRJ/RigSignal-Integration/issues/4
 - version: "0.3.0"
   changes:
     - description: >

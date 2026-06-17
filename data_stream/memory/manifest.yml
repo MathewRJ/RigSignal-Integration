@@ -2,3 +2,7 @@ title: "RigSignal Memory Metrics"
 type: metrics
 elasticsearch:
   index_mode: "time_series"
+streams:
+  - input: filestream
+    title: RigSignal Memory Metrics
+    description: RigSignal system memory metrics via spool file
