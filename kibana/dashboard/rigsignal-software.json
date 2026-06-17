@@ -1,0 +1,2040 @@
+{
+  "attributes": {
+    "controlGroupInput": {
+      "chainingSystem": "HIERARCHICAL",
+      "controlStyle": "oneLine",
+      "ignoreParentSettingsJSON": "{\"ignoreFilters\":false,\"ignoreQuery\":false,\"ignoreTimerange\":false,\"ignoreValidations\":false}",
+      "panelsJSON": "{\"ee255bc3-e417-1669-f909-c45a77f4a9e4\":{\"explicitInput\":{\"enhancements\":{},\"fieldName\":\"rigsignal.game.name\",\"id\":\"ee255bc3-e417-1669-f909-c45a77f4a9e4\",\"title\":\"Game\"},\"grow\":true,\"order\":0,\"type\":\"optionsListControl\",\"width\":\"medium\"},\"4b1f48cf-edfe-a7e1-b946-4df23839eff0\":{\"explicitInput\":{\"enhancements\":{},\"fieldName\":\"rigsignal.hardware.gpu.driver_version\",\"id\":\"4b1f48cf-edfe-a7e1-b946-4df23839eff0\",\"title\":\"GPU Driver\"},\"grow\":true,\"order\":1,\"type\":\"optionsListControl\",\"width\":\"medium\"},\"beea7af2-059d-abf6-1709-7658fb13f703\":{\"explicitInput\":{\"enhancements\":{},\"fieldName\":\"rigsignal.compatibility.proton_version\",\"id\":\"beea7af2-059d-abf6-1709-7658fb13f703\",\"title\":\"Proton Ver\"},\"grow\":true,\"order\":2,\"type\":\"optionsListControl\",\"width\":\"medium\"},\"a9c88bc2-4a13-74a2-0ee2-ea9a94dca927\":{\"explicitInput\":{\"enhancements\":{},\"fieldName\":\"host.os.kernel\",\"id\":\"a9c88bc2-4a13-74a2-0ee2-ea9a94dca927\",\"title\":\"OS Kernel\"},\"grow\":true,\"order\":3,\"type\":\"optionsListControl\",\"width\":\"medium\"}}"
+    },
+    "description": "Driver regression tracking, Proton/Wine compatibility, audio health, and network quality per session.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": {}
+    },
+    "optionsJSON": {
+      "hidePanelTitles": false,
+      "hidePanelBorders": false,
+      "useMargins": true,
+      "autoApplyFilters": true,
+      "syncColors": false,
+      "syncCursor": true,
+      "syncTooltips": false
+    },
+    "panelsJSON": [
+      {
+        "type": "markdown",
+        "embeddableConfig": {
+          "content": "## Software Stack\nDriver regression tracking, Proton/Wine compatibility, audio health, and network quality per session. Use the filters to compare driver versions or Proton releases side-by-side. The compatibility matrix shows every game × Proton × driver combination tested. For CPU scheduler impact from a driver update, cross-reference with **[Engine & Diagnostics](/app/dashboards#/view/rigsignal-engine)**.",
+          "settings": {
+            "open_links_in_new_tab": true
+          }
+        },
+        "panelIndex": "bd5c3611-12b2-487e-ba7b-281c8f842117",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 48,
+          "h": 5,
+          "i": "bd5c3611-12b2-487e-ba7b-281c8f842117"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.session-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Graphics API Versions` = COUNT_DISTINCT(rigsignal.game.graphics_api)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Graphics API Versions",
+                          "label": "Graphics API Versions",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.session-default-@timestamp": {
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "title": "metrics-rigsignal.session-default",
+                  "name": "metrics-rigsignal.session-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Graphics API Versions` = COUNT_DISTINCT(rigsignal.game.graphics_api)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "b45d1b04-4c74-49f0-8adf-8ecab60033d3",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "b45d1b04-4c74-49f0-8adf-8ecab60033d3",
+          "sectionId": "774bf056-2143-40a5-b38d-4b2b256b43fc"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.session-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Upscaler Variants` = COUNT_DISTINCT(rigsignal.settings.upscaler.tech)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Upscaler Variants",
+                          "label": "Upscaler Tech Variants",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.session-default-@timestamp": {
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "title": "metrics-rigsignal.session-default",
+                  "name": "metrics-rigsignal.session-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Upscaler Variants` = COUNT_DISTINCT(rigsignal.settings.upscaler.tech)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "966f3bbf-36cc-4f65-bfec-bb67441ad71c",
+        "gridData": {
+          "x": 8,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "966f3bbf-36cc-4f65-bfec-bb67441ad71c",
+          "sectionId": "774bf056-2143-40a5-b38d-4b2b256b43fc"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.session-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Kernel Versions` = COUNT_DISTINCT(host.os.kernel)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Kernel Versions",
+                          "label": "Distinct OS Kernel Versions",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.session-default-@timestamp": {
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "title": "metrics-rigsignal.session-default",
+                  "name": "metrics-rigsignal.session-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Kernel Versions` = COUNT_DISTINCT(host.os.kernel)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "1574020c-8e1d-4891-b020-2ce68a3a33af",
+        "gridData": {
+          "x": 16,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "1574020c-8e1d-4891-b020-2ce68a3a33af",
+          "sectionId": "774bf056-2143-40a5-b38d-4b2b256b43fc"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.frame-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Peak Avg FPS` = MAX(rigsignal.fps.avg_1s)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Peak Avg FPS",
+                          "label": "Peak Avg FPS",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "number",
+                              "params": {
+                                "decimals": 1,
+                                "compact": false
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.frame-default-@timestamp": {
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "title": "metrics-rigsignal.frame-default",
+                  "name": "metrics-rigsignal.frame-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Peak Avg FPS` = MAX(rigsignal.fps.avg_1s)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "d00d39ba-8e4d-4c8f-9ff1-064751dad0a0",
+        "gridData": {
+          "x": 24,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "d00d39ba-8e4d-4c8f-9ff1-064751dad0a0",
+          "sectionId": "774bf056-2143-40a5-b38d-4b2b256b43fc"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.session-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Total Sessions` = COUNT_DISTINCT(rigsignal.session.id)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Total Sessions",
+                          "label": "Total Distinct Sessions",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.session-default-@timestamp": {
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "title": "metrics-rigsignal.session-default",
+                  "name": "metrics-rigsignal.session-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Total Sessions` = COUNT_DISTINCT(rigsignal.session.id)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "483be50a-f942-4329-959e-972e16080d64",
+        "gridData": {
+          "x": 32,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "483be50a-f942-4329-959e-972e16080d64",
+          "sectionId": "774bf056-2143-40a5-b38d-4b2b256b43fc"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.audio-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.audio-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Audio Backends` = COUNT_DISTINCT(rigsignal.audio.backend)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Audio Backends",
+                          "label": "Audio Backends",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.audio-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.audio-default-@timestamp": {
+                  "id": "metrics-rigsignal.audio-default-@timestamp",
+                  "title": "metrics-rigsignal.audio-default",
+                  "name": "metrics-rigsignal.audio-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.audio-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `Audio Backends` = COUNT_DISTINCT(rigsignal.audio.backend)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "2ebdab2e-bd4f-4f5e-8c3b-fc93e1dbd791",
+        "gridData": {
+          "x": 40,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "2ebdab2e-bd4f-4f5e-8c3b-fc93e1dbd791",
+          "sectionId": "774bf056-2143-40a5-b38d-4b2b256b43fc"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Average FPS over Time by Graphics API (5-minute buckets)",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "line_0": {
+                      "index": "metrics-rigsignal.frame-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_fps = AVG(rigsignal.fps.avg_1s) BY BUCKET(@timestamp, 5 minute), rigsignal.game.graphics_api\n| SORT `BUCKET(@timestamp, 5 minute)` ASC"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "line_x",
+                          "fieldName": "BUCKET(@timestamp, 5 minute)",
+                          "meta": {
+                            "type": "date"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_0",
+                          "fieldName": "avg_fps",
+                          "label": "Average FPS",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "line_breakdown",
+                          "fieldName": "rigsignal.game.graphics_api",
+                          "label": "Graphics API",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-line_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "line",
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "line_0",
+                    "accessors": [
+                      "line_y_0"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "line",
+                    "xAccessor": "line_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_0"
+                      }
+                    ],
+                    "splitAccessors": [
+                      "line_breakdown"
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.frame-default-@timestamp": {
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "title": "metrics-rigsignal.frame-default",
+                  "name": "metrics-rigsignal.frame-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_fps = AVG(rigsignal.fps.avg_1s) BY BUCKET(@timestamp, 5 minute), rigsignal.game.graphics_api\n| SORT `BUCKET(@timestamp, 5 minute)` ASC"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "fb49f223-da03-48f6-b525-b2f9be520f3a",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 48,
+          "h": 12,
+          "i": "fb49f223-da03-48f6-b525-b2f9be520f3a",
+          "sectionId": "66c943e5-1df0-4d74-949d-3e3c3cf4aba0"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Average FPS by Graphics API",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "bar_0": {
+                      "index": "metrics-rigsignal.frame-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_fps = AVG(rigsignal.fps.avg_1s) BY rigsignal.game.graphics_api\n| SORT avg_fps DESC"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "bar_x",
+                          "fieldName": "rigsignal.game.graphics_api",
+                          "label": "Graphics API",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "bar_y_0",
+                          "fieldName": "avg_fps",
+                          "label": "Average FPS",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-bar_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "bar",
+                "legend": {
+                  "isVisible": false,
+                  "position": "right"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "bar_0",
+                    "accessors": [
+                      "bar_y_0"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "bar",
+                    "xAccessor": "bar_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "bar_y_0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.frame-default-@timestamp": {
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "title": "metrics-rigsignal.frame-default",
+                  "name": "metrics-rigsignal.frame-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_fps = AVG(rigsignal.fps.avg_1s) BY rigsignal.game.graphics_api\n| SORT avg_fps DESC"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "23332008-472c-4d48-8530-0f2042e3dff9",
+        "gridData": {
+          "x": 0,
+          "y": 12,
+          "w": 16,
+          "h": 10,
+          "i": "23332008-472c-4d48-8530-0f2042e3dff9",
+          "sectionId": "66c943e5-1df0-4d74-949d-3e3c3cf4aba0"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Average FPS and 1% Low FPS by Game (Top 15)",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "bar_horizontal_0": {
+                      "index": "metrics-rigsignal.frame-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_fps = AVG(rigsignal.fps.avg_1s), p1_fps = MIN(rigsignal.fps.low_1pct) BY rigsignal.game.name\n| SORT avg_fps DESC\n| LIMIT 15"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "bar_horizontal_x",
+                          "fieldName": "rigsignal.game.name",
+                          "label": "Game",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "bar_horizontal_y_0",
+                          "fieldName": "avg_fps",
+                          "label": "Average FPS",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "bar_horizontal_y_1",
+                          "fieldName": "p1_fps",
+                          "label": "1% Low FPS",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-bar_horizontal_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "bar_horizontal",
+                "legend": {
+                  "isVisible": true,
+                  "position": "bottom"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "bar_horizontal_0",
+                    "accessors": [
+                      "bar_horizontal_y_0",
+                      "bar_horizontal_y_1"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "bar_horizontal",
+                    "xAccessor": "bar_horizontal_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "bar_horizontal_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "bar_horizontal_y_1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.frame-default-@timestamp": {
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "title": "metrics-rigsignal.frame-default",
+                  "name": "metrics-rigsignal.frame-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_fps = AVG(rigsignal.fps.avg_1s), p1_fps = MIN(rigsignal.fps.low_1pct) BY rigsignal.game.name\n| SORT avg_fps DESC\n| LIMIT 15"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "f341b9f0-91ff-492d-9b78-569b694188c0",
+        "gridData": {
+          "x": 16,
+          "y": 12,
+          "w": 16,
+          "h": 10,
+          "i": "f341b9f0-91ff-492d-9b78-569b694188c0",
+          "sectionId": "66c943e5-1df0-4d74-949d-3e3c3cf4aba0"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Session Count by Kernel Version",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "bar_horizontal_0": {
+                      "index": "metrics-rigsignal.session-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS session_count = COUNT_DISTINCT(rigsignal.session.id) BY host.os.kernel\n| SORT session_count DESC\n| LIMIT 15"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "bar_horizontal_x",
+                          "fieldName": "host.os.kernel",
+                          "label": "Kernel Version",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "bar_horizontal_y_0",
+                          "fieldName": "session_count",
+                          "label": "Session Count",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-bar_horizontal_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "bar_horizontal",
+                "legend": {
+                  "isVisible": false,
+                  "position": "right"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "bar_horizontal_0",
+                    "accessors": [
+                      "bar_horizontal_y_0"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "bar_horizontal",
+                    "xAccessor": "bar_horizontal_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "bar_horizontal_y_0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.session-default-@timestamp": {
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "title": "metrics-rigsignal.session-default",
+                  "name": "metrics-rigsignal.session-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS session_count = COUNT_DISTINCT(rigsignal.session.id) BY host.os.kernel\n| SORT session_count DESC\n| LIMIT 15"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "af16653e-e252-4578-a91d-54b4a10e893d",
+        "gridData": {
+          "x": 32,
+          "y": 12,
+          "w": 16,
+          "h": 10,
+          "i": "af16653e-e252-4578-a91d-54b4a10e893d",
+          "sectionId": "66c943e5-1df0-4d74-949d-3e3c3cf4aba0"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Average FPS by Game and Graphics API",
+          "attributes": {
+            "visualizationType": "lnsHeatmap",
+            "title": "",
+            "references": [],
+            "version": 2,
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.frame-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_fps = AVG(rigsignal.fps.avg_1s) BY rigsignal.game.name, rigsignal.game.graphics_api\n| SORT rigsignal.game.name ASC"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "heatmap_value_accessor_value",
+                          "fieldName": "avg_fps",
+                          "label": "Avg FPS",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "number",
+                              "params": {
+                                "decimals": 1,
+                                "compact": false
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "heatmap_value_accessor_x",
+                          "fieldName": "rigsignal.game.name",
+                          "label": "Game",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "heatmap_value_accessor_y",
+                          "fieldName": "rigsignal.game.graphics_api",
+                          "label": "Graphics API",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "shape": "heatmap",
+                "valueAccessor": "heatmap_value_accessor_value",
+                "xAccessor": "heatmap_value_accessor_x",
+                "yAccessor": "heatmap_value_accessor_y",
+                "gridConfig": {
+                  "type": "heatmap_grid",
+                  "isCellLabelVisible": true,
+                  "isXAxisLabelVisible": true,
+                  "isXAxisTitleVisible": false,
+                  "isYAxisLabelVisible": true,
+                  "isYAxisTitleVisible": false
+                },
+                "legend": {
+                  "isVisible": true,
+                  "type": "heatmap_legend",
+                  "position": "right",
+                  "shouldTruncate": false
+                }
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.frame-default-@timestamp": {
+                  "id": "metrics-rigsignal.frame-default-@timestamp",
+                  "title": "metrics-rigsignal.frame-default",
+                  "name": "metrics-rigsignal.frame-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.frame-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_fps = AVG(rigsignal.fps.avg_1s) BY rigsignal.game.name, rigsignal.game.graphics_api\n| SORT rigsignal.game.name ASC"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "cb6d804c-7394-4c44-aacb-85f16ce20644",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 48,
+          "h": 12,
+          "i": "cb6d804c-7394-4c44-aacb-85f16ce20644",
+          "sectionId": "7bd42a8c-641d-4feb-8fc2-62bdb35e255d"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Session Count Over Time by Audio Backend (1-Hour Buckets)",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "bar_stacked_0": {
+                      "index": "metrics-rigsignal.audio-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.audio-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS session_count = COUNT_DISTINCT(rigsignal.session.id) BY BUCKET(@timestamp, 1 hour), rigsignal.audio.backend\n| SORT `BUCKET(@timestamp, 1 hour)` ASC"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "bar_stacked_x",
+                          "fieldName": "BUCKET(@timestamp, 1 hour)",
+                          "meta": {
+                            "type": "date"
+                          }
+                        },
+                        {
+                          "columnId": "bar_stacked_y_0",
+                          "fieldName": "session_count",
+                          "label": "Session Count",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "bar_stacked_breakdown",
+                          "fieldName": "rigsignal.audio.backend",
+                          "label": "Audio Backend",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.audio-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-bar_stacked_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "bar_stacked",
+                "legend": {
+                  "isVisible": true,
+                  "position": "right"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "bar_stacked_0",
+                    "accessors": [
+                      "bar_stacked_y_0"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "bar_stacked",
+                    "xAccessor": "bar_stacked_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "bar_stacked_y_0"
+                      }
+                    ],
+                    "splitAccessors": [
+                      "bar_stacked_breakdown"
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.audio-default-@timestamp": {
+                  "id": "metrics-rigsignal.audio-default-@timestamp",
+                  "title": "metrics-rigsignal.audio-default",
+                  "name": "metrics-rigsignal.audio-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.audio-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS session_count = COUNT_DISTINCT(rigsignal.session.id) BY BUCKET(@timestamp, 1 hour), rigsignal.audio.backend\n| SORT `BUCKET(@timestamp, 1 hour)` ASC"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "990e240c-29fa-442a-9b49-2e0e13a05948",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 24,
+          "h": 10,
+          "i": "990e240c-29fa-442a-9b49-2e0e13a05948",
+          "sectionId": "8d0fb18c-cee9-4907-93a5-8d3c01d1684a"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsPie",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.audio-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.audio-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS session_count = COUNT_DISTINCT(rigsignal.session.id) BY rigsignal.audio.backend\n| SORT session_count DESC"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "partition_value_accessor_metric_0",
+                          "fieldName": "session_count",
+                          "label": "Distinct Sessions",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "partition_value_accessor_group_by_0",
+                          "fieldName": "rigsignal.audio.backend",
+                          "label": "Audio Backend",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.audio-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "shape": "pie",
+                "layers": [
+                  {
+                    "metrics": [
+                      "partition_value_accessor_metric_0"
+                    ],
+                    "primaryGroups": [
+                      "partition_value_accessor_group_by_0"
+                    ],
+                    "allowMultipleMetrics": false,
+                    "layerId": "layer_0",
+                    "layerType": "data",
+                    "numberDisplay": "percent",
+                    "percentDecimals": 1,
+                    "legendDisplay": "show",
+                    "legendSize": "medium",
+                    "truncateLegend": false,
+                    "collapseFns": {},
+                    "categoryDisplay": "default"
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.audio-default-@timestamp": {
+                  "id": "metrics-rigsignal.audio-default-@timestamp",
+                  "title": "metrics-rigsignal.audio-default",
+                  "name": "metrics-rigsignal.audio-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.audio-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS session_count = COUNT_DISTINCT(rigsignal.session.id) BY rigsignal.audio.backend\n| SORT session_count DESC"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "628d6fa0-2a1b-4679-a841-5c1ec41f4a0d",
+        "gridData": {
+          "x": 24,
+          "y": 0,
+          "w": 24,
+          "h": 10,
+          "i": "628d6fa0-2a1b-4679-a841-5c1ec41f4a0d",
+          "sectionId": "8d0fb18c-cee9-4907-93a5-8d3c01d1684a"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Average Network Bytes Received vs Sent per Second (5-minute buckets)",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "line_0": {
+                      "index": "metrics-rigsignal.network-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.network-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_recv = AVG(rigsignal.network.bytes_recv_per_sec), avg_sent = AVG(rigsignal.network.bytes_sent_per_sec) BY BUCKET(@timestamp, 5 minute)\n| SORT `BUCKET(@timestamp, 5 minute)` ASC"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "line_x",
+                          "fieldName": "BUCKET(@timestamp, 5 minute)",
+                          "meta": {
+                            "type": "date"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_0",
+                          "fieldName": "avg_recv",
+                          "label": "Avg Bytes Received/s",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "bytes",
+                              "params": {
+                                "decimals": 1
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_1",
+                          "fieldName": "avg_sent",
+                          "label": "Avg Bytes Sent/s",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "bytes",
+                              "params": {
+                                "decimals": 1
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.network-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-line_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "line",
+                "legend": {
+                  "isVisible": true,
+                  "position": "bottom"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "line_0",
+                    "accessors": [
+                      "line_y_0",
+                      "line_y_1"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "line",
+                    "xAccessor": "line_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.network-default-@timestamp": {
+                  "id": "metrics-rigsignal.network-default-@timestamp",
+                  "title": "metrics-rigsignal.network-default",
+                  "name": "metrics-rigsignal.network-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.network-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_recv = AVG(rigsignal.network.bytes_recv_per_sec), avg_sent = AVG(rigsignal.network.bytes_sent_per_sec) BY BUCKET(@timestamp, 5 minute)\n| SORT `BUCKET(@timestamp, 5 minute)` ASC"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "c641da98-1dbf-4f6e-b8c9-1b9ff4f662f1",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 24,
+          "h": 10,
+          "i": "c641da98-1dbf-4f6e-b8c9-1b9ff4f662f1",
+          "sectionId": "b54dca22-f543-467b-b730-82a04cfeb217"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Average Network Bytes Received and Sent per Second — Top 10 Games",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "bar_horizontal_0": {
+                      "index": "metrics-rigsignal.network-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.network-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_recv = AVG(rigsignal.network.bytes_recv_per_sec), avg_sent = AVG(rigsignal.network.bytes_sent_per_sec) BY rigsignal.game.name\n| SORT avg_recv DESC\n| LIMIT 10"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "bar_horizontal_x",
+                          "fieldName": "rigsignal.game.name",
+                          "label": "Game",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "bar_horizontal_y_0",
+                          "fieldName": "avg_recv",
+                          "label": "Avg Bytes Received/s",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "bytes",
+                              "params": {
+                                "decimals": 1
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "bar_horizontal_y_1",
+                          "fieldName": "avg_sent",
+                          "label": "Avg Bytes Sent/s",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "bytes",
+                              "params": {
+                                "decimals": 1
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.network-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-bar_horizontal_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "bar_horizontal",
+                "legend": {
+                  "isVisible": true,
+                  "position": "bottom"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "bar_horizontal_0",
+                    "accessors": [
+                      "bar_horizontal_y_0",
+                      "bar_horizontal_y_1"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "bar_horizontal",
+                    "xAccessor": "bar_horizontal_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "bar_horizontal_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "bar_horizontal_y_1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.network-default-@timestamp": {
+                  "id": "metrics-rigsignal.network-default-@timestamp",
+                  "title": "metrics-rigsignal.network-default",
+                  "name": "metrics-rigsignal.network-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.network-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS avg_recv = AVG(rigsignal.network.bytes_recv_per_sec), avg_sent = AVG(rigsignal.network.bytes_sent_per_sec) BY rigsignal.game.name\n| SORT avg_recv DESC\n| LIMIT 10"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "b079b7a4-9eeb-4042-9ec1-2646c338a0d7",
+        "gridData": {
+          "x": 24,
+          "y": 0,
+          "w": 24,
+          "h": 10,
+          "i": "b079b7a4-9eeb-4042-9ec1-2646c338a0d7",
+          "sectionId": "b54dca22-f543-467b-b730-82a04cfeb217"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Sessions — Game, Graphics API, Upscaler, Features, Frame Gen, Preset, OS",
+          "attributes": {
+            "visualizationType": "lnsDatatable",
+            "title": "",
+            "references": [],
+            "version": 2,
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.session-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend AND rigsignal.game.name IS NOT NULL\n| KEEP rigsignal.session.id, rigsignal.game.name, rigsignal.game.graphics_api, rigsignal.settings.upscaler.tech, rigsignal.settings.features_active, rigsignal.settings.frame_gen, rigsignal.settings.preset, host.os.kernel, host.os.version, @timestamp\n| SORT @timestamp DESC\n| LIMIT 500"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "datatable_accessor_row_0",
+                          "fieldName": "rigsignal.session.id",
+                          "label": "Session ID",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_row_1",
+                          "fieldName": "rigsignal.game.name",
+                          "label": "Game",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_row_2",
+                          "fieldName": "rigsignal.game.graphics_api",
+                          "label": "Graphics API",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_row_3",
+                          "fieldName": "rigsignal.settings.upscaler.tech",
+                          "label": "Upscaler Tech",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_row_4",
+                          "fieldName": "rigsignal.settings.features_active",
+                          "label": "Active Features",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_row_5",
+                          "fieldName": "rigsignal.settings.frame_gen",
+                          "label": "Frame Gen",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_row_6",
+                          "fieldName": "rigsignal.settings.preset",
+                          "label": "Preset",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_row_7",
+                          "fieldName": "host.os.kernel",
+                          "label": "OS Kernel",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_row_8",
+                          "fieldName": "host.os.version",
+                          "label": "OS Version",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_0",
+                          "fieldName": "@timestamp",
+                          "label": "Timestamp",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "custom",
+                              "params": {
+                                "decimals": 2,
+                                "pattern": "YYYY-MM-DD HH:mm:ss"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "density": "compact",
+                "showRowNumbers": true,
+                "columns": [
+                  {
+                    "columnId": "datatable_accessor_row_0",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "oneClickFilter": true,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_row_1",
+                    "hidden": false,
+                    "colorMode": "badge",
+                    "colorMapping": {
+                      "colorMode": {
+                        "type": "categorical"
+                      },
+                      "paletteId": "default",
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ]
+                    },
+                    "isTransposed": false,
+                    "oneClickFilter": true,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_row_2",
+                    "hidden": false,
+                    "colorMode": "badge",
+                    "colorMapping": {
+                      "colorMode": {
+                        "type": "categorical"
+                      },
+                      "paletteId": "elastic_line_optimized",
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ]
+                    },
+                    "isTransposed": false,
+                    "oneClickFilter": true,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_row_3",
+                    "hidden": false,
+                    "colorMode": "badge",
+                    "colorMapping": {
+                      "colorMode": {
+                        "type": "categorical"
+                      },
+                      "paletteId": "default",
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ]
+                    },
+                    "isTransposed": false,
+                    "oneClickFilter": true,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_row_4",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "oneClickFilter": true,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_row_5",
+                    "hidden": false,
+                    "colorMode": "badge",
+                    "colorMapping": {
+                      "colorMode": {
+                        "type": "categorical"
+                      },
+                      "paletteId": "severity",
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ]
+                    },
+                    "isTransposed": false,
+                    "oneClickFilter": true,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_row_6",
+                    "hidden": false,
+                    "colorMode": "badge",
+                    "colorMapping": {
+                      "colorMode": {
+                        "type": "categorical"
+                      },
+                      "paletteId": "elastic_line_optimized",
+                      "assignments": [],
+                      "specialAssignments": [
+                        {
+                          "rules": [
+                            {
+                              "type": "other"
+                            }
+                          ],
+                          "color": {
+                            "type": "loop"
+                          },
+                          "touched": false
+                        }
+                      ]
+                    },
+                    "isTransposed": false,
+                    "oneClickFilter": true,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_row_7",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "oneClickFilter": true,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_row_8",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "oneClickFilter": true,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_0",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.session-default-@timestamp": {
+                  "id": "metrics-rigsignal.session-default-@timestamp",
+                  "title": "metrics-rigsignal.session-default",
+                  "name": "metrics-rigsignal.session-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.session-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend AND rigsignal.game.name IS NOT NULL\n| KEEP rigsignal.session.id, rigsignal.game.name, rigsignal.game.graphics_api, rigsignal.settings.upscaler.tech, rigsignal.settings.features_active, rigsignal.settings.frame_gen, rigsignal.settings.preset, host.os.kernel, host.os.version, @timestamp\n| SORT @timestamp DESC\n| LIMIT 500"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "b65e48d0-3b51-4b58-a32f-6bd639d5bd00",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 48,
+          "h": 14,
+          "i": "b65e48d0-3b51-4b58-a32f-6bd639d5bd00",
+          "sectionId": "456607a3-229b-4c36-843f-070dc31ce908"
+        }
+      }
+    ],
+    "sections": [
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "774bf056-2143-40a5-b38d-4b2b256b43fc",
+          "y": 5
+        },
+        "title": "📊 Key Metrics"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "66c943e5-1df0-4d74-949d-3e3c3cf4aba0",
+          "y": 6
+        },
+        "title": "🎮 FPS & Graphics API Trends"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "7bd42a8c-641d-4feb-8fc2-62bdb35e255d",
+          "y": 7
+        },
+        "title": "🔬 Compatibility Matrix — Game × Graphics API"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "8d0fb18c-cee9-4907-93a5-8d3c01d1684a",
+          "y": 8
+        },
+        "title": "🔊 Audio Health"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "b54dca22-f543-467b-b730-82a04cfeb217",
+          "y": 9
+        },
+        "title": "🌐 Network Quality"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "456607a3-229b-4c36-843f-070dc31ce908",
+          "y": 10
+        },
+        "title": "📋 Session Environment Table"
+      }
+    ],
+    "timeFrom": "now-24h",
+    "timeRestore": true,
+    "timeTo": "now",
+    "title": "RigSignal: Software Stack"
+  },
+  "id": "rigsignal-software",
+  "references": [
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_ee255bc3-e417-1669-f909-c45a77f4a9e4:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_4b1f48cf-edfe-a7e1-b946-4df23839eff0:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_beea7af2-059d-abf6-1709-7658fb13f703:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_a9c88bc2-4a13-74a2-0ee2-ea9a94dca927:optionsListDataView",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "dashboard"
+}

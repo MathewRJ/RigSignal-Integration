@@ -1,0 +1,1752 @@
+{
+  "attributes": {
+    "controlGroupInput": {
+      "chainingSystem": "HIERARCHICAL",
+      "controlStyle": "oneLine",
+      "ignoreParentSettingsJSON": "{\"ignoreFilters\":false,\"ignoreQuery\":false,\"ignoreTimerange\":false,\"ignoreValidations\":false}",
+      "panelsJSON": "{\"115f5128-23ab-c7ed-9b23-5aee87bb20a3\":{\"explicitInput\":{\"enhancements\":{},\"fieldName\":\"rigsignal.game.name\",\"id\":\"115f5128-23ab-c7ed-9b23-5aee87bb20a3\",\"title\":\"Game\"},\"grow\":true,\"order\":0,\"type\":\"optionsListControl\",\"width\":\"medium\"},\"b9153a8d-d6fa-59d1-aa9f-f995eac87a76\":{\"explicitInput\":{\"enhancements\":{},\"fieldName\":\"rigsignal.game.graphics_api\",\"id\":\"b9153a8d-d6fa-59d1-aa9f-f995eac87a76\",\"title\":\"Graphics API\"},\"grow\":true,\"order\":1,\"type\":\"optionsListControl\",\"width\":\"medium\"},\"e30ff8b3-07c2-8264-583d-a43236e1aa8d\":{\"explicitInput\":{\"enhancements\":{},\"fieldName\":\"rigsignal.hardware.gpu.driver_version\",\"id\":\"e30ff8b3-07c2-8264-583d-a43236e1aa8d\",\"title\":\"GPU Driver\"},\"grow\":true,\"order\":2,\"type\":\"optionsListControl\",\"width\":\"medium\"}}"
+    },
+    "description": "Low-level eBPF telemetry from the GPU pipeline and CPU scheduler. Requires the RigSignal eBPF daemon running with kernel tracing enabled.",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": {}
+    },
+    "optionsJSON": {
+      "hidePanelTitles": false,
+      "hidePanelBorders": false,
+      "useMargins": true,
+      "autoApplyFilters": true,
+      "syncColors": false,
+      "syncCursor": true,
+      "syncTooltips": false
+    },
+    "panelsJSON": [
+      {
+        "type": "markdown",
+        "embeddableConfig": {
+          "content": "## Engine & Diagnostics\nLow-level eBPF telemetry from the GPU pipeline and CPU scheduler. These panels require the RigSignal eBPF daemon running with kernel tracing enabled. Use the game and driver filters to isolate a specific configuration. Correlate GPU fence spikes with frame-time drops on **[Game Performance](/app/dashboards#/view/rigsignal-game-perf)**, and thermal throttle on **[System Health](/app/dashboards#/view/rigsignal-system-health)**.",
+          "settings": {
+            "open_links_in_new_tab": true
+          }
+        },
+        "panelIndex": "122d36e2-557b-419f-b3a8-703c305c8699",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 48,
+          "h": 5,
+          "i": "122d36e2-557b-419f-b3a8-703c305c8699"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"gpu_fence\"\n| STATS `Avg GPU Fence Latency (µs)` = AVG(rigsignal.ebpf.gpu_fence.latency_avg_us)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Avg GPU Fence Latency (µs)",
+                          "label": "Avg GPU Fence Latency",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "microseconds",
+                                "suffix": " µs"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"gpu_fence\"\n| STATS `Avg GPU Fence Latency (µs)` = AVG(rigsignal.ebpf.gpu_fence.latency_avg_us)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "07b8c113-9028-4b8c-8945-e58bb90dd6b7",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "07b8c113-9028-4b8c-8945-e58bb90dd6b7",
+          "sectionId": "b2f7c771-25b5-47b9-aa04-9c0d4dbcc538"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"gpu_sched\"\n| STATS `Avg GPU Sched Latency (µs)` = AVG(rigsignal.ebpf.gpu_sched.latency_avg_us)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Avg GPU Sched Latency (µs)",
+                          "label": "Avg GPU Sched Latency",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "microseconds",
+                                "suffix": " µs"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "applyColorTo": "value",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"gpu_sched\"\n| STATS `Avg GPU Sched Latency (µs)` = AVG(rigsignal.ebpf.gpu_sched.latency_avg_us)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "51969bf5-d44a-4ba6-8351-d1ce0b964938",
+        "gridData": {
+          "x": 8,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "51969bf5-d44a-4ba6-8351-d1ce0b964938",
+          "sectionId": "b2f7c771-25b5-47b9-aa04-9c0d4dbcc538"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"schedlatency\"\n| STATS `Avg Runqueue Latency (µs)` = AVG(rigsignal.ebpf.runqueue.latency_avg_us)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Avg Runqueue Latency (µs)",
+                          "label": "Avg Runqueue Latency",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "microseconds",
+                                "suffix": " µs"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"schedlatency\"\n| STATS `Avg Runqueue Latency (µs)` = AVG(rigsignal.ebpf.runqueue.latency_avg_us)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "6ba5f9be-203f-4f46-a9de-742a56452cc5",
+        "gridData": {
+          "x": 16,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "6ba5f9be-203f-4f46-a9de-742a56452cc5",
+          "sectionId": "b2f7c771-25b5-47b9-aa04-9c0d4dbcc538"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "attributes": {
+            "visualizationType": "lnsMetric",
+            "title": "",
+            "references": [],
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"bio\"\n| STATS `Avg I/O Latency (µs)` = AVG(rigsignal.ebpf.bio.latency_avg_us)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "metric_accessor_metric",
+                          "fieldName": "Avg I/O Latency (µs)",
+                          "label": "Avg Block I/O Latency",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "microseconds",
+                                "suffix": " µs"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "metricAccessor": "metric_accessor_metric",
+                "showBar": false
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"bio\"\n| STATS `Avg I/O Latency (µs)` = AVG(rigsignal.ebpf.bio.latency_avg_us)"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "730ca3af-c803-4314-9f72-5a61d9f81a01",
+        "gridData": {
+          "x": 24,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "730ca3af-c803-4314-9f72-5a61d9f81a01",
+          "sectionId": "b2f7c771-25b5-47b9-aa04-9c0d4dbcc538"
+        }
+      },
+      {
+        "type": "markdown",
+        "embeddableConfig": {
+          "content": "### Avg Futex Latency\n_Field unavailable_\n\n`futex` latency fields are not present in the live eBPF mapping.",
+          "settings": {
+            "open_links_in_new_tab": true
+          }
+        },
+        "panelIndex": "c8cbebaa-a8fd-43dc-8e43-302a121a45ad",
+        "gridData": {
+          "x": 32,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "c8cbebaa-a8fd-43dc-8e43-302a121a45ad",
+          "sectionId": "b2f7c771-25b5-47b9-aa04-9c0d4dbcc538"
+        }
+      },
+      {
+        "type": "markdown",
+        "embeddableConfig": {
+          "content": "### Avg Stutter Severity\n_Field unavailable_\n\n`stutter` severity fields are not present in the live eBPF mapping.",
+          "settings": {
+            "open_links_in_new_tab": true
+          }
+        },
+        "panelIndex": "3e97c12f-2e82-4471-86b2-d693c2bf2710",
+        "gridData": {
+          "x": 40,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "i": "3e97c12f-2e82-4471-86b2-d693c2bf2710",
+          "sectionId": "b2f7c771-25b5-47b9-aa04-9c0d4dbcc538"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "GPU Pipeline Latency Over Time — Avg GPU Fence & Sched Latency (µs)",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "line_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe IN (\"gpu_fence\", \"gpu_sched\")\n| STATS `GPU Fence Avg (µs)` = AVG(rigsignal.ebpf.gpu_fence.latency_avg_us), `GPU Sched Avg (µs)` = AVG(rigsignal.ebpf.gpu_sched.latency_avg_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "line_x",
+                          "fieldName": "time",
+                          "meta": {
+                            "type": "date"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_0",
+                          "fieldName": "GPU Fence Avg (µs)",
+                          "label": "GPU Fence Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_1",
+                          "fieldName": "GPU Sched Avg (µs)",
+                          "label": "GPU Sched Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-line_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "line",
+                "legend": {
+                  "isVisible": true,
+                  "position": "bottom"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "pointVisibility": "never",
+                "layers": [
+                  {
+                    "layerId": "line_0",
+                    "accessors": [
+                      "line_y_0",
+                      "line_y_1"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "line",
+                    "xAccessor": "line_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe IN (\"gpu_fence\", \"gpu_sched\")\n| STATS `GPU Fence Avg (µs)` = AVG(rigsignal.ebpf.gpu_fence.latency_avg_us), `GPU Sched Avg (µs)` = AVG(rigsignal.ebpf.gpu_sched.latency_avg_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "64806b8e-d72c-498c-8ea6-f5ce7f901f46",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 48,
+          "h": 12,
+          "i": "64806b8e-d72c-498c-8ea6-f5ce7f901f46",
+          "sectionId": "a3677173-5ae3-4e36-bcad-760667c607d4"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "CPU Scheduler Latency Over Time — Runqueue Avg & Max (µs)",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "line_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"schedlatency\"\n| STATS `Runqueue Avg (µs)` = AVG(rigsignal.ebpf.runqueue.latency_avg_us), `Runqueue Max (µs)` = MAX(rigsignal.ebpf.runqueue.latency_max_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "line_x",
+                          "fieldName": "time",
+                          "meta": {
+                            "type": "date"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_0",
+                          "fieldName": "Runqueue Avg (µs)",
+                          "label": "Runqueue Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "microseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_1",
+                          "fieldName": "Runqueue Max (µs)",
+                          "label": "Runqueue Max",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "microseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-line_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "line",
+                "legend": {
+                  "isVisible": true,
+                  "position": "bottom"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "line_0",
+                    "accessors": [
+                      "line_y_0",
+                      "line_y_1"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "line",
+                    "xAccessor": "line_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"schedlatency\"\n| STATS `Runqueue Avg (µs)` = AVG(rigsignal.ebpf.runqueue.latency_avg_us), `Runqueue Max (µs)` = MAX(rigsignal.ebpf.runqueue.latency_max_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "4dea3d1c-d5e6-4dfe-a121-e94ec182978f",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 24,
+          "h": 12,
+          "i": "4dea3d1c-d5e6-4dfe-a121-e94ec182978f",
+          "sectionId": "73f0bf57-c36b-48d7-93ee-fab08aba3601"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "CCX Cross-Node Migrations Over Time",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "line_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `CCX Cross Migrations` = SUM(rigsignal.ebpf.migration.ccx_cross_count), `Total Migrations` = SUM(rigsignal.ebpf.migration.total_count) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "line_x",
+                          "fieldName": "time",
+                          "meta": {
+                            "type": "date"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_0",
+                          "fieldName": "CCX Cross Migrations",
+                          "label": "CCX Cross Migrations",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_1",
+                          "fieldName": "Total Migrations",
+                          "label": "Total Migrations",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-line_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "line",
+                "legend": {
+                  "isVisible": true,
+                  "position": "bottom"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "line_0",
+                    "accessors": [
+                      "line_y_0",
+                      "line_y_1"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "line",
+                    "xAccessor": "line_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS `CCX Cross Migrations` = SUM(rigsignal.ebpf.migration.ccx_cross_count), `Total Migrations` = SUM(rigsignal.ebpf.migration.total_count) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "0cdefbc1-5c86-4689-809a-e3cecaa84c5a",
+        "gridData": {
+          "x": 24,
+          "y": 0,
+          "w": 24,
+          "h": 12,
+          "i": "0cdefbc1-5c86-4689-809a-e3cecaa84c5a",
+          "sectionId": "73f0bf57-c36b-48d7-93ee-fab08aba3601"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Block I/O Latency Over Time (µs)",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "line_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"bio\"\n| STATS `BIO Avg (µs)` = AVG(rigsignal.ebpf.bio.latency_avg_us), `BIO Max (µs)` = MAX(rigsignal.ebpf.bio.latency_max_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "line_x",
+                          "fieldName": "time",
+                          "meta": {
+                            "type": "date"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_0",
+                          "fieldName": "BIO Avg (µs)",
+                          "label": "BIO Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_1",
+                          "fieldName": "BIO Max (µs)",
+                          "label": "BIO Max",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-line_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "line",
+                "legend": {
+                  "isVisible": true,
+                  "position": "bottom"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "line_0",
+                    "accessors": [
+                      "line_y_0",
+                      "line_y_1"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "line",
+                    "xAccessor": "line_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"bio\"\n| STATS `BIO Avg (µs)` = AVG(rigsignal.ebpf.bio.latency_avg_us), `BIO Max (µs)` = MAX(rigsignal.ebpf.bio.latency_max_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "9ff72881-5071-45eb-9197-3affeada3a0e",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 24,
+          "h": 12,
+          "i": "9ff72881-5071-45eb-9197-3affeada3a0e",
+          "sectionId": "49b968ea-1033-4596-bf23-dde622b57fdb"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "VFS Read and Write Average Latency Over Time",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "line_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"vfs\"\n| STATS `VFS Read Avg (µs)` = AVG(rigsignal.ebpf.vfs.read.latency_avg_us), `VFS Write Avg (µs)` = AVG(rigsignal.ebpf.vfs.write.latency_avg_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "line_x",
+                          "fieldName": "time",
+                          "meta": {
+                            "type": "date"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_0",
+                          "fieldName": "VFS Read Avg (µs)",
+                          "label": "VFS Read Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_1",
+                          "fieldName": "VFS Write Avg (µs)",
+                          "label": "VFS Write Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-line_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "line",
+                "legend": {
+                  "isVisible": true,
+                  "position": "bottom"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "line_0",
+                    "accessors": [
+                      "line_y_0",
+                      "line_y_1"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "line",
+                    "xAccessor": "line_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"vfs\"\n| STATS `VFS Read Avg (µs)` = AVG(rigsignal.ebpf.vfs.read.latency_avg_us), `VFS Write Avg (µs)` = AVG(rigsignal.ebpf.vfs.write.latency_avg_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "fe99d7fb-1b23-438d-a326-f93be604fa0a",
+        "gridData": {
+          "x": 24,
+          "y": 0,
+          "w": 24,
+          "h": 12,
+          "i": "fe99d7fb-1b23-438d-a326-f93be604fa0a",
+          "sectionId": "49b968ea-1033-4596-bf23-dde622b57fdb"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "IRQ Latency Over Time — Hard IRQ and Soft IRQ Average Latency (µs)",
+          "attributes": {
+            "visualizationType": "lnsXY",
+            "title": "",
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "line_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"irq\"\n| STATS `Hard IRQ Avg (µs)` = AVG(rigsignal.ebpf.irq.hard_irq.latency_avg_us), `Soft IRQ Avg (µs)` = AVG(rigsignal.ebpf.irq.softirq.latency_avg_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "line_x",
+                          "fieldName": "time",
+                          "meta": {
+                            "type": "date"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_0",
+                          "fieldName": "Hard IRQ Avg (µs)",
+                          "label": "Hard IRQ Avg (µs)",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "microseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        },
+                        {
+                          "columnId": "line_y_1",
+                          "fieldName": "Soft IRQ Avg (µs)",
+                          "label": "Soft IRQ Avg (µs)",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "microseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          }
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-line_0"
+                }
+              ],
+              "visualization": {
+                "preferredSeriesType": "line",
+                "legend": {
+                  "isVisible": true,
+                  "position": "bottom"
+                },
+                "axisTitlesVisibilitySettings": {
+                  "x": false,
+                  "yLeft": false,
+                  "yRight": true
+                },
+                "layers": [
+                  {
+                    "layerId": "line_0",
+                    "accessors": [
+                      "line_y_0",
+                      "line_y_1"
+                    ],
+                    "layerType": "data",
+                    "seriesType": "line",
+                    "xAccessor": "line_x",
+                    "yConfig": [
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_0"
+                      },
+                      {
+                        "axisMode": "left",
+                        "forAccessor": "line_y_1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| WHERE rigsignal.ebpf.probe == \"irq\"\n| STATS `Hard IRQ Avg (µs)` = AVG(rigsignal.ebpf.irq.hard_irq.latency_avg_us), `Soft IRQ Avg (µs)` = AVG(rigsignal.ebpf.irq.softirq.latency_avg_us) BY `time` = BUCKET(@timestamp, 50, ?_tstart, ?_tend)"
+              },
+              "filters": []
+            },
+            "references": []
+          }
+        },
+        "panelIndex": "a0bf62d3-6272-4b48-90a6-09de47994fcf",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 24,
+          "h": 12,
+          "i": "a0bf62d3-6272-4b48-90a6-09de47994fcf",
+          "sectionId": "b1f4dee9-ac14-4bdf-8f2d-413c0307bfe1"
+        }
+      },
+      {
+        "type": "markdown",
+        "embeddableConfig": {
+          "content": "### Futex Contention Over Time\n_Field unavailable_\n\n`futex` contention fields are not present in the live eBPF mapping. This panel will be populated once the RigSignal eBPF daemon exposes futex probe data.",
+          "settings": {
+            "open_links_in_new_tab": true
+          }
+        },
+        "panelIndex": "9aa1823e-c8db-4e87-993b-57781ab1f555",
+        "gridData": {
+          "x": 24,
+          "y": 0,
+          "w": 12,
+          "h": 12,
+          "i": "9aa1823e-c8db-4e87-993b-57781ab1f555",
+          "sectionId": "b1f4dee9-ac14-4bdf-8f2d-413c0307bfe1"
+        }
+      },
+      {
+        "type": "markdown",
+        "embeddableConfig": {
+          "content": "### Stutter Severity Score Over Time\n_Field unavailable_\n\n`stutter` severity score fields are not present in the live eBPF mapping. This panel will be populated once stutter scoring is enabled in the RigSignal daemon.",
+          "settings": {
+            "open_links_in_new_tab": true
+          }
+        },
+        "panelIndex": "33ac270d-1fc9-47f2-a87d-f6c66741ab62",
+        "gridData": {
+          "x": 36,
+          "y": 0,
+          "w": 12,
+          "h": 12,
+          "i": "33ac270d-1fc9-47f2-a87d-f6c66741ab62",
+          "sectionId": "b1f4dee9-ac14-4bdf-8f2d-413c0307bfe1"
+        }
+      },
+      {
+        "type": "vis",
+        "embeddableConfig": {
+          "title": "Engine Profile per Session — Latency & Migration Metrics (sorted by GPU Fence Avg DESC)",
+          "attributes": {
+            "visualizationType": "lnsDatatable",
+            "title": "",
+            "references": [],
+            "version": 2,
+            "state": {
+              "datasourceStates": {
+                "textBased": {
+                  "layers": {
+                    "layer_0": {
+                      "index": "metrics-rigsignal.ebpf-default-@timestamp",
+                      "query": {
+                        "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS\n    `GPU Fence Avg (µs)` = AVG(rigsignal.ebpf.gpu_fence.latency_avg_us),\n    `GPU Fence Max (µs)` = MAX(rigsignal.ebpf.gpu_fence.latency_max_us),\n    `GPU Sched Avg (µs)` = AVG(rigsignal.ebpf.gpu_sched.latency_avg_us),\n    `GPU Sched Max (µs)` = MAX(rigsignal.ebpf.gpu_sched.latency_max_us),\n    `Runqueue Avg (µs)` = AVG(rigsignal.ebpf.runqueue.latency_avg_us),\n    `Runqueue Max (µs)` = MAX(rigsignal.ebpf.runqueue.latency_max_us),\n    `CCX Cross Max` = MAX(rigsignal.ebpf.migration.ccx_cross_count),\n    `BIO Avg (µs)` = AVG(rigsignal.ebpf.bio.latency_avg_us),\n    `BIO Max (µs)` = MAX(rigsignal.ebpf.bio.latency_max_us),\n    `VFS Read Avg (µs)` = AVG(rigsignal.ebpf.vfs.read.latency_avg_us),\n    `VFS Write Avg (µs)` = AVG(rigsignal.ebpf.vfs.write.latency_avg_us)\n    BY `Session ID` = rigsignal.session.id\n| SORT `GPU Fence Avg (µs)` DESC"
+                      },
+                      "timeField": "@timestamp",
+                      "columns": [
+                        {
+                          "columnId": "datatable_accessor_row_0",
+                          "fieldName": "Session ID",
+                          "label": "Session ID",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_0",
+                          "fieldName": "GPU Fence Avg (µs)",
+                          "label": "GPU Fence Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_1",
+                          "fieldName": "GPU Fence Max (µs)",
+                          "label": "GPU Fence Max",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_2",
+                          "fieldName": "GPU Sched Avg (µs)",
+                          "label": "GPU Sched Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_3",
+                          "fieldName": "GPU Sched Max (µs)",
+                          "label": "GPU Sched Max",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_4",
+                          "fieldName": "Runqueue Avg (µs)",
+                          "label": "Runqueue Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_5",
+                          "fieldName": "Runqueue Max (µs)",
+                          "label": "Runqueue Max",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_6",
+                          "fieldName": "CCX Cross Max",
+                          "label": "CCX Cross Max",
+                          "customLabel": true,
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_7",
+                          "fieldName": "BIO Avg (µs)",
+                          "label": "BIO Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_8",
+                          "fieldName": "BIO Max (µs)",
+                          "label": "BIO Max",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_9",
+                          "fieldName": "VFS Read Avg (µs)",
+                          "label": "VFS Read Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        },
+                        {
+                          "columnId": "datatable_accessor_metric_10",
+                          "fieldName": "VFS Write Avg (µs)",
+                          "label": "VFS Write Avg",
+                          "customLabel": true,
+                          "params": {
+                            "format": {
+                              "id": "duration",
+                              "params": {
+                                "decimals": 2,
+                                "fromUnit": "microseconds",
+                                "toUnit": "milliseconds"
+                              }
+                            }
+                          },
+                          "meta": {
+                            "type": "number"
+                          },
+                          "inMetricDimension": true
+                        }
+                      ],
+                      "ignoreGlobalFilters": false
+                    }
+                  }
+                }
+              },
+              "internalReferences": [
+                {
+                  "type": "index-pattern",
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "name": "indexpattern-datasource-layer-layer_0"
+                }
+              ],
+              "visualization": {
+                "layerId": "layer_0",
+                "layerType": "data",
+                "density": "compact",
+                "sorting": {
+                  "columnId": "datatable_accessor_metric_0",
+                  "direction": "desc"
+                },
+                "showRowNumbers": true,
+                "columns": [
+                  {
+                    "columnId": "datatable_accessor_row_0",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": false
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_0",
+                    "hidden": false,
+                    "colorMode": "badge",
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_1",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_2",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_3",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_4",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_5",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_6",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_7",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_8",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_9",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  },
+                  {
+                    "columnId": "datatable_accessor_metric_10",
+                    "hidden": false,
+                    "isTransposed": false,
+                    "isMetric": true
+                  }
+                ]
+              },
+              "adHocDataViews": {
+                "metrics-rigsignal.ebpf-default-@timestamp": {
+                  "id": "metrics-rigsignal.ebpf-default-@timestamp",
+                  "title": "metrics-rigsignal.ebpf-default",
+                  "name": "metrics-rigsignal.ebpf-default",
+                  "timeFieldName": "@timestamp",
+                  "sourceFilters": [],
+                  "fieldFormats": {},
+                  "runtimeFieldMap": {},
+                  "fieldAttrs": {},
+                  "allowNoIndex": false,
+                  "allowHidden": false,
+                  "type": "esql"
+                }
+              },
+              "query": {
+                "esql": "FROM metrics-rigsignal.ebpf-default\n| WHERE @timestamp >= ?_tstart AND @timestamp < ?_tend\n| STATS\n    `GPU Fence Avg (µs)` = AVG(rigsignal.ebpf.gpu_fence.latency_avg_us),\n    `GPU Fence Max (µs)` = MAX(rigsignal.ebpf.gpu_fence.latency_max_us),\n    `GPU Sched Avg (µs)` = AVG(rigsignal.ebpf.gpu_sched.latency_avg_us),\n    `GPU Sched Max (µs)` = MAX(rigsignal.ebpf.gpu_sched.latency_max_us),\n    `Runqueue Avg (µs)` = AVG(rigsignal.ebpf.runqueue.latency_avg_us),\n    `Runqueue Max (µs)` = MAX(rigsignal.ebpf.runqueue.latency_max_us),\n    `CCX Cross Max` = MAX(rigsignal.ebpf.migration.ccx_cross_count),\n    `BIO Avg (µs)` = AVG(rigsignal.ebpf.bio.latency_avg_us),\n    `BIO Max (µs)` = MAX(rigsignal.ebpf.bio.latency_max_us),\n    `VFS Read Avg (µs)` = AVG(rigsignal.ebpf.vfs.read.latency_avg_us),\n    `VFS Write Avg (µs)` = AVG(rigsignal.ebpf.vfs.write.latency_avg_us)\n    BY `Session ID` = rigsignal.session.id\n| SORT `GPU Fence Avg (µs)` DESC"
+              },
+              "filters": []
+            }
+          }
+        },
+        "panelIndex": "bf541a53-854b-4796-83ef-d5fe00e4c707",
+        "gridData": {
+          "x": 0,
+          "y": 0,
+          "w": 48,
+          "h": 14,
+          "i": "bf541a53-854b-4796-83ef-d5fe00e4c707",
+          "sectionId": "f6c29527-352d-4ab3-9bca-4bce5f351851"
+        }
+      }
+    ],
+    "sections": [
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "b2f7c771-25b5-47b9-aa04-9c0d4dbcc538",
+          "y": 5
+        },
+        "title": "KPI Overview"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "a3677173-5ae3-4e36-bcad-760667c607d4",
+          "y": 6
+        },
+        "title": "GPU Pipeline"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "73f0bf57-c36b-48d7-93ee-fab08aba3601",
+          "y": 7
+        },
+        "title": "CPU Scheduler"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "49b968ea-1033-4596-bf23-dde622b57fdb",
+          "y": 8
+        },
+        "title": "Block I/O & VFS"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "b1f4dee9-ac14-4bdf-8f2d-413c0307bfe1",
+          "y": 9
+        },
+        "title": "IRQ & Unavailable Signals"
+      },
+      {
+        "collapsed": false,
+        "gridData": {
+          "i": "f6c29527-352d-4ab3-9bca-4bce5f351851",
+          "y": 10
+        },
+        "title": "Engine Profile per Session"
+      }
+    ],
+    "timeFrom": "now-24h",
+    "timeRestore": true,
+    "timeTo": "now",
+    "title": "RigSignal: Engine & Diagnostics"
+  },
+  "id": "rigsignal-engine",
+  "references": [
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_115f5128-23ab-c7ed-9b23-5aee87bb20a3:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_b9153a8d-d6fa-59d1-aa9f-f995eac87a76:optionsListDataView",
+      "type": "index-pattern"
+    },
+    {
+      "id": "metrics-*",
+      "name": "controlGroup_e30ff8b3-07c2-8264-583d-a43236e1aa8d:optionsListDataView",
+      "type": "index-pattern"
+    }
+  ],
+  "type": "dashboard"
+}
