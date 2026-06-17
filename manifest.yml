@@ -1,4 +1,4 @@
-version: 0.2.0
+version: 0.3.0
 format_version: "3.0.0"
 name: rigsignal
 title: "RigSignal"
@@ -39,13 +39,12 @@ policy_templates:
           mode. Configure the same path as [output] spool_dir in rigsignal.toml.
           Not needed when the agent runs in direct-to-Elasticsearch mode.
         vars:
-          - name: paths
+          - name: spool_dir
             type: text
-            title: Spool directory glob
+            title: Spool directory
             description: >
-              Path glob matching rigsignal spool files. Must match [output] spool_dir
-              in rigsignal.toml. Default covers the system-service path.
-            multi: true
+              Absolute path to the directory where rigsignal-agent writes spool files.
+              Must match [output] spool_dir in rigsignal.toml.
+            multi: false
             required: true
-            default:
-              - /var/lib/rigsignal/spool/*.ndjson
+            default: /var/lib/rigsignal/spool

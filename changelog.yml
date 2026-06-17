@@ -1,3 +1,11 @@
+- version: "0.3.0"
+  changes:
+    - description: >
+        Phase 4.1: refactor filestream templates to per-dataset spool file paths
+        (rigsignal-{slug}-*.ndjson). Fixes 12x duplication from combined spool file.
+        Manifest vars: paths (multi) replaced by spool_dir (single string).
+      type: enhancement
+      link: https://github.com/MathewRJ/RigSignal-Integration/issues/3
 - version: "0.2.0"
   changes:
     - description: >
