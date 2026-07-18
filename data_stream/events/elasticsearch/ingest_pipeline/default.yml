@@ -14,22 +14,24 @@ processors:
       ignore_missing: true
 
   - script:
-      description: "Validate required event fields and set ECS event.kind"
+      description: "Validate legacy event fields and set ECS event.kind"
       lang: painless
       source: |
-        def kind = ctx.rigsignal?.event?.kind;
-        if (kind == null || kind.isEmpty()) {
-          throw new Exception('rigsignal.event.kind is required');
-        }
-        // Map to ECS event.kind
-        if (ctx.event == null) ctx.event = [:];
-        ctx.event.kind = 'event';
-        // Map severity to ECS
-        def severity = ctx.rigsignal?.event?.severity;
-        if (severity == 'error' || severity == 'critical') {
-          ctx.event.type = ['error'];
-        } else {
-          ctx.event.type = ['info'];
+        if (ctx.rigsignal?.stream?.client?.event == null) {
+          def kind = ctx.rigsignal?.event?.kind;
+          if (kind == null || kind.isEmpty()) {
+            throw new Exception('rigsignal.event.kind is required');
+          }
+          // Map to ECS event.kind
+          if (ctx.event == null) ctx.event = [:];
+          ctx.event.kind = 'event';
+          // Map severity to ECS
+          def severity = ctx.rigsignal?.event?.severity;
+          if (severity == 'error' || severity == 'critical') {
+            ctx.event.type = ['error'];
+          } else {
+            ctx.event.type = ['info'];
+          }
         }
 
   - lowercase:

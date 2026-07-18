@@ -38,6 +38,62 @@
           }
         }
       }
+    },
+    {
+      "@timestamp": "2026-07-17T07:09:44.000Z",
+      "data_stream": {
+        "type": "logs",
+        "dataset": "rigsignal.events",
+        "namespace": "default"
+      },
+      "host": {
+        "name": "StreamClient"
+      },
+      "event": {
+        "kind": "event",
+        "category": ["network"],
+        "type": ["connection", "start"]
+      },
+      "rigsignal": {
+        "stream": {
+          "client": {
+            "event": "connected",
+            "transport": "direct",
+            "peer": {
+              "id": "10364467328988576325",
+              "name": "GamingPC"
+            }
+          }
+        }
+      }
+    },
+    {
+      "@timestamp": "2026-07-17T08:09:44.000Z",
+      "data_stream": {
+        "type": "logs",
+        "dataset": "rigsignal.events",
+        "namespace": "default"
+      },
+      "host": {
+        "name": "StreamClient"
+      },
+      "event": {
+        "kind": "event",
+        "category": ["network"],
+        "type": ["connection", "end"]
+      },
+      "rigsignal": {
+        "stream": {
+          "client": {
+            "event": "disconnected",
+            "transport": "direct",
+            "peer": {
+              "id": "10364467328988576325",
+              "name": "GamingPC"
+            }
+          }
+        }
+      }
     }
   ]
 }

@@ -22,9 +22,13 @@
     "audio": {
       "backend": "pipewire",
       "sample_rate_hz": 48000,
-      "buffer_size": 1024,
-      "latency_ms": 21.3,
-      "xruns": 0
+      "quantum": 512,
+      "latency_ms": 10.67,
+      "sink_name": "alsa_output.pci-0000_0c_00.6.analog-stereo",
+      "card_profile": "output:analog-stereo",
+      "channels": 2,
+      "sample_format": "s32le 2ch 48000Hz",
+      "driver_latency_ms": 10.67
     }
   }
 }

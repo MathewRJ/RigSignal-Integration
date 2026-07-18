@@ -1,0 +1,24 @@
+{
+  "expected": [
+    {
+      "@timestamp": "2026-07-17T07:09:44.000Z",
+      "data_stream": {
+        "dataset": "rigsignal.stream_client",
+        "namespace": "default",
+        "type": "metrics"
+      },
+      "host": {
+        "name": "StreamClient"
+      },
+      "rigsignal": {
+        "stream": {
+          "client": {
+            "gfx_busy_pct": 31.6,
+            "video_busy_pct": 74.2,
+            "video_engine": "enc"
+          }
+        }
+      }
+    }
+  ]
+}
