@@ -1,0 +1,8 @@
+goal: "Integration 0.5.0: promote rigsignal.ebpf.probe to a TSDS dimension. FULL contract in tasks/rigsignal-025-s1-package-050.md in this worktree — read it FIRST and follow exactly. Three files only; do not commit."
+files_in_scope:
+  - data_stream/ebpf/fields/fields.yml
+  - manifest.yml
+  - changelog.yml
+acceptance_criteria:
+  - elastic-package check passes from the package root
+  - git diff limited to the three in-scope files
