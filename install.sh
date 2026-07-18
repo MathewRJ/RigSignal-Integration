@@ -5,7 +5,7 @@
 #
 # Usage:
 #   curl -sSfL https://mathewrj.github.io/RigSignal-Integration/install.sh | sh
-#   curl -sSfL https://mathewrj.github.io/RigSignal-Integration/install.sh | sh -s -- --version 0.2.0
+#   curl -sSfL https://mathewrj.github.io/RigSignal-Integration/install.sh | sh -s -- --version 0.5.0
 #
 # Arch Linux / CachyOS / Manjaro:
 #   For eBPF scheduler probes, install from AUR instead: yay -S rigsignal-git

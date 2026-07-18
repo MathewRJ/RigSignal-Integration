@@ -28,7 +28,7 @@ Create `/etc/rigsignal/rigsignal.toml` (Linux) or `%APPDATA%\rigsignal\rigsignal
 
 ```toml
 [elasticsearch]
-url      = "https://your-instance.es.us-central1.gcp.elastic.cloud"
+endpoint = "https://your-instance.es.us-central1.gcp.elastic.cloud"
 api_key  = "your-ingest-api-key"
 ```
 

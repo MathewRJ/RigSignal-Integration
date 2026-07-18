@@ -40,6 +40,14 @@ jobs:
             echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Verify package version
+        run: |
+          MANIFEST_VERSION=$(sed -n 's/^version:[[:space:]]*//p' manifest.yml)
+          if [ "$MANIFEST_VERSION" != "${{ steps.ver.outputs.version }}" ]; then
+            echo "::error::manifest.yml version ($MANIFEST_VERSION) does not match publish version (${{ steps.ver.outputs.version }}). Update manifest.yml or use the matching tag/dispatch version."
+            exit 1
+          fi
+
       - name: Install elastic-package
         run: |
           EP_TAG=$(gh release view --repo elastic/elastic-package --json tagName -q .tagName)
