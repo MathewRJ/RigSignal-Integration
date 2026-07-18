@@ -1,46 +1,100 @@
 {
-    "expected": [
-        {
-            "@timestamp": "2026-04-11T12:00:00.000Z",
-            "data_stream": {
-                "dataset": "rigsignal.events",
-                "namespace": "default",
-                "type": "logs"
-            },
-            "event": {
-                "category": ["process"],
-                "kind": "event",
-                "severity": 2,
-                "type": [
-                    "info"
-                ]
-            },
-            "rigsignal": {
-                "event": {
-                    "duration_ms": 284.0,
-                    "kind": "shader_compile",
-                    "severity": "info",
-                    "shader_compile": {
-                        "cache_hit": false,
-                        "duration_ms": 284.0,
-                        "pipeline_hash": "a4f8e2c1b7d3"
-                    }
-                },
-                "game": {
-                    "launcher": "Steam",
-                    "name": "Cyberpunk 2077",
-                    "source": "steam",
-                    "steam_app_id": 1091500
-                },
-                "session": {
-                    "agent_version": "0.1.0",
-                    "id": "test-session-001"
-                }
-            },
-            "host": {
-                "name": "gaming-pc"
-            },
-            "message": "Shader compilation completed in 284ms (cache miss)"
+  "expected": [
+    {
+      "@timestamp": "2026-04-11T12:00:00.000Z",
+      "data_stream": {
+        "dataset": "rigsignal.events",
+        "namespace": "default",
+        "type": "logs"
+      },
+      "event": {
+        "category": ["process"],
+        "kind": "event",
+        "severity": 2,
+        "type": ["info"]
+      },
+      "rigsignal": {
+        "event": {
+          "duration_ms": 284.0,
+          "kind": "shader_compile",
+          "severity": "info",
+          "shader_compile": {
+            "cache_hit": false,
+            "duration_ms": 284.0,
+            "pipeline_hash": "a4f8e2c1b7d3"
+          }
+        },
+        "game": {
+          "launcher": "Steam",
+          "name": "Cyberpunk 2077",
+          "source": "steam",
+          "steam_app_id": 1091500
+        },
+        "session": {
+          "agent_version": "0.1.0",
+          "id": "test-session-001"
         }
-    ]
+      },
+      "host": {
+        "name": "gaming-pc"
+      },
+      "message": "Shader compilation completed in 284ms (cache miss)"
+    },
+    {
+      "@timestamp": "2026-07-17T07:09:44.000Z",
+      "data_stream": {
+        "dataset": "rigsignal.events",
+        "namespace": "default",
+        "type": "logs"
+      },
+      "event": {
+        "category": ["network"],
+        "kind": "event",
+        "type": ["connection", "start"]
+      },
+      "host": {
+        "name": "StreamClient"
+      },
+      "rigsignal": {
+        "stream": {
+          "client": {
+            "event": "connected",
+            "peer": {
+              "id": "10364467328988576325",
+              "name": "GamingPC"
+            },
+            "transport": "direct"
+          }
+        }
+      }
+    },
+    {
+      "@timestamp": "2026-07-17T08:09:44.000Z",
+      "data_stream": {
+        "dataset": "rigsignal.events",
+        "namespace": "default",
+        "type": "logs"
+      },
+      "event": {
+        "category": ["network"],
+        "kind": "event",
+        "type": ["connection", "end"]
+      },
+      "host": {
+        "name": "StreamClient"
+      },
+      "rigsignal": {
+        "stream": {
+          "client": {
+            "event": "disconnected",
+            "peer": {
+              "id": "10364467328988576325",
+              "name": "GamingPC"
+            },
+            "transport": "direct"
+          }
+        }
+      }
+    }
+  ]
 }

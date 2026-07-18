@@ -1,0 +1,12 @@
+paths:
+  - {{spool_dir}}/rigsignal-stream_client-*.ndjson
+exclude_files: ['.tmp$', '.gz$']
+tags: {{to_json tags}}
+parsers:
+  - ndjson:
+      target: ""
+      overwrite_keys: true
+{{#if processors}}
+processors:
+{{processors}}
+{{/if}}

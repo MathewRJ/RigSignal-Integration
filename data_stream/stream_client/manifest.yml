@@ -1,0 +1,8 @@
+title: "RigSignal Stream Client Metrics"
+type: metrics
+elasticsearch:
+  index_mode: "time_series"
+streams:
+  - input: filestream
+    title: RigSignal Stream Client Metrics
+    description: Steam Remote Play client GPU video/gfx utilization via spool file

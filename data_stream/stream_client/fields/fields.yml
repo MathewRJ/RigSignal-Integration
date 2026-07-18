@@ -1,0 +1,49 @@
+- name: host.name
+  external: ecs
+  dimension: true
+- name: rigsignal
+  type: group
+  fields:
+    - name: session
+      type: group
+      fields:
+        - name: id
+          type: keyword
+          dimension: true
+          description: "Agent session UUID; present only when a local game is active."
+        - name: label
+          type: keyword
+          description: "Local game session label; present only with rigsignal.session.id."
+        - name: agent_version
+          type: keyword
+          description: "RigSignal agent version; present only when a local game is active."
+    - name: game
+      type: group
+      fields:
+        - name: name
+          type: keyword
+        - name: steam_app_id
+          type: long
+        - name: source
+          type: keyword
+        - name: launcher
+          type: keyword
+    - name: stream
+      type: group
+      fields:
+        - name: client
+          type: group
+          fields:
+            - name: video_busy_pct
+              type: float
+              metric_type: gauge
+              unit: percent
+              description: "0-100 GPU video-engine busy percentage during the monotonic sample interval; a saturation proxy, not a decode drop counter."
+            - name: video_engine
+              type: keyword
+              description: "Source engine label: dec, enc, or dec+enc; emitted only with video_busy_pct."
+            - name: gfx_busy_pct
+              type: float
+              metric_type: gauge
+              unit: percent
+              description: "0-100 DRM gfx-engine busy percentage during the monotonic sample interval."

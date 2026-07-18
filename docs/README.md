@@ -25,12 +25,15 @@ Real-time gaming telemetry for Elasticsearch. Captures FPS, frame timing percent
 | `metrics-rigsignal.memory` | RAM, swap, process RSS |
 | `metrics-rigsignal.storage` | Disk I/O bytes and latency |
 | `metrics-rigsignal.network` | Bytes and packets in/out |
-| `metrics-rigsignal.audio` | Latency, buffer size, xrun count |
+| `metrics-rigsignal.audio` | Configured latency, PipeWire quantum, sink details |
 | `metrics-rigsignal.power` | Battery %, charge rate, AC state, TDP |
 | `metrics-rigsignal.ebpf` | Kernel scheduler migrations, GPU fence latency, futex waits |
 | `metrics-rigsignal.ebpf_thread` | Per-thread runqueue latency, switches, and migrations |
 | `metrics-rigsignal.session` | Per-session aggregates, game metadata, settings |
-| `logs-rigsignal.events` | Game start/end events, settings changes |
+| `metrics-rigsignal.stream_client` | Steam Remote Play client GPU stream utilization |
+| `logs-rigsignal.events` | Game start/end events, settings changes, Remote Play connection events |
+
+`metrics-rigsignal.stream_client` emits one TSDS metric document per eligible tick.
 
 ## Dashboards
 

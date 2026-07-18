@@ -24,6 +24,9 @@
         - name: id
           type: keyword
           description: "Unique session identifier (UUID)"
+        - name: label
+          type: keyword
+          description: "Optional user-supplied annotation for this session (e.g. 'after-driver-update')"
         - name: agent_version
           type: keyword
           description: "Version of the RigSignal collector agent"
@@ -47,6 +50,28 @@
         - name: steam_app_id
           type: long
           description: "Steam application ID (present only when source == steam)"
+
+    - name: stream
+      type: group
+      fields:
+        - name: client
+          type: group
+          fields:
+            - name: event
+              type: keyword
+              description: "Steam Remote Play client connection transition: connected or disconnected."
+            - name: transport
+              type: keyword
+              description: "Connection transport parsed from Steam: direct, relay, or unknown."
+            - name: peer
+              type: group
+              fields:
+                - name: id
+                  type: keyword
+                  description: "Privacy-sensitive: Steam peer/device identifier. Local collection only; do not export raw."
+                - name: name
+                  type: keyword
+                  description: "Privacy-sensitive: peer-selected hostname. Local collection only; do not export raw."
 
     # Discrete event fields (type: logs — not periodic measurements)
     - name: event

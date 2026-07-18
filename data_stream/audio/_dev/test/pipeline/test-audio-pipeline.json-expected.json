@@ -10,10 +10,14 @@
             "rigsignal": {
                 "audio": {
                     "backend": "pipewire",
-                    "buffer_size": 1024,
-                    "latency_ms": 21.3,
+                    "card_profile": "output:analog-stereo",
+                    "channels": 2,
+                    "driver_latency_ms": 10.67,
+                    "latency_ms": 10.67,
+                    "quantum": 512,
                     "sample_rate_hz": 48000,
-                    "xruns": 0
+                    "sample_format": "s32le 2ch 48000Hz",
+                    "sink_name": "alsa_output.pci-0000_0c_00.6.analog-stereo"
                 },
                 "game": {
                     "name": "Cyberpunk 2077",

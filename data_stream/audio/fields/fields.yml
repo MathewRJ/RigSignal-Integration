@@ -47,17 +47,31 @@
         - name: sample_rate_hz
           type: integer
           metric_type: gauge
-          description: "Audio sample rate in Hz"
-        - name: buffer_size
+          description: "Effective PipeWire clock rate (or PulseAudio server rate on that backend) in Hz"
+        - name: quantum
           type: integer
           metric_type: gauge
-          description: "Audio buffer size in frames"
+          description: "effective PipeWire scheduling quantum in frames, from pw-metadata"
         - name: latency_ms
           type: float
           metric_type: gauge
           unit: ms
-          description: "Audio pipeline round-trip latency in milliseconds"
-        - name: xruns
+          description: "Configured scheduling latency in milliseconds"
+        - name: sink_name
+          type: keyword
+          description: "Default audio sink name, from pactl."
+        - name: card_profile
+          type: keyword
+          description: "Active card profile of the default sink, from pactl."
+        - name: channels
           type: integer
-          metric_type: counter
-          description: "Cumulative audio buffer underrun/overrun count (xruns). Causes audio glitches."
+          metric_type: gauge
+          description: "Channel count of the default sink, from pactl."
+        - name: sample_format
+          type: keyword
+          description: "Sample format of the default sink, from pactl."
+        - name: driver_latency_ms
+          type: float
+          metric_type: gauge
+          unit: ms
+          description: "Default sink's actual driver latency in ms, 2 dp, from pactl."
