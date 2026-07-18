@@ -23,6 +23,7 @@
       fields:
         - name: probe
           type: keyword
+          dimension: true
           description: "Probe name discriminant (e.g. schedlatency)"
 
         # Scheduler probe: runqueue latency
